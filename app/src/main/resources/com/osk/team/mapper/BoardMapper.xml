@@ -25,13 +25,13 @@
     values (#{b_tno}, #{btitle}, #{bcontent})
   </insert>
 
-  <select id="findByKeyword" resultMap="boardMap" parameterType="string">
+  <select id="findByKeyword" resultMap="boardMap" parameterType="int">
     select
       b.btitle,
       b.bcontent,
-      m.bname as writer_name
+      m.mno as writer_no
     from board b
-      inner join member m on m.mname=b.bname
+      inner join member m on m.mno=b.mno
     
     <if test="value != null">
     where 
@@ -54,8 +54,8 @@
       m.mno as writer_no,
       m.mname as writer_name
     from board b
-      inner join member m on m.no=b.bname
-    where b.no = #{value}
+      inner join member m on m.no=b.writer
+    where b.bno = #{value}
   </select>
 
   <update id="update" parameterType="board">

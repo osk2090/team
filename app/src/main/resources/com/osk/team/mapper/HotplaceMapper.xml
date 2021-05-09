@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.osk.team.dao.HotplaceDao">
+
+  <resultMap id="hotplaceMap" type="hotplace">
+    <id column="hno" property="hno"/>
+    <result column="htitle" property="htitle"/>
+    <result column="hcontent" property="hcontent"/>
+    <result column="hdate" property="hdate"/>
+    <result column="hcount" property="hcount"/>
+    <result column="haddr" property="haddr"/>
+    <result column="hphoto" property="hphoto"/>
+
+    <association property="mname" javaType="member">
+      <id column="writer_no" property="mno"/>
+      <result column="writer_name" property="mname"/>
+    </association>
+
+  </resultMap>
+
+  <insert id="insert" parameterType="hotplace">
+    insert into hotplace(htitle, hcontent, haddr, hphoto)
+    values (#{htitle}, #{hcontent}, #{haddr}, #{hphoto})
+  </insert>
+
+  <update id="update" parameterType="hotplace">
+    update hotplace
+    set htitle = #{htitle},
+        hcontent = #{hcontent},
+        haddr = #{haddr},
+        hphoto = #{hphoto}
+    where  hno = #{no}
+  </update>
+
+  <delete id="delete" parameterType="int">
+    delete from hotplace
+    where hno = #{value}
+  </delete>
+
+</mapper>
+
+
+
+
+
+
+

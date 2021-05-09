@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Board {
     private int bno;//게시판id
     private int mno;//회원번호
+    private Member bname; //작성자
     private int b_tno;//게시판분류번호
     private int bcount;//조회수
     private String btitle;//게시판 제목

@@ -20,11 +20,13 @@ public class DefaultClubService implements ClubService {
     }
 
     @Override
+    //
     public List<Club> list() throws Exception {
         return clubDao.findAll();
     }
 
     @Override
+    //현재클럽가입 인원
     public List<Club> listOfMember(int mno) throws Exception {
         return clubDao.findByMemberNo(mno);
     }

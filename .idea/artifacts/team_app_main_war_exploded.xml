@@ -18,8 +18,7 @@
           <element id="library" level="project" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="team.app.main/web/웹 Gradle : pms.war" />
-      <element id="artifact" artifact-name="Gradle : team : pms.war (exploded)" />
+      <element id="javaee-facet-resources" facet="team.app.main/web/웹 Gradle : team.war" />
     </root>
   </artifact>
 </component>

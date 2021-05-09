@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.osk.team.dao.QnaDao">
+
+  <resultMap id="qnaMap" type="qna">
+    <id column="m_qno" property="m_qno"/>
+    <result column="m_qdate" property="m_qdate"/>
+    <result column="m_qtitle" property="m_qtitle"/>
+    <result column="m_qcontent" property="m_qcontent"/>
+    <result column="a_qdate" property="a_qdate"/>
+
+    <association property="bname" javaType="member">
+      <id column="writer_no" property="mno"/>
+      <result column="writer_name" property="bname"/>
+    </association>
+
+  </resultMap>
+
+  <insert id="insert" parameterType="qna">
+    insert into qna(m_qtitle, m_qcontent)
+    values (#{m_qtitle}, #{m_qcontent})
+  </insert>
+
+  <select id="findByNo" resultMap="qnaMap" parameterType="int">
+    select
+      q.m_qno,
+      q.m_qdate,
+      q.m_qtitle,
+      q.m_qcontent,
+      q.a_qcontent,
+      q.a_qdate,
+      m.mno as writer_no,
+      m.mname as writer_name
+    from qna q
+    inner join member m on m.no=m.mname
+    where q.m_qno = #{value}
+  </select>
+
+  <update id="update" parameterType="qna">
+    update qna
+    set m_qtitle = #{m_qtitle},
+        m_qcontent = #{m_qcontent}
+    where m_qno = #{no}
+  </update>
+
+  <delete id="delete" parameterType="int">
+    delete from qna
+    where m_qno = #{value}
+  </delete>
+
+</mapper>

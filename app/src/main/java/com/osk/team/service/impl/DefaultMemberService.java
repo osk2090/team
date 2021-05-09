@@ -38,4 +38,9 @@ public class DefaultMemberService implements MemberService {
     public int delete(int mno) throws Exception {
         return memberDao.delete(mno);
     }
+
+    @Override
+    public Member get(String email, String password) throws Exception {
+        return null;
+    }
 }

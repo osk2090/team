@@ -9,6 +9,8 @@ public interface MemberService {
 
     List<Member> findByMember(int mno) throws Exception;
 
+    Member get(String email, String password) throws Exception;
+
     Member get(int mno) throws Exception;
 
     int update(Member member) throws Exception;

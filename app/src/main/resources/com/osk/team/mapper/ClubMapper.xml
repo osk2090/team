@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.osk.team.dao.ClubDao">
+
+  <resultMap id="clubMap" type="club">
+    <id column="cno" property="cno"/>
+    <result column="mno" property="mno"/>
+    <result column="carrive" property="carrive"/>
+    <result column="ctheme" property="ctheme"/>
+    <result column="ctitle" property="ctitle"/>
+    <result column="ccontent" property="ccontent"/>
+    <result column="csdt" property="csdt"/>
+    <result column="cedt" property="cedt"/>
+    <result column="ctotal" property="ctotal"/>
+
+    <association property="mname" javaType="member">
+      <id column="writer_no" property="mno"/>
+      <result column="writer_name" property="mname"/>
+    </association>
+
+  </resultMap>
+
+  <!-- >클럽 게시판에 클럽 삽입<-->
+   <insert id="insert" parameterType="club">
+    insert into club(carrive, ctheme, ctitle, ccontent, csdt, cedt)
+    values (#{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
+  </insert>
+
+  <select id="findByKeyword" resultMap="boardMap" parameterType="string">
+    select
+    c.cno,
+    c.carrive,
+    c.ctitle,
+    c.ccontent,
+    c.ctheme,
+    c.csdt,
+    c.bedt,
+    c.ctotal,
+    m.mno as writer_no,
+    m.mname as writer_name
+    from club c
+    inner join member m on m.no=b.writer
+
+    <if test="value != null">
+      where
+      c.carrive like concat('%', #{value},'%')
+      and c.ctheme like concat('%', #{value},'%')
+      and c.csdt like concat('%', #{value},'%')
+      and c.bedt like concat('%', #{value},'%')
+    </if>
+    order by c.no desc
+  </select>
+
+<!--  <select id="findByMemberNo" resultMap="memberMap" parameterType="int">-->
+<!--    select-->
+<!--      c.cno,-->
+<!--    c.carrive,-->
+<!--    c.ctheme,-->
+<!--      c.ctitle,-->
+<!--      c.ccontent,-->
+<!--      c.csdt,-->
+<!--      c.bedt,-->
+<!--      c.ctotal,-->
+<!--      m.mno as writer_no,-->
+<!--      m.mname as writer_name-->
+<!--    from club c-->
+<!--           inner join member m on m.no=c.cno-->
+<!--    where b.no = #{value}-->
+<!--  </select>-->
+
+  <update id="update" parameterType="boardMap">
+    update club
+    set ctitle = #{ctitle},
+        ccontent = #{ccontent}
+    where  cno = #{no}
+  </update>
+
+  <delete id="delete" parameterType="int">
+    delete from club
+    where cno = #{value}
+  </delete>
+
+</mapper>
+
+
+
+
+
+
+

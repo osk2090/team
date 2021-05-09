@@ -7,7 +7,6 @@
 
   <resultMap id="clubMap" type="club">
     <id column="cno" property="cno"/>
-    <result column="mno" property="mno"/>
     <result column="carrive" property="carrive"/>
     <result column="ctheme" property="ctheme"/>
     <result column="ctitle" property="ctitle"/>
@@ -16,7 +15,7 @@
     <result column="cedt" property="cedt"/>
     <result column="ctotal" property="ctotal"/>
 
-    <association property="mname" javaType="member">
+    <association property="writer" javaType="member">
       <id column="writer_no" property="mno"/>
       <result column="writer_name" property="mname"/>
     </association>
@@ -37,10 +36,10 @@
     c.ccontent,
     c.ctheme,
     c.csdt,
-    c.bedt,
+    c.cedt,
     c.ctotal,
-    m.mno as writer_no,
-    m.mname as writer_name
+    m.no as writer_no,
+    m.name as writer_name
     from club c
     inner join member m on m.no=b.writer
 
@@ -70,6 +69,23 @@
 <!--           inner join member m on m.no=c.cno-->
 <!--    where b.no = #{value}-->
 <!--  </select>-->
+
+  <select id="findByNo" resultMap="clubMap" parameterType="int">
+    select
+      c.cno,
+      c.carrive,
+      c.ctitle,
+      c.ccontent,
+      c.ctheme,
+      c.csdt,
+      c.cedt,
+      c.ctotal,
+      m.no as writer_no,
+      m.name as writer_name
+    from club c
+           inner join member m on m.no=b.writer
+    where b.no = #{value}
+  </select>
 
   <update id="update" parameterType="club">
     update club

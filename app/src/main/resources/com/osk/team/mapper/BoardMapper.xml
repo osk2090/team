@@ -54,7 +54,7 @@
       m.mno as writer_no,
       m.mname as writer_name
     from board b
-      inner join member m on m.no=b.writer
+      inner join member m on m.mno=b.writer
     where b.bno = #{value}
   </select>
 

@@ -8,9 +8,9 @@ public interface ClubDao {
 
     int insert(Club club) throws Exception;
 
-    List<Club> findAll() throws Exception;
+//    List<Club> findAll() throws Exception;
 
-    List<Club> findByMemberNo(int mno) throws Exception;
+//    List<Club> findByMemberNo(int mno) throws Exception;
 
     Club findByNo(int cno) throws Exception;
 
@@ -18,7 +18,7 @@ public interface ClubDao {
 
     int delete(int cno) throws Exception;
 
-    int deleteByMemberNo(int mno) throws Exception;
+//    int deleteByMemberNo(int mno) throws Exception;
 
     List<Club> findByKeyword(String keyword) throws Exception;//새로만듬
 

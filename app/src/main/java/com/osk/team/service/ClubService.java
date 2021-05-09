@@ -11,7 +11,7 @@ public interface ClubService {
 
     List<Club> list() throws Exception;
 
-    List<Club> listOfMember(int mno) throws Exception;
+//    List<Club> listOfMember(int mno) throws Exception;
 
     Club get(int cno) throws Exception;
 
@@ -21,7 +21,7 @@ public interface ClubService {
 
     int delete(int cno) throws Exception;
 
-    int deleteMember(int mno) throws Exception;
+//    int deleteMember(int mno) throws Exception;
 
     // 로그인 된 유저가 클럽 참여 -> 멤버 추가
 }

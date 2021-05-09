@@ -29,7 +29,7 @@
      values (#{mno}, #{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
   </insert>
 
-  <select id="findByKeyword" resultMap="boardMap" parameterType="string">
+  <select id="findByKeyword" resultMap="clubMap" parameterType="string">
     select
     c.cno,
     c.carrive,
@@ -71,7 +71,7 @@
 <!--    where b.no = #{value}-->
 <!--  </select>-->
 
-  <update id="update" parameterType="boardMap">
+  <update id="update" parameterType="club">
     update club
     set ctitle = #{ctitle},
         ccontent = #{ccontent}

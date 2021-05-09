@@ -13,16 +13,16 @@
     <result column="bcontent" property="bcontent"/>
     <result column="bdate" property="bdate"/>
 
-    <association property="bname" javaType="member">
+    <association property="writer" javaType="member">
 	    <id column="writer_no" property="mno"/>
-	    <result column="writer_name" property="bname"/>
+	    <result column="writer_name" property="mname"/>
     </association>
     
   </resultMap>
   
   <insert id="insert" parameterType="board">
-    insert into board(b_tno, btitle, bcontent, bname)
-    values (#{b_tno}, #{btitle}, #{bcontent}, #{bname})
+    insert into board(b_tno, btitle, bcontent)
+    values (#{b_tno}, #{btitle}, #{bcontent})
   </insert>
 
   <select id="findByKeyword" resultMap="boardMap" parameterType="string">
@@ -31,7 +31,7 @@
       b.bcontent,
       m.bname as writer_name
     from board b
-      inner join member m on m.name=b.bname
+      inner join member m on m.mname=b.bname
     
     <if test="value != null">
     where 
@@ -71,10 +71,3 @@
   </delete>
 
 </mapper>
-
-
-
-
-
-
-

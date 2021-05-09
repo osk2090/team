@@ -20,5 +20,7 @@ public interface ClubDao {
 
     int deleteByMemberNo(int mno) throws Exception;
 
+    List<Club> findByKeyword(String keyword) throws Exception;//새로만듬
+
     // 로그인 된 유저가 클럽 참여 -> 멤버 추가
 }

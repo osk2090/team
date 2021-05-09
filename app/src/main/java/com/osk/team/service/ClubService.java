@@ -1,5 +1,6 @@
 package com.osk.team.service;
 
+import com.osk.team.domain.Board;
 import com.osk.team.domain.Club;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface ClubService {
     List<Club> listOfMember(int mno) throws Exception;
 
     Club get(int cno) throws Exception;
+
+    List<Club> search(String keyword) throws Exception;//추가됨
 
     int update(Club club) throws Exception;
 

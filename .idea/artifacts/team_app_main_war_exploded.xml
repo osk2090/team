@@ -19,6 +19,7 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="team.app.main/web/웹 Gradle : team.war" />
+      <element id="artifact" artifact-name="Gradle : team : team.war (exploded)" />
     </root>
   </artifact>
 </component>

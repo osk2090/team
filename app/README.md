@@ -22,3 +22,6 @@ b.title like concat('%', #{value},'%')
 and b.content like concat('%', #{value},'%')
 and m.name like concat('%', #{value},'%')
 </if>
+
+4.멤버 디테일/리스트 다시 만들기 
+현재 리스트에 멤버정보 하나만 넘어오는 디테일만 구현되어 있음!

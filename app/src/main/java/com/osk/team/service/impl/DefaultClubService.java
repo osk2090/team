@@ -50,4 +50,10 @@ public class DefaultClubService implements ClubService {
     public int deleteMember(int mno) throws Exception {
         return clubDao.deleteByMemberNo(mno);
     }
+
+    @Override
+    public List<Club> search(String keyword) throws Exception {//새로 만듬
+        return clubDao.findByKeyword(keyword);
+    }
+
 }

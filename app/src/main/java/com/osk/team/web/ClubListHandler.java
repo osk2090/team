@@ -28,10 +28,10 @@ public class ClubListHandler extends HttpServlet {
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>게시글 목록</title>");
+        out.println("<title>Club List</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>게시글 목록</h1>");
+        out.println("<h1>Club List</h1>");
 
         out.println("<p><a href='form.html'>클럽생성</a></p>");
 
@@ -41,7 +41,7 @@ public class ClubListHandler extends HttpServlet {
             out.println("<table border='1'>");
             out.println("<thead>");
             out.println("<tr>");
-            out.println("<th>번호</th> <th>도착지</th> <th>가는날</th> <th>오는날</th> <th>인원수</th>");
+            out.println("<th>번호</th> <th>도착지</th> <th>가는날</th> <th>오는날</th> <th>테마</th> <th>인원수</th>");
             out.println("</tr>");
             out.println("</thead>");
             out.println("<tbody>");
@@ -52,12 +52,14 @@ public class ClubListHandler extends HttpServlet {
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
-                                + " <td>%s</td> </tr>\n",
+                                + " <td>%s</td>"
+                                + " <td>%d</td> </tr>\n",
                         c.getCno(),
                         c.getCarrive(),
                         c.getCsdt(),
                         c.getCedt(),
-                        c.getCtheme());
+                        c.getCtheme(),
+                        c.getCtotal());
             }
             out.println("</tbody>");
             out.println("</table>");

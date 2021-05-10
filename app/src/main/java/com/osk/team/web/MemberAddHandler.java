@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,13 +37,14 @@ public class MemberAddHandler extends HttpServlet {
             out.println("<h1>회원 가입</h1>");
 
             Member m = new Member();
-            m.setMname(request.getParameter("mname"));
-            m.setMemail(request.getParameter("memail"));
-            m.setMpwd(request.getParameter("mpassword"));
-            m.setMphoto(request.getParameter("mphoto"));
-            m.setMtel(request.getIntHeader("mtel"));
-            m.setMbirth(Date.valueOf(request.getParameter("mbirhth")));
-            m.setMgender(request.getIntHeader("mgender"));
+            m.setName(request.getParameter("mname"));
+            m.setEmail(request.getParameter("memail"));
+            m.setPassword(request.getParameter("mpassword"));
+            m.setPhoto(request.getParameter("mphoto"));
+            m.setTel(request.getIntHeader("mtel"));
+            m.setBirth(Date.valueOf(request.getParameter("mbirhth")));
+            m.setGender(request.getIntHeader("mgender"));
+            m.setPower(0);//강제 일반회원으로 주입
 
             memberService.add(m);
 

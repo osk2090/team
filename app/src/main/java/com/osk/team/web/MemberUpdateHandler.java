@@ -43,9 +43,9 @@ public class MemberUpdateHandler extends HttpServlet {
             }
 
             Member member = new Member();
-            member.setMname(request.getParameter("mname"));
+            member.setName(request.getParameter("mname"));
             member.setMemail(request.getParameter("memail"));
-            member.setMpwd(request.getParameter("mpassword"));
+            member.setPassword(request.getParameter("mpassword"));
             member.setMphoto(request.getParameter("mphoto"));
             member.setMtel(request.getIntHeader("mtel"));
 

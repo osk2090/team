@@ -27,13 +27,13 @@ public class UserInfoHandler extends HttpServlet {
             return;
         }
 
-        out.printf("이름: %s\n", member.getMname());
-        out.printf("이메일: %s\n", member.getMemail());
-        out.printf("암호: %d\n", member.getMpwd());
-        out.printf("사진: %s\n", member.getMphoto());
-        out.printf("성별: %d\n", member.getMgender());
-        out.printf("생년월일: %d\n", member.getMbirth());
-        out.printf("전화번호: %d\n", member.getMtel());
-        out.printf("제제횟수: %d\n", member.getMcnt());
+        out.printf("이름: %s\n", member.getName());
+        out.printf("이메일: %s\n", member.getEmail());
+        out.printf("암호: %d\n", member.getPassword());
+        out.printf("사진: %s\n", member.getPhoto());
+        out.printf("성별: %d\n", member.getGender());
+        out.printf("생년월일: %d\n", member.getBirth());
+        out.printf("전화번호: %d\n", member.getTel());
+        out.printf("제제횟수: %d\n", member.getCount());
     }
 }

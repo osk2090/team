@@ -62,9 +62,9 @@ public class BoardSearchHandler extends HttpServlet {
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
                                 + " <td>%d</td> </tr>\n",
-                        b.getBno(),
+                        b.getNo(),
                         b.getBtitle(),
-                        b.getMno(),
+                        b.getMember_no(),
                         b.getBdate(),
                         b.getBcount());
 

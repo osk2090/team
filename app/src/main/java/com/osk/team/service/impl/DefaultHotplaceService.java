@@ -28,8 +28,8 @@ public class DefaultHotplaceService implements HotplaceService {
 
     //핫플레이스 상세 조회 업무
     @Override
-    public Hotplace get(int hno) throws Exception {
-        Hotplace hotplace = hotplaceDao.findByNo(hno);
+    public Hotplace get(int no) throws Exception {
+        Hotplace hotplace = hotplaceDao.findByNo(no);
         return hotplace;
     }
 
@@ -41,7 +41,7 @@ public class DefaultHotplaceService implements HotplaceService {
 
     //핫플에이스 삭제 업무
     @Override
-    public int delete(int hno) throws Exception {
-        return hotplaceDao.delete(hno);
+    public int delete(int no) throws Exception {
+        return hotplaceDao.delete(no);
     }
 }

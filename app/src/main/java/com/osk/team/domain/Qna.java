@@ -3,67 +3,80 @@ package com.osk.team.domain;
 import java.sql.Date;
 
 public class Qna {
-    private int m_qno; // QnA번호
-    private int mno; //회원번호
-    private Date m_qdate; //작성일
-    private String m_qtitle; //제목
-    private String m_qcontent; //내용
-    private String a_qcontent; //답변내용
-    private Date a_qdate; //답변일
+    private int no; // QnA번호
+    private Member memberNo; //회원번호
+    private Date registeredDate; //작성일
+    private String title; //제목
+    private String content; //내용
+    private String answer; //답변내용
+    private Date answerDate; //답변일
 
-    public int getM_qno() {
-        return m_qno;
+    @Override
+    public String toString() {
+        return "Qna{" +
+                "no=" + no +
+                ", memberNo=" + memberNo +
+                ", registeredDate=" + registeredDate +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", answer='" + answer + '\'' +
+                ", answerDate=" + answerDate +
+                '}';
     }
 
-    public void setM_qno(int m_qno) {
-        this.m_qno = m_qno;
+    public int getNo() {
+        return no;
     }
 
-    public int getMno() {
-        return mno;
+    public void setNo(int no) {
+        this.no = no;
     }
 
-    public void setMno(int mno) {
-        this.mno = mno;
+    public Member getMemberNo() {
+        return memberNo;
     }
 
-    public Date getM_qdate() {
-        return m_qdate;
+    public void setMemberNo(Member memberNo) {
+        this.memberNo = memberNo;
     }
 
-    public void setM_qdate(Date m_qdate) {
-        this.m_qdate = m_qdate;
+    public Date getRegisteredDate() {
+        return registeredDate;
     }
 
-    public String getM_qtitle() {
-        return m_qtitle;
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
-    public void setM_qtitle(String m_qtitle) {
-        this.m_qtitle = m_qtitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getM_qcontent() {
-        return m_qcontent;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setM_qcontent(String m_qcontent) {
-        this.m_qcontent = m_qcontent;
+    public String getContent() {
+        return content;
     }
 
-    public String getA_qcontent() {
-        return a_qcontent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void setA_qcontent(String a_qcontent) {
-        this.a_qcontent = a_qcontent;
+    public String getAnswer() {
+        return answer;
     }
 
-    public Date getA_qdate() {
-        return a_qdate;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
-    public void setA_qdate(Date a_qdate) {
-        this.a_qdate = a_qdate;
+    public Date getAnswerDate() {
+        return answerDate;
+    }
+
+    public void setAnswerDate(Date answerDate) {
+        this.answerDate = answerDate;
     }
 }

@@ -1,102 +1,114 @@
 package com.osk.team.domain;
 
 import java.sql.Date;
-import java.util.Objects;
+import java.util.List;
 
 public class Club {
-    private int cno;//클럽번호
-    private int mno;//멤버번호
-    private String carrive;//도착지
-    private String ctheme;//테마
-    private String ctitle;//제목
-    private String ccontent;//내용
-    private Date csdt;//가는날
-    private Date cedt;//오는날
-    private int ctotal;//인원수
+
+    private int no;//클럽번호
+    private int memberNo;//멤버번호
+    private String arrive;//도착지
+    private String theme;//테마
+    private String title;//제목
+    private String content;//내용
+    private Date startDate;//가는날
+    private Date endDate;//오는날
+    private int total;//인원수
+    private List<Object> photos;//사진
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Club club = (Club) o;
-        return cno == club.cno && mno == club.mno && ctotal == club.ctotal && Objects.equals(carrive, club.carrive) && Objects.equals(ctheme, club.ctheme) && Objects.equals(ctitle, club.ctitle) && Objects.equals(ccontent, club.ccontent) && Objects.equals(csdt, club.csdt) && Objects.equals(cedt, club.cedt);
+    public String toString() {
+        return "Club{" +
+                "no=" + no +
+                ", memberNo=" + memberNo +
+                ", arrive='" + arrive + '\'' +
+                ", theme='" + theme + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", total=" + total +
+                ", photos=" + photos +
+                '}';
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal);
+    public List<Object> getPhotos() {
+        return photos;
     }
 
-    public int getCno() {
-        return cno;
+    public void setPhotos(List<Object> photos) {
+        this.photos = photos;
     }
 
-    public void setCno(int cno) {
-        this.cno = cno;
+    public int getNo() {
+        return no;
     }
 
-    public int getMno() {
-        return mno;
+    public void setNo(int no) {
+        this.no = no;
     }
 
-    public void setMno(int mno) {
-        this.mno = mno;
+    public int getMemberNo() {
+        return memberNo;
     }
 
-    public String getCarrive() {
-        return carrive;
+    public void setMemberNo(int memberNo) {
+        this.memberNo = memberNo;
     }
 
-    public void setCarrive(String carrive) {
-        this.carrive = carrive;
+    public String getArrive() {
+        return arrive;
     }
 
-    public String getCtheme() {
-        return ctheme;
+    public void setArrive(String arrive) {
+        this.arrive = arrive;
     }
 
-    public void setCtheme(String ctheme) {
-        this.ctheme = ctheme;
+    public String getTheme() {
+        return theme;
     }
 
-    public String getCtitle() {
-        return ctitle;
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
-    public void setCtitle(String ctitle) {
-        this.ctitle = ctitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getCcontent() {
-        return ccontent;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setCcontent(String ccontent) {
-        this.ccontent = ccontent;
+    public String getContent() {
+        return content;
     }
 
-    public Date getCsdt() {
-        return csdt;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void setCsdt(Date csdt) {
-        this.csdt = csdt;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public Date getCedt() {
-        return cedt;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public void setCedt(Date cedt) {
-        this.cedt = cedt;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public int getCtotal() {
-        return ctotal;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void setCtotal(int ctotal) {
-        this.ctotal = ctotal;
+    public int getTotal() {
+        return total;
     }
 
+    public void setTotal(int total) {
+        this.total = total;
+    }
 }

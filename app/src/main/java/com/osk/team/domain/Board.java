@@ -1,92 +1,93 @@
 package com.osk.team.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Board {
-    private int bno;//게시판id
-    private int mno;//회원번호
-    private Member writer;//회원이름
-    private int b_tno;//게시판분류번호
-    private int bcount;//조회수
-    private String btitle;//게시판 제목
-    private String bcontent;//게시판내용
-    private Date bdate;//작성일
+    private int no;//게시판id
+    private Member memberNo;//회원번호
+    private int boardTypeNo;//게시판분류번호
+    private int viewCount;//조회수
+    private String title;//게시판 제목
+    private String content;//게시판내용
+    private Date registeredDate;//작성일
+    private List<Object> photos;//사진
 
     @Override
     public String toString() {
         return "Board{" +
-                "bno=" + bno +
-                ", mno=" + mno +
-                ", writer=" + writer +
-                ", b_tno=" + b_tno +
-                ", bcount=" + bcount +
-                ", btitle='" + btitle + '\'' +
-                ", bcontent='" + bcontent + '\'' +
-                ", bdate=" + bdate +
+                "no=" + no +
+                ", memberNo=" + memberNo +
+                ", boardTypeNo=" + boardTypeNo +
+                ", viewCount=" + viewCount +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", registeredDate=" + registeredDate +
+                ", photos=" + photos +
                 '}';
     }
 
-    public int getBno() {
-        return bno;
+    public int getNo() {
+        return no;
     }
 
-    public void setBno(int bno) {
-        this.bno = bno;
+    public void setNo(int no) {
+        this.no = no;
     }
 
-    public int getMno() {
-        return mno;
+    public Member getMemberNo() {
+        return memberNo;
     }
 
-    public void setMno(int mno) {
-        this.mno = mno;
+    public void setMemberNo(Member memberNo) {
+        this.memberNo = memberNo;
     }
 
-    public Member getWriter() {
-        return writer;
+    public int getBoardTypeNo() {
+        return boardTypeNo;
     }
 
-    public void setWriter(Member writer) {
-        this.writer = writer;
+    public void setBoardTypeNo(int boardTypeNo) {
+        this.boardTypeNo = boardTypeNo;
     }
 
-    public int getB_tno() {
-        return b_tno;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setB_tno(int b_tno) {
-        this.b_tno = b_tno;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
-    public int getBcount() {
-        return bcount;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBcount(int bcount) {
-        this.bcount = bcount;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getBtitle() {
-        return btitle;
+    public String getContent() {
+        return content;
     }
 
-    public void setBtitle(String btitle) {
-        this.btitle = btitle;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getBcontent() {
-        return bcontent;
+    public Date getRegisteredDate() {
+        return registeredDate;
     }
 
-    public void setBcontent(String bcontent) {
-        this.bcontent = bcontent;
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
-    public Date getBdate() {
-        return bdate;
+    public List<Object> getPhotos() {
+        return photos;
     }
 
-    public void setBdate(Date bdate) {
-        this.bdate = bdate;
+    public void setPhotos(List<Object> photos) {
+        this.photos = photos;
     }
 }

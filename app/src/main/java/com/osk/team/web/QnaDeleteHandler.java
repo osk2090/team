@@ -1,6 +1,5 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Board;
 import com.osk.team.domain.Member;
 import com.osk.team.domain.Qna;
 import com.osk.team.service.QnaService;
@@ -41,7 +40,7 @@ public class QnaDeleteHandler extends HttpServlet {
             }
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (oldQna.getMno() != loginUser.getMno()) {
+            if (oldQna.getMno() != loginUser.getNo()) {
                 throw new Exception("삭제 권한이 없습니다!");
             }
 

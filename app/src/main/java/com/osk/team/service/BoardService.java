@@ -11,11 +11,11 @@ public interface BoardService {
 
     List<Board> list() throws Exception;
 
-    Board get(int bno) throws Exception;
+    Board get(int no) throws Exception;
 
     int update(Board board) throws Exception;
 
-    int delete(int bno) throws Exception;
+    int delete(int no) throws Exception;
 
     List<Board> search(String keyword) throws Exception;
 }

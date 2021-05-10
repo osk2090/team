@@ -3,7 +3,6 @@ package com.osk.team.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -53,8 +52,8 @@ public class MemberListHandler implements Servlet {
 //            }
 
             out.printf("%d, %s, %s, %d, %s, %s \n",
-                        m.getMno(),
-                        m.getMname(),
+                        m.getNo(),
+                        m.getName(),
                         m.getMemail(),
                         m.getMtel(),
                         m.getMbirth(),

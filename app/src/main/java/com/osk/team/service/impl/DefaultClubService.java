@@ -20,19 +20,14 @@ public class DefaultClubService implements ClubService {
     }
 
     @Override
-    public List<Club> list() throws Exception {
+    //현재클럽가입 인원
+    public List<Club> listOfMember() throws Exception {
         return clubDao.findByKeyword(null);
     }
 
-//    @Override
-//    //현재클럽가입 인원
-//    public List<Club> listOfMember(int mno) throws Exception {
-//        return clubDao.findByMemberNo(mno);
-//    }
-
     @Override
-    public Club get(int cno) throws Exception {
-        return clubDao.findByNo(cno);
+    public Club get(int no) throws Exception {
+        return clubDao.findByNo(no);
     }
 
     @Override
@@ -41,14 +36,9 @@ public class DefaultClubService implements ClubService {
     }
 
     @Override
-    public int delete(int cno) throws Exception {
-        return clubDao.delete(cno);
+    public int delete(int no) throws Exception {
+        return clubDao.delete(no);
     }
-
-//    @Override
-//    public int deleteMember(int mno) throws Exception {
-//        return clubDao.deleteByMemberNo(mno);
-//    }
 
     @Override
     public List<Club> search(String keyword) throws Exception {//새로 만듬

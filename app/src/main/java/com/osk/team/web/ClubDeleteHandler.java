@@ -37,7 +37,7 @@ public class ClubDeleteHandler extends HttpServlet {
             }
 
             int loginUser = (int) request.getSession().getAttribute("loginUser");//회원번호로 받기
-            if (oldClub.getCno() != loginUser) {
+            if (oldClub.getNo() != loginUser) {
                 throw new Exception("삭제 권한이 없습니다!");
             }
 

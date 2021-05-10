@@ -9,12 +9,12 @@ public interface QnaService {
 
     int add(Qna qna) throws Exception;
 
-    List<Qna> list() throws Exception;
+    List<Qna> listAll() throws Exception;
 
-    Qna get(int m_qno) throws Exception;
+    Qna get(int no) throws Exception;
 
     int update(Qna qna) throws Exception;
 
-    int delete(int m_qno) throws Exception;
+    int delete(int no) throws Exception;
 
 }

@@ -1,7 +1,6 @@
 package com.osk.team.web;
 
 import com.osk.team.domain.Club;
-import com.osk.team.domain.Member;
 import com.osk.team.service.ClubService;
 
 import javax.servlet.ServletException;
@@ -28,16 +27,16 @@ public class ClubAddHandler extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        c.setCarrive(request.getParameter("carrive"));
-        c.setCtheme(request.getParameter("ctheme"));
-        c.setCtitle(request.getParameter("ctitle"));
-        c.setCcontent(request.getParameter("ccontent"));
-        c.setCsdt(Date.valueOf(request.getParameter("csdt")));
-        c.setCedt(Date.valueOf(request.getParameter("cedt")));
+        c.setArrive(request.getParameter("carrive"));
+        c.setTheme(request.getParameter("ctheme"));
+        c.setTitle(request.getParameter("ctitle"));
+        c.setContent(request.getParameter("ccontent"));
+        c.setStartDate(Date.valueOf(request.getParameter("csdt")));
+        c.setEndDate(Date.valueOf(request.getParameter("cedt")));
 
         HttpServletRequest httpRequest = request;
         int loginUser = (int) httpRequest.getSession().getAttribute("loginUser");//회원번호로 받기
-        c.setCno(loginUser);
+        c.setNo(loginUser);
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

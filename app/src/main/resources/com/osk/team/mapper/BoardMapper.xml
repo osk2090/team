@@ -6,9 +6,9 @@
 <mapper namespace="com.osk.team.dao.BoardDao">
   
   <resultMap id="boardMap" type="board">
-    <id column="bno" property="bno"/>
-    <result column="b_tno" property="b_tno"/>
-    <result column="bcount" property="bcount"/>
+    <id column="bno" property="no"/>
+    <result column="b_tno" property="tno"/>
+    <result column="bcount" property="count"/>
     <result column="btitle" property="btitle"/>
     <result column="bcontent" property="bcontent"/>
     <result column="bdate" property="bdate"/>
@@ -25,32 +25,33 @@
     values (#{b_tno}, #{btitle}, #{bcontent})
   </insert>
 
-  <select id="findByKeyword" resultMap="boardMap" parameterType="int">
+  <select id="findByKeyword" resultMap="boardMap" parameterType="string">
     select
-      b.btitle,
-      b.bcontent,
-      m.mno as writer_no
+    b.no,
+    b.btitle,
+    b.bcontent,
+    m.mno as writer_no
     from board b
-      inner join member m on m.mno=b.mno
-    
+    inner join member m on m.mno=b.mno
+
     <if test="value != null">
-    where 
+      where
       b.btitle like concat('%', #{value},'%')
       or b.bcontent like concat('%', #{value},'%')
       or m.bname like concat('%', #{value},'%')
     </if>
-    
+
     order by b.bno desc
   </select>
   
   <select id="findByNo" resultMap="boardMap" parameterType="int">
     select
-      b.bno,
-      b.btitle,
-      b.bcontent,
-      b.bdate,
-      b.bcount,
-      b.b_tno,
+      b.no,
+      b.title,
+      b.content,
+      b.date,
+      b.count,
+      b.t_bno,
       m.mno as writer_no,
       m.mname as writer_name
     from board b

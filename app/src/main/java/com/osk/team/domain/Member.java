@@ -1,108 +1,125 @@
 package com.osk.team.domain;
 
 import java.sql.Date;
-import java.util.Objects;
+import java.util.List;
 
 public class Member {
-    private int mno;//멤버번호
-    private String mname;//이름
-    private String mpwd;//암호
-    private String memail;//이메일
-    private String mphoto;//사진
-    private Date mbirth;//생년월일
+    private int no;//멤버번호
+    private String name;//이름
+    private String password;//암호
+    private String email;//이메일
+    private String photo;//사진
+    private Date birth;//생년월일
 
-    private int mtel;//전화번호
-    private int mgender;//성별
-    private int mstatus;//탈퇴여부
-    private int mpow;//관리자권한
-    private int mcnt;//제제횟수
+    private int tel;//전화번호w
+    private int gender;//성별
+    private int status;//탈퇴여부
+    private int power;//관리자권한
+    private int count;//제제횟수
 
 
-    public int getMno() {
-        return mno;
+    @Override
+    public String toString() {
+        return "Member{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", photo='" + photo + '\'' +
+                ", birth=" + birth +
+                ", tel=" + tel +
+                ", gender=" + gender +
+                ", status=" + status +
+                ", power=" + power +
+                ", count=" + count +
+                '}';
     }
 
-    public void setMno(int mno) {
-        this.mno = mno;
+    public int getNo() {
+        return no;
     }
 
-    public String getMname() {
-        return mname;
+    public void setNo(int no) {
+        this.no = no;
     }
 
-    public void setMname(String mname) {
-        this.mname = mname;
+    public String getName() {
+        return name;
     }
 
-    public String getMpwd() {
-        return mpwd;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setMpwd(String mpwd) {
-        this.mpwd = mpwd;
+    public String getPassword() {
+        return password;
     }
 
-    public String getMemail() {
-        return memail;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setMemail(String memail) {
-        this.memail = memail;
+    public String getEmail() {
+        return email;
     }
 
-    public String getMphoto() {
-        return mphoto;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setMphoto(String mphoto) {
-        this.mphoto = mphoto;
+    public String getPhoto() {
+        return photo;
     }
 
-    public Date getMbirth() {
-        return mbirth;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public void setMbirth(Date mbirth) {
-        this.mbirth = mbirth;
+    public Date getBirth() {
+        return birth;
     }
 
-    public int getMtel() {
-        return mtel;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
-    public void setMtel(int mtel) {
-        this.mtel = mtel;
+    public int getTel() {
+        return tel;
     }
 
-    public int getMgender() {
-        return mgender;
+    public void setTel(int tel) {
+        this.tel = tel;
     }
 
-    public void setMgender(int mgender) {
-        this.mgender = mgender;
+    public int getGender() {
+        return gender;
     }
 
-    public int getMstatus() {
-        return mstatus;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
-    public void setMstatus(int mstatus) {
-        this.mstatus = mstatus;
+    public int getStatus() {
+        return status;
     }
 
-    public int getMpow() {
-        return mpow;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public void setMpow(int mpow) {
-        this.mpow = mpow;
+    public int getPower() {
+        return power;
     }
 
-    public int getMcnt() {
-        return mcnt;
+    public void setPower(int power) {
+        this.power = power;
     }
 
-    public void setMcnt(int mcnt) {
-        this.mcnt = mcnt;
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

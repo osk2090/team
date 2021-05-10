@@ -27,10 +27,10 @@ public class DefaultBoardService implements BoardService {
     }
 
     @Override
-    public Board get(int bno) throws Exception {
-        Board board = boardDao.findByNo(bno);
+    public Board get(int no) throws Exception {
+        Board board = boardDao.findByNo(no);
         if (board != null) {
-            boardDao.updateViewCount(bno);
+            boardDao.updateViewCount(no);
         }
         return board;
     }
@@ -41,8 +41,8 @@ public class DefaultBoardService implements BoardService {
     }
 
     @Override
-    public int delete(int bno) throws Exception {
-        return boardDao.delete(bno);
+    public int delete(int no) throws Exception {
+        return boardDao.delete(no);
     }
 
     @Override

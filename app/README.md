@@ -2,6 +2,9 @@
 
 1.관리자권한에서 현재 회원리스트와 회원번호로 회원을 검색할 수 있는 기능 ui추가
 
+
+
+
 2.sql no value차이
 <update id="update" parameterType="qna">
     update qna
@@ -22,6 +25,9 @@ b.title like concat('%', #{value},'%')
 and b.content like concat('%', #{value},'%')
 and m.name like concat('%', #{value},'%')
 </if>
+
+
+
 
 4.멤버 디테일/리스트 다시 만들기 
 현재 리스트에 멤버정보 하나만 넘어오는 디테일만 구현되어 있음!

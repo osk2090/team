@@ -6,51 +6,51 @@
 <mapper namespace="com.osk.team.dao.ClubDao">
 
   <resultMap id="clubMap" type="club">
-    <id column="cno" property="cno"/>
-    <result column="carrive" property="carrive"/>
-    <result column="ctheme" property="ctheme"/>
-    <result column="ctitle" property="ctitle"/>
-    <result column="ccontent" property="ccontent"/>
-    <result column="csdt" property="csdt"/>
-    <result column="cedt" property="cedt"/>
-    <result column="ctotal" property="ctotal"/>
+    <id column="cno" property="no"/>
+    <result column="carrive" property="arrive"/>
+    <result column="ctheme" property="theme"/>
+    <result column="ctitle" property="title"/>
+    <result column="ccontent" property="content"/>
+    <result column="csdt" property="sdt"/>
+    <result column="cedt" property="edt"/>
+    <result column="ctotal" property="total"/>
 
-<!--    <association property="mno" javaType="member">-->
-<!--      <id column="writer_no" property="mno"/>-->
-<!--      <result column="writer_name" property="mname"/>-->
-<!--    </association>-->
+    <association property="writer" javaType="member">
+      <id column="writer_no" property="no"/>
+      <result column="writer_name" property="name"/>
+    </association>
 
   </resultMap>
 
   <!-- >클럽 게시판에 클럽 삽입<-->
    <insert id="insert" parameterType="club">
-     insert into club(mno, carrive, ctheme, ctitle, ccontent, csdt, cedt)
+     insert into club(no, arrive, theme, title, content, sdt, edt)
      values (#{mno}, #{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
   </insert>
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">
     select
-    c.cno,
-    c.carrive,
-    c.ctitle,
-    c.ccontent,
-    c.ctheme,
-    c.csdt,
-    c.cedt,
-    c.ctotal,
-    m.mno as writer_no,
-    m.mname as writer_name
+    c.no,
+    c.arrive,
+    c.title,
+    c.content,
+    c.theme,
+    c.sdt,
+    c.edt,
+    c.total,
+    m.no as writer_no,
+    m.name as writer_name
     from club c
-    inner join member m on m.mno=c.mno
+    inner join member m on m.no=c.no
 
     <if test="value != null">
       where
-      c.carrive like concat('%', #{value},'%')
-      and c.ctheme like concat('%', #{value},'%')
-      and c.csdt like concat('%', #{value},'%')
-      and c.bedt like concat('%', #{value},'%')
+      c.arrive like concat('%', #{value},'%')
+      and c.theme like concat('%', #{value},'%')
+      and c.sdt like concat('%', #{value},'%')
+      and c.edt like concat('%', #{value},'%')
     </if>
-    order by c.cno desc
+    order by c.no desc
   </select>
 
 <!--  <select id="findByMemberNo" resultMap="memberMap" parameterType="int">-->
@@ -72,31 +72,31 @@
 
   <select id="findByNo" resultMap="clubMap" parameterType="int">
     select
-      c.cno,
-      c.carrive,
-      c.ctitle,
-      c.ccontent,
-      c.ctheme,
-      c.csdt,
-      c.cedt,
-      c.ctotal,
-      m.mno as writer_no,
+      c.no,
+      c.arrive,
+      c.title,
+      c.content,
+      c.theme,
+      c.sdt,
+      c.edt,
+      c.total,
+      m.no as writer_no,
       m.name as writer_name
     from club c
-           inner join member m on m.mno=c.mno
-    where c.cno = #{value}
+           inner join member m on m.no=c.no
+    where c.no = #{value}
   </select>
 
   <update id="update" parameterType="club">
     update club
-    set ctitle = #{ctitle},
-        ccontent = #{ccontent}
-    where  cno = #{no}
+    set title   = #{ctitle},
+        content = #{ccontent}
+    where no = #{no}
   </update>
 
   <delete id="delete" parameterType="int">
     delete from club
-    where cno = #{value}
+    where no = #{value}
   </delete>
 
 </mapper>

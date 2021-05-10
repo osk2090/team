@@ -25,8 +25,8 @@ public class DefaultQnaService implements QnaService {
     }
 
     @Override
-    public Qna get(int m_qno) throws Exception {
-        return qnaDao.findByNo(m_qno);
+    public Qna get(int no) throws Exception {
+        return qnaDao.findByNo(no);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class DefaultQnaService implements QnaService {
     }
 
     @Override
-    public int delete(int m_qno) throws Exception {
-        return qnaDao.delete(m_qno);
+    public int delete(int no) throws Exception {
+        return qnaDao.delete(no);
     }
 }

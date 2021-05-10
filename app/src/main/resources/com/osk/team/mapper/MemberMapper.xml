@@ -6,41 +6,41 @@
 <mapper namespace="com.osk.team.dao.MemberDao">
   
   <resultMap id="memberMap" type="member">
-    <id column="mno" property="mno"/>
-    <result column="mname" property="mname"/>
-    <result column="memail" property="memail"/>
-    <result column="mphoto" property="mphoto"/>
-    <result column="mbirth" property="mbirth"/>
-    <result column="mtel" property="mtel"/>
-    <result column="mgender" property="mgender"/>
-    <result column="mcnt" property="mcnt"/>
+    <id column="no" property="no"/>
+    <result column="name" property="name"/>
+    <result column="email" property="email"/>
+    <result column="photo" property="photo"/>
+    <result column="birth" property="birth"/>
+    <result column="tel" property="tel"/>
+    <result column="gender" property="gender"/>
+    <result column="count" property="count"/>
     
   </resultMap>
   
-  <insert id="insert" parameterType="board">
-    insert into member(mname, mpwd, memail, mphoto, mbirth, mtel, mgender)
-    values (#{mname}, password(#{mpwd}), #{memail}, #{mphoto}, #{mbirth}, #{mtel}, #{mgender})
+  <insert id="insert" parameterType="member">
+    insert into member(name, password, email, photo, birth, tel, gender)
+    values (#{name}, password(#{password}), #{email}, #{photo}, #{birth}, #{tel}, #{gender})
   </insert>
   
   <select id="findByMember" resultMap="memberMap" parameterType="int">
     select
-      mno,
-      mname,
-      memail,
-      mphoto,
-      mbirth,
-      mtel,
-      mgender,
-      mcnt
+      no,
+      name,
+      email,
+      photo,
+      birth,
+      tel,
+      gender,
+      count
     from member
     where mno = #{value}
   </select>
   
   <update id="update" parameterType="member">
     update member
-    set mphoto = #{mphoto},
-        mpwd = password(#{mpwd})
-    where mno = #{no}
+    set photo = #{mphoto},
+        password = password(#{mpwd})
+    where no = #{no}
   </update>
 
   <delete id="delete" parameterType="int">

@@ -27,7 +27,7 @@ public class LoginHandler extends HttpServlet {
 
         out.println("[로그인]");
 
-        String memail = request.getParameter("email");
+        String email = request.getParameter("email");
         String mpwd = request.getParameter("password");
 
         try {
@@ -38,12 +38,15 @@ public class LoginHandler extends HttpServlet {
                 request.getSession().invalidate();
                 return;
             }
-
-            // 로그인 성공한다면, 로그인 사용자 정보를 세션 객체에 보관한다.
-            request.getSession().setAttribute("loginUser", member);
-
-            out.printf("%s 님 환영합니다.\n", member.getMname());
-
+            if (member.getPower() == 0) {//일반 회원
+                // 로그인 성공한다면, 로그인 사용자 정보를 세션 객체에 보관한다.
+                request.getSession().setAttribute("loginUser", member);
+                out.printf("%s 님 환영합니다.\n", member.getName());
+            } else if (member.getPower() == 1) {
+                // 로그인 성공한다면, 로그인 사용자 정보를 세션 객체에 보관한다.
+                request.getSession().setAttribute("loginUser", member);
+                out.println("관리자님 환영합니다!\n");
+            }
         } catch (Exception e) {
             StringWriter strWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(strWriter);

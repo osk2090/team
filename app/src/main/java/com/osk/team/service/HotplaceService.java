@@ -10,10 +10,10 @@ public interface HotplaceService {
 
     List<Hotplace> listAll() throws Exception;
 
-    Hotplace get(int hno) throws Exception;
+    Hotplace get(int no) throws Exception;
 
     int update(Hotplace hotplace) throws Exception;
 
-    int delete(int hno) throws Exception;
+    int delete(int no) throws Exception;
 
 }

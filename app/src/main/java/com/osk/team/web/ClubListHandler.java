@@ -36,7 +36,7 @@ public class ClubListHandler extends HttpServlet {
         out.println("<p><a href='form.html'>클럽생성</a></p>");
 
         try {
-            List<Club> clubs = clubService.list();
+            List<Club> clubs = clubService.listAll();
 
             out.println("<table border='1'>");
             out.println("<thead>");
@@ -54,12 +54,12 @@ public class ClubListHandler extends HttpServlet {
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
                                 + " <td>%d</td> </tr>\n",
-                        c.getCno(),
-                        c.getCarrive(),
-                        c.getCsdt(),
-                        c.getCedt(),
-                        c.getCtheme(),
-                        c.getCtotal());
+                        c.getNo(),
+                        c.getArrive(),
+                        c.getStartDate(),
+                        c.getEndDate(),
+                        c.getTheme(),
+                        c.getTotal());
             }
             out.println("</tbody>");
             out.println("</table>");

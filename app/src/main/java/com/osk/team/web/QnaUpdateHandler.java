@@ -1,9 +1,7 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Board;
 import com.osk.team.domain.Member;
 import com.osk.team.domain.Qna;
-import com.osk.team.service.BoardService;
 import com.osk.team.service.QnaService;
 
 import javax.servlet.ServletException;
@@ -42,7 +40,7 @@ public class QnaUpdateHandler extends HttpServlet {
             }
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (oldQna.getMno() != loginUser.getMno()) {
+            if (oldQna.getMno() != loginUser.getNo()) {
                 throw new Exception("변경 권한이 없습니다!");
             }
 

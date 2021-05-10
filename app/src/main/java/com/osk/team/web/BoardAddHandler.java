@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.osk.team.domain.Board;
-import com.osk.team.domain.Member;
 import com.osk.team.service.BoardService;
 
 @SuppressWarnings("serial")
@@ -34,7 +33,7 @@ public class BoardAddHandler extends HttpServlet {
 
         HttpServletRequest httpRequest = request;
         int loginUser = (int) httpRequest.getSession().getAttribute("loginUser");
-        b.setMno(loginUser);
+        b.setMember_no(loginUser);
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

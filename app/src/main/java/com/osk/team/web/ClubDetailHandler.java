@@ -1,9 +1,7 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Board;
 import com.osk.team.domain.Club;
 import com.osk.team.domain.Member;
-import com.osk.team.service.BoardService;
 import com.osk.team.service.ClubService;
 
 import javax.servlet.ServletException;
@@ -51,23 +49,23 @@ public class ClubDetailHandler extends HttpServlet {
             out.println("<table border='1'>");
             out.println("<tbody>");
             out.printf("<tr><th>번호</th>"
-                    + " <td><input type='text' name='no' value='%d' readonly></td></tr>\n", c.getCno());
+                    + " <td><input type='text' name='no' value='%d' readonly></td></tr>\n", c.getNo());
             out.printf("<tr><th>도착지</th>"
-                    + " <td><input name='title' type='text' value='%s'></td></tr>\n", c.getCarrive());
+                    + " <td><input name='title' type='text' value='%s'></td></tr>\n", c.getArrive());
             out.printf("<tr><th>가는날</th>"
-                    + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", formatter.format(c.getCsdt()));
-            out.printf("<tr><th>오는날</th> <td>%s</td></tr>\n", formatter.format(c.getCedt()));
-            out.printf("<tr><th>제목</th> <td>%s</td></tr>\n", c.getCtitle());
-            out.printf("<tr><th>내용</th> <td>%s</td></tr>\n", c.getCcontent());
-            out.printf("<tr><th>인원수</th> <td>%s</td></tr>\n", c.getCtotal());
+                    + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", formatter.format(c.getStartDate()));
+            out.printf("<tr><th>오는날</th> <td>%s</td></tr>\n", formatter.format(c.getEndDate()));
+            out.printf("<tr><th>제목</th> <td>%s</td></tr>\n", c.getTitle());
+            out.printf("<tr><th>내용</th> <td>%s</td></tr>\n", c.getContent());
+            out.printf("<tr><th>인원수</th> <td>%s</td></tr>\n", c.getTotal());
             out.println("</tbody>");
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (loginUser != null && c.getMno() == loginUser.getMno()) {
+            if (loginUser != null && c.getMemberNo() == loginUser.getNo()) {
                 out.println("<tfoot>");
                 out.println("<tr><td colspan='2'>");
                 out.println("<input type='submit' value='변경'> "
-                        + "<a href='delete?no=" + c.getCno() + "'>삭제</a> ");
+                        + "<a href='delete?no=" + c.getNo() + "'>삭제</a> ");
                 out.println("</td></tr>");
                 out.println("</tfoot>");
             }

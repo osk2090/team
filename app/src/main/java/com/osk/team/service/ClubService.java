@@ -9,19 +9,15 @@ public interface ClubService {
 
     int add(Club club) throws Exception;
 
-    List<Club> list() throws Exception;
+    List<Club> listOfMember() throws Exception;//현재 참여 멤버
 
-//    List<Club> listOfMember(int mno) throws Exception;
+    Club get(int no) throws Exception;
 
-    Club get(int cno) throws Exception;
-
-    List<Club> search(String keyword) throws Exception;//추가됨
+    List<Club> search(String keyword) throws Exception;
 
     int update(Club club) throws Exception;
 
-    int delete(int cno) throws Exception;
-
-//    int deleteMember(int mno) throws Exception;
+    int delete(int no) throws Exception;
 
     // 로그인 된 유저가 클럽 참여 -> 멤버 추가
 }

@@ -3,25 +3,23 @@ package com.osk.team.domain;
 import java.sql.Date;
 import java.util.List;
 
-public class Hotplace {
-
+public class Discount {
     private int no;//게시판 번호
     private String title;//게시판 제목
     private String content;//게시판 내용
-    private Date date;//등록 날짜
-    private int count;//조회수
-    private String address;//주소
+    private Date registeredDate;//작성일
+    private int viewCount;//조회수
     private String photo;//사진
+
 
     @Override
     public String toString() {
-        return "Hotplace{" +
+        return "Discount{" +
                 "no=" + no +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", date=" + date +
-                ", count=" + count +
-                ", address='" + address + '\'' +
+                ", registeredDate=" + registeredDate +
+                ", viewCount=" + viewCount +
                 ", photo='" + photo + '\'' +
                 '}';
     }
@@ -50,28 +48,20 @@ public class Hotplace {
         this.content = content;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getRegisteredDate() {
+        return registeredDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
-    public int getCount() {
-        return count;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
     public String getPhoto() {

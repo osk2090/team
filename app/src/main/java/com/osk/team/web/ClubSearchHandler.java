@@ -1,9 +1,7 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Board;
 import com.osk.team.domain.Club;
 import com.osk.team.service.ClubService;
-import com.osk.team.service.HotplaceService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,11 +59,11 @@ public class ClubSearchHandler extends HttpServlet {
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
                                 + " <td>%s</td> </tr>\n",
-                        c.getCno(),
-                        c.getCarrive(),
-                        c.getCsdt(),
-                        c.getCedt(),
-                        c.getCtheme());
+                        c.getNo(),
+                        c.getArrive(),
+                        c.getStartDate(),
+                        c.getEndDate(),
+                        c.getTheme());
             }
             out.println("</tbody>");
             out.println("</table>");

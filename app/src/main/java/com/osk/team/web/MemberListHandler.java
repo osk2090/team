@@ -33,7 +33,7 @@ public class MemberListHandler implements Servlet {
         int no = Integer.parseInt(request.getParameter("no"));
 
         try {
-            Member m = memberService.get(no);
+//            Member m = memberService.get(no);
 
 //            for (Member m : list) {
 //                out.printf("%d, %s, %s, %d, %s, %s \n",
@@ -51,13 +51,14 @@ public class MemberListHandler implements Servlet {
 //                out.println("<p>회원목록입니다 > </p>");
 //            }
 
-            out.printf("%d, %s, %s, %d, %s, %s \n",
-                        m.getNo(),
-                        m.getName(),
-                        m.getMemail(),
-                        m.getMtel(),
-                        m.getMbirth(),
-                        m.getMgender());
+//            out.printf("%d, %s, %s, %d, %s, %s \n",
+//                        m.getNo(),
+//                        m.getName()
+//                        m.getMemail(),
+//                        m.getMtel(),
+//                        m.getMbirth(),
+//                        m.getMgender()
+//                        );
 
                 out.println("<meta http-equiv='Refresh' content='1;url=list'>");
                 out.println("</head>");

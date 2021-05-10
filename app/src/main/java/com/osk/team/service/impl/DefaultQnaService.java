@@ -20,9 +20,14 @@ public class DefaultQnaService implements QnaService {
     }
 
     @Override
-    public List<Qna> list() throws Exception {
-        return qnaDao.findAll();
+    public List<Qna> listAll() throws Exception {
+        return null;
     }
+
+//    @Override
+//    public List<Qna> list() throws Exception {
+//        return qnaDao.findAll();
+//    }
 
     @Override
     public Qna get(int no) throws Exception {

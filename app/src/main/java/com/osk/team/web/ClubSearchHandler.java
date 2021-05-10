@@ -47,23 +47,36 @@ public class ClubSearchHandler extends HttpServlet {
             out.println("<table border='1'>");
             out.println("<thead>");
             out.println("<tr>");
-            out.println("<th>No.</th> <th>도착지</th> <th>가는날</th> <th>오는날</th> <th>테마</th>");
+            out.println("<th>No.</th> <th>도착지</th> <th>가는날</th> <th>오는날</th> <th>테마</th> <th>인원</th>");
             out.println("</tr>");
             out.println("</thead>");
             out.println("<tbody>");
 
             for (Club c : list) {
                 out.printf("<tr>"
-                                + " <td><a href='detail?no=%1$d'>%d</a></td>"
-                                + " <td>%s</td>"
-                                + " <td>%s</td>"
-                                + " <td>%s</td>"
-                                + " <td>%s</td> </tr>\n",
-                        c.getNo(),
-                        c.getArrive(),
+//                                + " <td><a href='detail?no=%1$d'>%d</a></td>"
+//                                + " <td>%s</td>"
+//                                + " <td>%s</td>"
+//                                + " <td>%s</td>"
+//                                + " <td>%s</td> </tr>\n",
+//                        c.getNo(),
+//                        c.getArrive(),
+//                        c.getStartDate(),
+//                        c.getEndDate(),
+//                        c.getTheme());
+//                                + " <td><a href='detail?no=%1$d'>%d</a></td>"
+                                + " <td><a href='detail?arrive=%1$d'>%s</a></td>"
+                                + " <td><a href='detail?startDate=%1$d'>%s</a></td>"
+                                + " <td><a href='detail?endDate=%1$d'>%s</a></td>"
+                                + " <td><a href='detail?theme=%1$d'>%s</a></td>"
+                                + " <td><a href='detail?total=%1$d'>%s</a></td>\n",
+//                        c.getNo(),
+                        Integer.parseInt(c.getArrive()),
                         c.getStartDate(),
                         c.getEndDate(),
-                        c.getTheme());
+                        c.getTheme(),
+                        c.getTotal());
+                ///club/search?arrive=부산&startDate=2020-01-01&endDate=2020-01-02&theme=1박2일&total=5
             }
             out.println("</tbody>");
             out.println("</table>");

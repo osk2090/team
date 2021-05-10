@@ -57,11 +57,12 @@ public class BoardListHandler extends HttpServlet {
                                 + " <td>%s</td>"
                                 + " <td>%d</td> </tr>\n",
 
-                        b.getNo(),
-                        b.getBtitle(),
-                        b.getWriter().getMname(),
-                        b.getBdate(),
-                        b.getBcount());
+                        b.getNo()
+//                        b.getBtitle(),
+//                        b.getWriter().getMname(),
+//                        b.getBdate(),
+//                        b.getBcount()
+                );
             }
             out.println("</tbody>");
             out.println("</table>");

@@ -52,8 +52,7 @@ public class ClubDetailHandler extends HttpServlet {
                     + " <td><input type='text' name='no' value='%d' readonly></td></tr>\n", c.getNo());
             out.printf("<tr><th>도착지</th>"
                     + " <td><input name='title' type='text' value='%s'></td></tr>\n", c.getArrive());
-            out.printf("<tr><th>가는날</th>"
-                    + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", formatter.format(c.getStartDate()));
+            out.printf("<tr><th>가는날</th> <td>%s</td></tr>\n", formatter.format(c.getStartDate()));
             out.printf("<tr><th>오는날</th> <td>%s</td></tr>\n", formatter.format(c.getEndDate()));
             out.printf("<tr><th>제목</th> <td>%s</td></tr>\n", c.getTitle());
             out.printf("<tr><th>내용</th> <td>%s</td></tr>\n", c.getContent());

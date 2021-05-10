@@ -40,9 +40,9 @@ public class QnaDeleteHandler extends HttpServlet {
             }
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (oldQna.getMno() != loginUser.getNo()) {
-                throw new Exception("삭제 권한이 없습니다!");
-            }
+//            if (oldQna.getMno() != loginUser.getNo()) {
+//                throw new Exception("삭제 권한이 없습니다!");
+//            }
 
             qnaService.delete(no);
 

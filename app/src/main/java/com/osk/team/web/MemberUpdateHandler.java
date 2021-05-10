@@ -36,18 +36,18 @@ public class MemberUpdateHandler extends HttpServlet {
 
             int no = Integer.parseInt(request.getParameter("no"));
 
-            Member oldMember = memberService.get(no);
-            if (oldMember == null) {
-                out.println("<p>해당하는 회원정보가 없습니다.</p>");
-                return;
-            }
+//            Member oldMember = memberService.get(no);
+//            if (oldMember == null) {
+//                out.println("<p>해당하는 회원정보가 없습니다.</p>");
+//                return;
+//            }
 
             Member member = new Member();
             member.setName(request.getParameter("mname"));
-            member.setMemail(request.getParameter("memail"));
+//            member.setMemail(request.getParameter("memail"));
             member.setPassword(request.getParameter("mpassword"));
-            member.setMphoto(request.getParameter("mphoto"));
-            member.setMtel(request.getIntHeader("mtel"));
+//            member.setMphoto(request.getParameter("mphoto"));
+//            member.setMtel(request.getIntHeader("mtel"));
 
             memberService.update(member);
 

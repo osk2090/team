@@ -36,7 +36,6 @@ public class ClubListHandler extends HttpServlet {
         out.println("<p><a href='form.html'>클럽생성</a></p>");
 
         try {
-            List<Club> clubs = clubService.listAll();
 
             out.println("<table border='1'>");
             out.println("<thead>");
@@ -45,6 +44,8 @@ public class ClubListHandler extends HttpServlet {
             out.println("</tr>");
             out.println("</thead>");
             out.println("<tbody>");
+
+            List<Club> clubs = clubService.listOfMember();
 
             for (Club c : clubs) {
                 out.printf("<tr>"

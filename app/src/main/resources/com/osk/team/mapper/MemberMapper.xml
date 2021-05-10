@@ -6,41 +6,43 @@
 <mapper namespace="com.osk.team.dao.MemberDao">
   
   <resultMap id="memberMap" type="member">
-    <id column="no" property="no"/>
-    <result column="name" property="name"/>
-    <result column="email" property="email"/>
-    <result column="photo" property="photo"/>
-    <result column="birth" property="birth"/>
-    <result column="tel" property="tel"/>
-    <result column="gender" property="gender"/>
-    <result column="count" property="count"/>
+    <id column="mno" property="no"/>
+    <result column="mname" property="name"/>
+    <result column="memail" property="email"/>
+    <result column="mphoto" property="photo"/>
+    <result column="mbirth" property="birth"/>
+    <result column="mtel" property="tel"/>
+    <result column="mgender" property="gender"/>
+    <result column="mstatus" property="status"/>
+    <result column="mpow" property="power"/>
+    <result column="mcnt" property="count"/>
     
   </resultMap>
   
   <insert id="insert" parameterType="member">
     insert into member(name, password, email, photo, birth, tel, gender)
-    values (#{name}, password(#{password}), #{email}, #{photo}, #{birth}, #{tel}, #{gender})
+    values (#{mname}, password(#{mpwd}), #{memail}, #{mphoto}, #{mbirth}, #{mtel}, #{mgender})
   </insert>
   
   <select id="findByMember" resultMap="memberMap" parameterType="int">
     select
-      no,
-      name,
-      email,
-      photo,
-      birth,
-      tel,
-      gender,
-      count
+      mno,
+      mname,
+      memail,
+      mphoto,
+      mbirth,
+      mtel,
+      mgender,
+      mcount
     from member
     where mno = #{value}
   </select>
   
   <update id="update" parameterType="member">
     update member
-    set photo = #{mphoto},
-        password = password(#{mpwd})
-    where no = #{no}
+    set mphoto = #{mphoto},
+        mpwd = password(#{mpwd})
+    where mno = #{no}
   </update>
 
   <delete id="delete" parameterType="int">
@@ -48,6 +50,22 @@
     from member
     where mno = #{value}
   </delete>
+
+  <select id="findByEmailPassword" resultMap="memberMap" parameterType="map">
+    select
+      mno,
+      mname,
+      memail,
+      mbirth,
+      mtel,
+      mgender,
+      mphoto,
+      mstatus,
+      mpow,
+      mcnt
+    from member
+    where memail = #{email} and mpwd = password(#{password})
+  </select>
 
 </mapper>
 

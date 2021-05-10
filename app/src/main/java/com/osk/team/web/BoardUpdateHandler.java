@@ -43,14 +43,14 @@ public class BoardUpdateHandler extends HttpServlet {
             }
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (oldBoard.getMember_no() != loginUser.getNo()) {
-                throw new Exception("변경 권한이 없습니다!");
-            }
+//            if (oldBoard.getMember_no() != loginUser.getNo()) {
+//                throw new Exception("변경 권한이 없습니다!");
+//            }
 
             Board board = new Board();
             board.setNo(oldBoard.getNo());
-            board.setBtitle(request.getParameter("title"));
-            board.setBcontent(request.getParameter("content"));
+//            board.setBtitle(request.getParameter("title"));
+//            board.setBcontent(request.getParameter("content"));
             boardService.update(board);
 
             out.println("<meta http-equiv='Refresh' content='1;url=list'>");

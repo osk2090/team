@@ -28,10 +28,10 @@ public class LoginHandler extends HttpServlet {
         out.println("[로그인]");
 
         String email = request.getParameter("email");
-        String mpwd = request.getParameter("password");
+        String password = request.getParameter("password");
 
         try {
-            Member member = memberService.get(memail, mpwd);
+            Member member = memberService.get(email, password);
             if (member == null) {
                 out.println("사용자 정보가 맞지 않습니다.");
                 // 로그인 실패한다면 세션 객체의 모든 내용을 삭제한다.

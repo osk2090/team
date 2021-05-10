@@ -39,7 +39,7 @@ public class QnaListHandler extends HttpServlet {
         out.println("<p><a href='form.html'>새 글</a></p>");
 
         try {
-            List<Qna> qnas = qnaService.list();
+//            List<Qna> qnas = qnaService.list();
 
             out.println("<table border='1'>");
             out.println("<thead>");
@@ -49,19 +49,19 @@ public class QnaListHandler extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
 
-            for (Qna q : qnas) {
-                out.printf("<tr>"
-                                + " <td>%d</td>"
-                                + " <td><a href='detail?no=%1$d'>%s</a></td>"
-                                + " <td>%s</td>"
-                                + " <td>%s</td>"
-                                + " <td>%d</td> </tr>\n",
-                        q.getM_qno(),
-                        q.getM_qtitle(),
-                        q.getA_qcontent(),
-                        q.getMno(),
-                        q.getM_qdate());
-            }
+//            for (Qna q : qnas) {
+//                out.printf("<tr>"
+//                                + " <td>%d</td>"
+//                                + " <td><a href='detail?no=%1$d'>%s</a></td>"
+//                                + " <td>%s</td>"
+//                                + " <td>%s</td>"
+//                                + " <td>%d</td> </tr>\n",
+//                        q.getM_qno(),
+//                        q.getM_qtitle(),
+//                        q.getA_qcontent(),
+//                        q.getMno(),
+//                        q.getM_qdate());
+//            }
             out.println("</tbody>");
             out.println("</table>");
 

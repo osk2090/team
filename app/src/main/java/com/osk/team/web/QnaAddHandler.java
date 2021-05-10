@@ -28,13 +28,13 @@ public class QnaAddHandler extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        q.setM_qtitle(request.getParameter("title"));
-        q.setM_qcontent(request.getParameter("content"));
+//        q.setM_qtitle(request.getParameter("title"));
+//        q.setM_qcontent(request.getParameter("content"));
 
         // 작성자는 로그인 사용자이다.
         HttpServletRequest httpRequest = request;
         int loginUser = (int) httpRequest.getSession().getAttribute("loginUser");
-        q.setMno(loginUser);
+//        q.setMno(loginUser);
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

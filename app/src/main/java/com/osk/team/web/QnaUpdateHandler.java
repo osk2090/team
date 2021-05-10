@@ -40,15 +40,15 @@ public class QnaUpdateHandler extends HttpServlet {
             }
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (oldQna.getMno() != loginUser.getNo()) {
-                throw new Exception("변경 권한이 없습니다!");
-            }
-
-            Qna qna = new Qna();
-            qna.setM_qno(oldQna.getM_qno());
-            qna.setM_qtitle(request.getParameter("title"));
-            qna.setM_qcontent(request.getParameter("content"));
-            qnaService.update(qna);
+//            if (oldQna.getMno() != loginUser.getNo()) {
+//                throw new Exception("변경 권한이 없습니다!");
+//            }
+//
+//            Qna qna = new Qna();
+//            qna.setM_qno(oldQna.getM_qno());
+//            qna.setM_qtitle(request.getParameter("title"));
+//            qna.setM_qcontent(request.getParameter("content"));
+//            qnaService.update(qna);
 
             out.println("<meta http-equiv='Refresh' content='1;url=list'>");
             out.println("</head>");

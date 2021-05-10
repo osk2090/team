@@ -11,14 +11,14 @@
     <result column="ctheme" property="theme"/>
     <result column="ctitle" property="title"/>
     <result column="ccontent" property="content"/>
-    <result column="csdt" property="sdt"/>
-    <result column="cedt" property="edt"/>
+    <result column="csdt" property="startDate"/>
+    <result column="cedt" property="endDate"/>
     <result column="ctotal" property="total"/>
 
-    <association property="writer" javaType="member">
-      <id column="writer_no" property="no"/>
-      <result column="writer_name" property="name"/>
-    </association>
+<!--    <association property="memberNo" javaType="member">-->
+<!--      <id column="writer_no" property="no"/>-->
+<!--      <result column="writer_name" property="name"/>-->
+<!--    </association>-->
 
   </resultMap>
 
@@ -30,27 +30,28 @@
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">
     select
-    c.no,
-    c.arrive,
-    c.title,
-    c.content,
-    c.theme,
-    c.sdt,
-    c.edt,
-    c.total,
-    m.no as writer_no,
-    m.name as writer_name
+    c.cno,
+    c.carrive,
+    c.ctitle,
+    c.ccontent,
+    c.ctheme,
+    c.csdt,
+    c.cedt,
+    c.ctotal,
+    m.mno as writer_no,
+    m.mname as writer_name
     from club c
-    inner join member m on m.no=c.no
+    inner join member m on m.mno=c.cno
 
     <if test="value != null">
       where
-      c.arrive like concat('%', #{value},'%')
-      and c.theme like concat('%', #{value},'%')
-      and c.sdt like concat('%', #{value},'%')
-      and c.edt like concat('%', #{value},'%')
+      c.carrive like concat('%', #{value},'%')
+      or c.csdt like concat('%', #{value},'%')
+      or c.cedt like concat('%', #{value},'%')
+      or c.ctheme like concat('%', #{value},'%')
+      or c.cedt like concat('%', #{value},'%')
     </if>
-    order by c.no desc
+    order by c.cno desc
   </select>
 
 <!--  <select id="findByMemberNo" resultMap="memberMap" parameterType="int">-->
@@ -72,31 +73,31 @@
 
   <select id="findByNo" resultMap="clubMap" parameterType="int">
     select
-      c.no,
-      c.arrive,
-      c.title,
-      c.content,
-      c.theme,
-      c.sdt,
-      c.edt,
-      c.total,
-      m.no as writer_no,
-      m.name as writer_name
+      c.cno,
+      c.carrive,
+      c.ctitle,
+      c.ccontent,
+      c.ctheme,
+      c.csdt,
+      c.cedt,
+      c.ctotal,
+      m.mno as writer_no,
+      m.mname as writer_name
     from club c
-           inner join member m on m.no=c.no
-    where c.no = #{value}
+           inner join member m on m.mno=c.cno
+    where c.cno = #{value}
   </select>
 
   <update id="update" parameterType="club">
     update club
-    set title   = #{ctitle},
-        content = #{ccontent}
-    where no = #{no}
+    set ctitle   = #{ctitle},
+        ccontent = #{ccontent}
+    where cno = #{no}
   </update>
 
   <delete id="delete" parameterType="int">
     delete from club
-    where no = #{value}
+    where cno = #{value}
   </delete>
 
 </mapper>

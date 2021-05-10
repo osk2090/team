@@ -27,13 +27,13 @@ public class BoardAddHandler extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        b.setBtitle(request.getParameter("title"));
-        b.setBcontent(request.getParameter("content"));
+//        b.setBtitle(request.getParameter("title"));
+//        b.setBcontent(request.getParameter("content"));
 
 
         HttpServletRequest httpRequest = request;
         int loginUser = (int) httpRequest.getSession().getAttribute("loginUser");
-        b.setMember_no(loginUser);
+//        b.setMember_no(loginUser);
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

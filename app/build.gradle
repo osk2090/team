@@ -15,6 +15,12 @@ plugins {
 
 }
 
+eclipse {
+    project {
+        name = "team"
+    }
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()

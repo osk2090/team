@@ -38,10 +38,10 @@
     c.csdt,
     c.cedt,
     c.ctotal,
-    m.no as writer_no,
-    m.name as writer_name
+    m.mno as writer_no,
+    m.mname as writer_name
     from club c
-    inner join member m on m.no=b.writer
+    inner join member m on m.mno=b.writer
 
     <if test="value != null">
       where
@@ -80,10 +80,10 @@
       c.csdt,
       c.cedt,
       c.ctotal,
-      m.no as writer_no,
+      m.mno as writer_no,
       m.name as writer_name
     from club c
-           inner join member m on m.no=b.writer
+           inner join member m on m.mno=b.writer
     where b.no = #{value}
   </select>
 

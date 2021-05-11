@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 @WebServlet("/club/detail")
 public class ClubDetailHandler extends HttpServlet {
 
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

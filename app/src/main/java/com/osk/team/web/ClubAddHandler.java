@@ -29,7 +29,7 @@ public class ClubAddHandler extends HttpServlet {
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
-        out.println("<meta charset='UTF-8>");
+        out.println("<meta charset='UTF-8'>");
         out.println("<title>클럽 등록</title>");
         out.println("</head>");
         out.println("<body>");
@@ -95,8 +95,8 @@ public class ClubAddHandler extends HttpServlet {
 
             //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
 
-//            Member loginUser = (Member) request.getSession().getAttribute("loginUser");//회원번호로 받기
-//            c.setNo(loginUser.getNo());//회원번호로 받기
+            Member loginUser = (Member) request.getSession().getAttribute("loginUser");//회원번호로 받기
+            c.setNo(loginUser.getNo());//회원번호로 받기
 
             clubService.add(c);
 

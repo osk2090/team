@@ -22,13 +22,13 @@ public class DefaultMemberService implements MemberService {
     }
 
 //    @Override
-//    public List<Member> findByMember(int mno) throws Exception {
-//        return memberDao.findByNoMemberList(mno);
+//    public List<Member> findByMember(int no) throws Exception {
+//        return memberDao.findByNoMemberList(no);
 //    }
 //
 //    @Override
-//    public Member get(int mno) throws Exception {
-//        return memberDao.findByNo(mno);
+//    public Member get(int no) throws Exception {
+//        return memberDao.findByNo(no);
 //    }
 
     @Override
@@ -37,8 +37,8 @@ public class DefaultMemberService implements MemberService {
     }
 
     @Override
-    public int delete(int mno) throws Exception {
-        return memberDao.delete(mno);
+    public int delete(int no) throws Exception {
+        return memberDao.delete(no);
     }
 
     @Override

@@ -15,10 +15,10 @@
     <result column="cedt" property="endDate"/>
     <result column="ctotal" property="total"/>
 
-<!--    <association property="memberNo" javaType="member">-->
-<!--      <id column="writer_no" property="no"/>-->
-<!--      <result column="writer_name" property="name"/>-->
-<!--    </association>-->
+    <association property="writer" javaType="member">
+      <id column="writer_no" property="no"/>
+      <result column="writer_name" property="name"/>
+    </association>
 
   </resultMap>
 

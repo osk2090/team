@@ -6,38 +6,38 @@
 <mapper namespace="com.osk.team.dao.HotplaceDao">
 
   <resultMap id="hotplaceMap" type="hotplace">
-    <id column="hno" property="hno"/>
-    <result column="htitle" property="htitle"/>
-    <result column="hcontent" property="hcontent"/>
-    <result column="hdate" property="hdate"/>
-    <result column="hcount" property="hcount"/>
-    <result column="haddr" property="haddr"/>
-    <result column="hphoto" property="hphoto"/>
+    <id column="no" property="no"/>
+    <result column="title" property="title"/>
+    <result column="content" property="content"/>
+    <result column="date" property="date"/>
+    <result column="count" property="count"/>
+    <result column="address" property="address"/>
+    <result column="photo" property="photo"/>
 
-    <association property="mname" javaType="member">
-      <id column="writer_no" property="mno"/>
-      <result column="writer_name" property="mname"/>
+    <association property="name" javaType="member">
+      <id column="writer_no" property="no"/>
+      <result column="writer_name" property="name"/>
     </association>
 
   </resultMap>
 
   <insert id="insert" parameterType="hotplace">
-    insert into hotplace(htitle, hcontent, haddr, hphoto)
-    values (#{htitle}, #{hcontent}, #{haddr}, #{hphoto})
+    insert into hotplace(title, content, address, photo)
+    values (#{title}, #{content}, #{address}, #{photo})
   </insert>
 
   <update id="update" parameterType="hotplace">
     update hotplace
-    set htitle = #{htitle},
-        hcontent = #{hcontent},
-        haddr = #{haddr},
-        hphoto = #{hphoto}
-    where  hno = #{no}
+    set title = #{title},
+        content = #{content},
+        address = #{address},
+        photo = #{photo}
+    where  no = #{no}
   </update>
 
   <delete id="delete" parameterType="int">
     delete from hotplace
-    where hno = #{value}
+    where no = #{value}
   </delete>
 
 </mapper>

@@ -1,6 +1,5 @@
 package com.osk.team.service;
 
-import com.osk.team.domain.Board;
 import com.osk.team.domain.Qna;
 
 import java.util.List;

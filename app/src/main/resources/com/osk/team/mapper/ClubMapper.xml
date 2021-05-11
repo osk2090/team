@@ -41,7 +41,7 @@
     m.mno as writer_no,
     m.mname as writer_name
     from club c
-    inner join member m on m.mno=c.cno
+    inner join member m on m.mno=c.mno
 
     <if test="value != null">
       where
@@ -66,9 +66,79 @@
       m.mno as writer_no,
       m.mname as writer_name
     from club c
-           inner join member m on m.mno=c.cno
+           inner join member m on m.mno=c.mno
     where c.cno = #{value}
   </select>
+
+
+
+<!--멤버추가-->
+  <insert id="insertMember" parameterType="map">
+    insert into c_member(mno,cno)
+    values(#{memberNo}, #{clubNo})
+  </insert>
+
+  <insert id="insertMembers" parameterType="map">
+    insert into pms_member_project(member_no,project_no)//
+    values
+    <foreach collection="members" item="m" separator=",">
+      (#{m.no}, #{projectNo})
+    </foreach>
+  </insert>
+
+  <!--멤버삭제-->
+  <delete id="deleteMember" parameterType="int">
+    delete from pms_member_project
+    where project_no=#{value}
+  </delete>
+
+  <!--멤버불러오기-->
+  <select id="findAllMembers" resultType="member" parameterType="int">
+    select
+      m.no,
+      m.name
+    from pms_member_project mp
+           inner join pms_member m on mp.member_no=m.no
+    where
+      mp.project_no=#{value}
+  </select>
+
+
+
+
+  <!--사진추가-->
+  <insert id="insertPhoto" parameterType="map">
+    insert into pms_member_project(member_no,project_no)
+    values(#{memberNo}, #{projectNo})
+  </insert>
+
+  <insert id="insertPhotos" parameterType="map">
+    insert into pms_member_project(member_no,project_no)
+    values
+    <foreach collection="members" item="m" separator=",">
+      (#{m.no}, #{projectNo})
+    </foreach>
+  </insert>
+
+  <!--사진삭제-->
+  <delete id="deletePhoto" parameterType="int">
+    delete from pms_member_project
+    where project_no=#{value}
+  </delete>
+
+  <!--사진불러오기-->
+  <select id="findAllPhotos" resultType="String" parameterType="int">
+    select
+      m.no,
+      m.name
+    from pms_member_project mp
+           inner join pms_member m on mp.member_no=m.no
+    where
+      mp.project_no=#{value}
+  </select>
+
+
+
 
   <update id="update" parameterType="club">
     update club

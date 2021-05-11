@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 @WebServlet("/club/add")
@@ -51,6 +52,8 @@ public class ClubAddHandler extends HttpServlet {
         out.println("제목: <input type='text' name='title'><br>");
         out.println("내용: <textarea name='content' rows='10' cols='60'></textarea><br>");
         out.println("인원수<최대 10명>: <input type='number' name='count'><br>");
+        out.println("사진(최대 3장)" +
+                "<input type='file' name='photo'><br>");
 
         out.println("<input type='submit' value='등록'>");
         out.println("</form>");
@@ -84,10 +87,26 @@ public class ClubAddHandler extends HttpServlet {
             c.setContent(request.getParameter("content"));
             c.setTotal(Integer.parseInt(request.getParameter("count")));
 
+            String[] values = request.getParameterValues("photos");//사진 넣기
+            ArrayList<String> photoList = new ArrayList<>();
+            for (String value : values) {
+                photoList.add(value);
+            }
+            c.setPhotos(photoList);
+
             //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");//회원번호로 받기
-            c.setWriter(loginUser);//회원번호로 받기
+            c.setWriter(loginUser);
+
+            String[] members = request.getParameterValues("members");//클럽 생성자가 들어간다
+            ArrayList<Member> memberList = new ArrayList<>();
+            for (String value : members) {
+                Member m = new Member();
+                m.setNo(Integer.parseInt(value));
+                memberList.add(loginUser);
+            }
+            c.setMembers(memberList);
 
             clubService.add(c);
 

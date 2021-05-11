@@ -40,7 +40,7 @@ public class AppInitHandler implements Servlet {
             TransactionManager txManager = new TransactionManager(sqlSessionFactoryProxy);
 
             BoardService boardService = new DefaultBoardService(boardDao);
-            ClubService clubService = new DefaultClubService(clubDao);
+            ClubService clubService = new DefaultClubService(txManager, clubDao);
             HotplaceService hotplaceService = new DefaultHotplaceService(hotplaceDao);
             MemberService memberService = new DefaultMemberService(memberDao);
             QnaService qnaService = new DefaultQnaService(qnaDao);

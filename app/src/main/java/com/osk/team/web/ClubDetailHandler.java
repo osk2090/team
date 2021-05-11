@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 @WebServlet("/club/detail")
 public class ClubDetailHandler extends HttpServlet {
 
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -61,7 +61,7 @@ public class ClubDetailHandler extends HttpServlet {
             out.println("</tbody>");
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-            if (loginUser != null && c.getMemberNo() == loginUser.getNo()) {
+            if (loginUser != null && c.getWriter().getNo() == loginUser.getNo()) {
                 out.println("<tfoot>");
                 out.println("<tr><td colspan='2'>");
                 out.println("<input type='submit' value='변경'> "

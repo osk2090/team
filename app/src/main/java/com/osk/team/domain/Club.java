@@ -13,6 +13,10 @@ public class Club {
 
     private int no;//클럽번호
     private int memberNo;//멤버번호--------------여기 배열로 가져와야되는거 아닌지?
+
+    private Member writer;//작성자
+    private List<Member> members;//현재 인원
+
     private String arrive;//도착지
     private String theme;//테마
     private String title;//제목
@@ -22,6 +26,40 @@ public class Club {
     private int total;//인원수
     private List<Object> photos;//사진
 
+
+    @Override
+    public String toString() {
+        return "Club{" +
+                "no=" + no +
+                ", memberNo=" + memberNo +
+                ", writer=" + writer +
+                ", members=" + members +
+                ", arrive='" + arrive + '\'' +
+                ", theme='" + theme + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", total=" + total +
+                ", photos=" + photos +
+                '}';
+    }
+
+    public Member getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Member writer) {
+        this.writer = writer;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
 
     public List<Object> getPhotos() {
         return photos;

@@ -40,12 +40,12 @@ public class ClubAddHandler extends HttpServlet {
         out.println("오는날: <input type='date' name='endDate'><br>");
         out.println("테마: ");
         out.println("<select>" +
-                "<option value='1박2일' name='theme'>1박2일</option>" +
-                "<option value='2박3일' name='theme'>2박3일</option>" +
-                "<option value='3박4일' name='theme'>3박4일</option>" +
-                "<option value='무박' name='theme'>무박</option>" +
-                "<option value='당일치기' name='theme'>당일치기</option>" +
-                "<option value='식사' name='theme'>식사</option>"
+                "<option value='1박2일' name='theme' value='1박2일'>1박2일</option>" +
+                "<option value='2박3일' name='theme' value='2박3일'>2박3일</option>" +
+                "<option value='3박4일' name='theme' value='3박4일'>3박4일</option>" +
+                "<option value='무박' name='theme' value='무박'>무박</option>" +
+                "<option value='당일치기' name='theme' value='당일치기'>당일치기</option>" +
+                "<option value='식사' name='theme' value='식사'>식사</option>"
         );
         out.println("</select><br>");
 
@@ -96,7 +96,7 @@ public class ClubAddHandler extends HttpServlet {
             //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");//회원번호로 받기
-            c.setNo(loginUser.getNo());//회원번호로 받기
+            c.setWriter(loginUser);//회원번호로 받기
 
             clubService.add(c);
 

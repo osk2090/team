@@ -1,11 +1,10 @@
 package com.osk.team.dao;
 
-import com.osk.team.domain.Club;
 import com.osk.team.domain.Hotplace;
 
 import java.util.List;
 
-public interface HotplaceDao {
+public interface DiscountDao {
 
     int insert(Hotplace hotplace) throws Exception;
 

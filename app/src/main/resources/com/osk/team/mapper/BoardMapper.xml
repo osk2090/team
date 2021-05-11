@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.osk.team.dao.BoardDao">
-  
+   
   <resultMap id="boardMap" type="board">
     <id column="bno" property="no"/>
    <!--   <result column="b_tno" property="tno"/>   게시판 종류번호(다른테이블) 보류   -->

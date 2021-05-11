@@ -15,17 +15,17 @@
     <result column="cedt" property="endDate"/>
     <result column="ctotal" property="total"/>
 
-<!--    <association property="memberNo" javaType="member">-->
-<!--      <id column="writer_no" property="no"/>-->
-<!--      <result column="writer_name" property="name"/>-->
-<!--    </association>-->
+    <association property="writer" javaType="member">
+      <id column="writer_no" property="no"/>
+      <result column="writer_name" property="name"/>
+    </association>
 
   </resultMap>
 
   <!-- >클럽 게시판에 클럽 삽입<-->
    <insert id="insert" parameterType="club">
-     insert into club(no, arrive, theme, title, content, sdt, edt)
-     values (#{mno}, #{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
+     insert into club(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
+     values (#{no}, #{memberNo}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
   </insert>
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">

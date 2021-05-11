@@ -8,7 +8,6 @@ public interface ClubDao {
 
     int insert(Club club) throws Exception;
 
-
     Club findByNo(int cno) throws Exception;
 
     int update(Club club) throws Exception;

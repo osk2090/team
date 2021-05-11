@@ -6,11 +6,11 @@
 <mapper namespace="com.osk.team.dao.QnaDao">
 
   <resultMap id="qnaMap" type="qna">
-    <id column="m_qno" property="m_qno"/>
-    <result column="m_qdate" property="m_qdate"/>
-    <result column="m_qtitle" property="m_qtitle"/>
-    <result column="m_qcontent" property="m_qcontent"/>
-    <result column="a_qdate" property="a_qdate"/>
+    <id column="m_qno" property="no"/>
+    <result column="m_qdate" property="date"/>
+    <result column="m_qtitle" property="title"/>
+    <result column="m_qcontent" property="content"/>
+    <result column="a_qdate" property="date"/>
 
     <association property="bname" javaType="member">
       <id column="writer_no" property="mno"/>

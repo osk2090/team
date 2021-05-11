@@ -8,19 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.osk.team.domain.Faq;
+import com.osk.team.domain.Discount;
 import com.osk.team.domain.Member;
-import com.osk.team.service.FaqService;
+import com.osk.team.service.DiscountService;
 
 @SuppressWarnings("serial")
-@WebServlet("/Faq/update")
-public class FaqUpdateHandler extends HttpServlet {
+@WebServlet("/Discount/update")
+public class DiscountUpdateHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    FaqService FaqService =
-        (FaqService) request.getServletContext().getAttribute("FaqService");
+    DiscountService DiscountService =
+        (DiscountService) request.getServletContext().getAttribute("DiscountService");
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -28,14 +28,14 @@ public class FaqUpdateHandler extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<title>Faq 변경</title>");
+    out.println("<title>Discount 변경</title>");
 
     try {
       request.setCharacterEncoding("UTF-8");
       int no = Integer.parseInt(request.getParameter("no"));
 
-      Faq oldFaq = FaqService.get(no);
-      if (oldFaq == null) {
+      Discount oldDiscount = DiscountService.get(no);
+      if (oldDiscount == null) {
         throw new Exception("해당 번호의 게시글이 없습니다.");
       }
 
@@ -44,17 +44,17 @@ public class FaqUpdateHandler extends HttpServlet {
       // throw new Exception("변경 권한이 없습니다!");
       // }
 
-      Faq Faq = new Faq();
-      Faq.setNo(oldFaq.getNo());
+      Discount Discount = new Discount();
+      Discount.setNo(oldDiscount.getNo());
       // board.setBtitle(request.getParameter("title"));
       // board.setBcontent(request.getParameter("content"));
-      FaqService.update(Faq);
+      DiscountService.update(Discount);
 
       out.println("<meta http-equiv='Refresh' content='1;url=list'>");
       out.println("</head>");
       out.println("<body>");
-      out.println("<h1>Faq 변경</h1>");
-      out.println("<p>Faq를 변경하였습니다.</p>");
+      out.println("<h1>Discount 변경</h1>");
+      out.println("<p>Discount를 변경하였습니다.</p>");
 
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();
@@ -63,7 +63,7 @@ public class FaqUpdateHandler extends HttpServlet {
 
       out.println("</head>");
       out.println("<body>");
-      out.println("<h1>Faq 변경오류</h1>");
+      out.println("<h1>Discount 변경오류</h1>");
       out.printf("<p>%s</p>\n", e.getMessage());
       out.printf("<pre>%s</pre>\n", strWriter.toString());
       out.println("<p><a href='list'>목록</a></p>");

@@ -25,7 +25,7 @@
   <!-- >클럽 게시판에 클럽 삽입<-->
    <insert id="insert" parameterType="club">
      insert into club(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
-     values (#{no}, #{memberNo}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
+     values (#{no}, #{writer.no}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
   </insert>
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">
@@ -49,27 +49,9 @@
       or c.csdt like concat('%', #{value},'%')
       or c.cedt like concat('%', #{value},'%')
       or c.ctheme like concat('%', #{value},'%')
-      or c.cedt like concat('%', #{value},'%')
     </if>
     order by c.cno desc
   </select>
-
-<!--  <select id="findByMemberNo" resultMap="memberMap" parameterType="int">-->
-<!--    select-->
-<!--      c.cno,-->
-<!--    c.carrive,-->
-<!--    c.ctheme,-->
-<!--      c.ctitle,-->
-<!--      c.ccontent,-->
-<!--      c.csdt,-->
-<!--      c.bedt,-->
-<!--      c.ctotal,-->
-<!--      m.mno as writer_no,-->
-<!--      m.mname as writer_name-->
-<!--    from club c-->
-<!--           inner join member m on m.no=c.cno-->
-<!--    where b.no = #{value}-->
-<!--  </select>-->
 
   <select id="findByNo" resultMap="clubMap" parameterType="int">
     select

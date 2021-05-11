@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Club {
     /*
-    1.맴버번호 배열로 가져와야되는거 아닌지?
+    1.맴버번호 배열로 가져와야되는거 아닌지?----구현하기
     2.현재인원도 출력되게!(방장은 이미들어왔으니 현재인원에 1 포함하고 다른 사람이 클럽참여하면 +1되게!)
     3.지금 로그인/로그아웃/일반회원/관리자 확인됨!
     그러므로 회원의 권한과 관리자의 권한을 나눈다
@@ -25,7 +25,6 @@ public class Club {
     private Date endDate;//오는날
     private int total;//인원수
     private List<Object> photos;//사진
-
 
     @Override
     public String toString() {

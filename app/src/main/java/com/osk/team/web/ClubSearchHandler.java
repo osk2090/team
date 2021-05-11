@@ -54,28 +54,19 @@ public class ClubSearchHandler extends HttpServlet {
 
             for (Club c : list) {
                 out.printf("<tr>"
-//                                + " <td><a href='detail?no=%1$d'>%d</a></td>"
-//                                + " <td>%s</td>"
-//                                + " <td>%s</td>"
-//                                + " <td>%s</td>"
-//                                + " <td>%s</td> </tr>\n",
-//                        c.getNo(),
-//                        c.getArrive(),
-//                        c.getStartDate(),
-//                        c.getEndDate(),
-//                        c.getTheme());
-//                                + " <td><a href='detail?no=%1$d'>%d</a></td>"
+                                + " <td><a href='detail?no=%1$d'>%s</a></td>"
                                 + " <td><a href='detail?arrive=%1$d'>%s</a></td>"
                                 + " <td><a href='detail?startDate=%1$d'>%s</a></td>"
                                 + " <td><a href='detail?endDate=%1$d'>%s</a></td>"
                                 + " <td><a href='detail?theme=%1$d'>%s</a></td>"
                                 + " <td><a href='detail?total=%1$d'>%s</a></td>\n",
-//                        c.getNo(),
-                        Integer.parseInt(c.getArrive()),
+                        c.getNo(),
+                        c.getArrive(),
                         c.getStartDate(),
                         c.getEndDate(),
                         c.getTheme(),
                         c.getTotal());
+
                 ///club/search?arrive=부산&startDate=2020-01-01&endDate=2020-01-02&theme=1박2일&total=5
             }
             out.println("</tbody>");

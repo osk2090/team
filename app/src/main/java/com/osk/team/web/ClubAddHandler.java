@@ -21,7 +21,7 @@ public class ClubAddHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
+//        ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -39,15 +39,14 @@ public class ClubAddHandler extends HttpServlet {
         out.println("가는날: <input type='date' name='startDate'><br>");
         out.println("오는날: <input type='date' name='endDate'><br>");
         out.println("테마: ");
-        out.println("<select>" +
-                "<option value='1박2일' name='theme' value='1박2일'>1박2일</option>" +
-                "<option value='2박3일' name='theme' value='2박3일'>2박3일</option>" +
-                "<option value='3박4일' name='theme' value='3박4일'>3박4일</option>" +
-                "<option value='무박' name='theme' value='무박'>무박</option>" +
-                "<option value='당일치기' name='theme' value='당일치기'>당일치기</option>" +
-                "<option value='식사' name='theme' value='식사'>식사</option>"
-        );
-        out.println("</select><br>");
+        out.println("<select name='theme' id='theme'>" +
+                "<option value='1박2일'>1박2일</option>" +
+                "<option value='2박3일'>2박3일</option>" +
+                "<option value='3박4일'>3박4일</option>" +
+                "<option value='무박'>무박</option>" +
+                "<option value='당일치기'>당일치기</option>" +
+                "<option value='식사'>식사</option>" +
+                "</select><br>");
 
         out.println("제목: <input type='text' name='title'><br>");
         out.println("내용: <textarea name='content' rows='10' cols='60'></textarea><br>");
@@ -57,14 +56,6 @@ public class ClubAddHandler extends HttpServlet {
         out.println("</form>");
         out.println("</body>");
         out.println("</html>");
-
-//        try {
-//            String[] themeList = {"1박2일", "2박3일", "3박4일", "무박", "당일치기", "식사"};
-//            for (String t : themeList) {
-//                out.printf(" <input type='");
-//            }
-//        }
-
     }
 
     @Override

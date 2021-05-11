@@ -15,17 +15,17 @@
     <result column="cedt" property="endDate"/>
     <result column="ctotal" property="total"/>
 
-<!--    <association property="memberNo" javaType="member">-->
-<!--      <id column="writer_no" property="no"/>-->
-<!--      <result column="writer_name" property="name"/>-->
-<!--    </association>-->
+    <association property="writer" javaType="member">
+      <id column="writer_no" property="no"/>
+      <result column="writer_name" property="name"/>
+    </association>
 
   </resultMap>
 
   <!-- >클럽 게시판에 클럽 삽입<-->
-   <insert id="insert" parameterType="club">
-     insert into club(no, arrive, theme, title, content, sdt, edt)
-     values (#{mno}, #{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
+  <insert id="insert" parameterType="club">
+    insert into club(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
+    values (#{no}, #{writer.no}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
   </insert>
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">
@@ -49,27 +49,9 @@
       or c.csdt like concat('%', #{value},'%')
       or c.cedt like concat('%', #{value},'%')
       or c.ctheme like concat('%', #{value},'%')
-      or c.cedt like concat('%', #{value},'%')
     </if>
     order by c.cno desc
   </select>
-
-<!--  <select id="findByMemberNo" resultMap="memberMap" parameterType="int">-->
-<!--    select-->
-<!--      c.cno,-->
-<!--    c.carrive,-->
-<!--    c.ctheme,-->
-<!--      c.ctitle,-->
-<!--      c.ccontent,-->
-<!--      c.csdt,-->
-<!--      c.bedt,-->
-<!--      c.ctotal,-->
-<!--      m.mno as writer_no,-->
-<!--      m.mname as writer_name-->
-<!--    from club c-->
-<!--           inner join member m on m.no=c.cno-->
-<!--    where b.no = #{value}-->
-<!--  </select>-->
 
   <select id="findByNo" resultMap="clubMap" parameterType="int">
     select

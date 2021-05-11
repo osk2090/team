@@ -24,8 +24,8 @@
 
   <!-- >클럽 게시판에 클럽 삽입<-->
    <insert id="insert" parameterType="club">
-     insert into club(no, arrive, theme, title, content, sdt, edt)
-     values (#{mno}, #{carrive}, #{ctheme}, #{ctitle}, #{ccontent}, #{csdt}, #{cedt})
+     insert into club(cno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
+     values (#{no}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
   </insert>
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">

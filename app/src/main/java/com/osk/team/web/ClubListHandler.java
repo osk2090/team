@@ -28,14 +28,15 @@ public class ClubListHandler extends HttpServlet {
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Club List</title>");
+        out.println("<title>클럽 리스트</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Club List</h1>");
+        out.println("<h1>클럽 리스트</h1>");
 
-        out.println("<p><a href='form.html'>클럽생성</a></p>");
+        out.println("<p><a href='add'>클럽생성</a></p>");
 
         try {
+            List<Club> clubs = clubService.listOfMember();
 
             out.println("<table border='1'>");
             out.println("<thead>");
@@ -45,7 +46,6 @@ public class ClubListHandler extends HttpServlet {
             out.println("</thead>");
             out.println("<tbody>");
 
-            List<Club> clubs = clubService.listOfMember();
 
             for (Club c : clubs) {
                 out.printf("<tr>"

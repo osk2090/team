@@ -21,7 +21,7 @@ public class HotplaceAddHandler extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    HotplaceService clubService =
+    HotplaceService hotplaceServce =
         (HotplaceService) request.getServletContext().getAttribute("hotplaceService");
 
     Hotplace h = new Hotplace();

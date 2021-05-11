@@ -33,7 +33,7 @@ public class ClubListHandler extends HttpServlet {
         out.println("<body>");
         out.println("<h1>Club List</h1>");
 
-        out.println("<p><a href='form.html'>클럽생성</a></p>");
+        out.println("<p><a href='add'>클럽생성</a></p>");
 
         try {
 

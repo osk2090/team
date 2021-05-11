@@ -1,4 +1,4 @@
-package com.osk.team.web;
+package main.java.com.osk.team.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;

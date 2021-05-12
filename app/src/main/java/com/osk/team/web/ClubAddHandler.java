@@ -61,43 +61,6 @@ public class ClubAddHandler extends HttpServlet {
             c.setContent(request.getParameter("content"));
             c.setTotal(Integer.parseInt(request.getParameter("count")));
 
-//            String[] values = request.getParameterValues("photos");//사진 넣기
-//            ArrayList<String> photoList = new ArrayList<>();
-//            for (String value : values) {
-//                photoList.add(value);
-//            }
-//            c.setPhotos(photoList);
-
-            Part photoPart = request.getPart("photo");
-            if (photoPart.getSize() > 0) {
-                //파일을 선택해서 업로드 했다면
-                String filename = UUID.randomUUID().toString();
-                photoPart.write(this.uploadDir + "/" + filename);
-                c.setPhoto(filename);
-
-                Thumbnails.of(this.uploadDir + "/" + filename).
-                        size(30, 30)
-                        .outputFormat("jpg")
-                        .crop(Positions.CENTER)
-                        .toFiles(new Rename() {
-                            @Override
-                            public String apply(String name, ThumbnailParameter param) {
-                                return name + "_30*30";
-                            }
-                        });
-
-                Thumbnails.of(this.uploadDir + "/" + filename).
-                        size(80, 80)
-                        .outputFormat("jpg")
-                        .crop(Positions.CENTER)
-                        .toFiles(new Rename() {
-                            @Override
-                            public String apply(String name, ThumbnailParameter param) {
-                                return name + "_80*80";
-                            }
-                        });
-            }
-
             //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
 
             Member loginUser = (Member) request.getSession().getAttribute("loginUser");//회원번호로 받기
@@ -111,6 +74,66 @@ public class ClubAddHandler extends HttpServlet {
                 memberList.add(loginUser);
             }
             c.setMembers(memberList);
+
+            ///////////////사진 받기
+            Part photoPart1 = request.getPart("photo1");
+            if (photoPart1.getSize() > 0) {
+                //파일을 선택해서 업로드 했다면
+                String filename = UUID.randomUUID().toString();
+                photoPart1.write(this.uploadDir + "/" + filename);
+                c.setPhoto1(filename);
+
+                Thumbnails.of(this.uploadDir + "/" + filename).
+                        size(254, 178)
+                        .outputFormat("jpg")
+                        .crop(Positions.CENTER)
+                        .toFiles(new Rename() {
+                            @Override
+                            public String apply(String name, ThumbnailParameter param) {
+                                return name + "_254*178";
+                            }
+                        });
+            }
+
+            Part photoPart2 = request.getPart("photo2");
+            if (photoPart2.getSize() > 0) {
+                //파일을 선택해서 업로드 했다면
+                String filename = UUID.randomUUID().toString();
+                photoPart2.write(this.uploadDir + "/" + filename);
+                c.setPhoto1(filename);
+
+                Thumbnails.of(this.uploadDir + "/" + filename).
+                        size(254, 178)
+                        .outputFormat("jpg")
+                        .crop(Positions.CENTER)
+                        .toFiles(new Rename() {
+                            @Override
+                            public String apply(String name, ThumbnailParameter param) {
+                                return name + "_254*178";
+                            }
+                        });
+            }
+
+            Part photoPart3 = request.getPart("photo3");
+            if (photoPart3.getSize() > 0) {
+                //파일을 선택해서 업로드 했다면
+                String filename = UUID.randomUUID().toString();
+                photoPart3.write(this.uploadDir + "/" + filename);
+                c.setPhoto1(filename);
+
+                Thumbnails.of(this.uploadDir + "/" + filename).
+                        size(254, 178)
+                        .outputFormat("jpg")
+                        .crop(Positions.CENTER)
+                        .toFiles(new Rename() {
+                            @Override
+                            public String apply(String name, ThumbnailParameter param) {
+                                return name + "_254*178";
+                            }
+                        });
+            }
+            ////////////////////////////////
+
 
             clubService.add(c);
 

@@ -8,7 +8,7 @@ public interface HotplaceService {
 
     int add(Hotplace hotplace) throws Exception;
 
-    List<Hotplace> listAll() throws Exception;
+    List<Hotplace> list() throws Exception;
 
     Hotplace get(int no) throws Exception;
 

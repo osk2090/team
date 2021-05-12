@@ -20,6 +20,11 @@
       <result column="writer_name" property="name"/>
     </association>
 
+    <association property="members" javaType="member">
+      <id column="member_no" property="no"/>
+      <result column="member_name" property="name"/>
+    </association>
+
   </resultMap>
 
   <!-- >클럽 게시판에 클럽 삽입<-->
@@ -79,71 +84,70 @@
   </insert>
 
   <insert id="insertMembers" parameterType="map">
-    insert into pms_member_project(member_no,project_no)//
+    insert into c_member(mno,cno)
     values
     <foreach collection="members" item="m" separator=",">
-      (#{m.no}, #{projectNo})
+      (#{m.mno}, #{clubNo});
     </foreach>
   </insert>
 
   <!--멤버삭제-->
   <delete id="deleteMember" parameterType="int">
-    delete from pms_member_project
-    where project_no=#{value}
+    delete from c_member
+    where cno=#{value}
   </delete>
 
   <!--멤버불러오기-->
   <select id="findAllMembers" resultType="member" parameterType="int">
     select
-      m.no,
-      m.name
-    from pms_member_project mp
-           inner join pms_member m on mp.member_no=m.no
+      m.mno,
+      m.mname
+    from c_member mp
+           inner join member m on mp.mno=m.mno
     where
-      mp.project_no=#{value}
+      mp.cno=#{value}
   </select>
 
 
 
 
-  <!--사진추가-->
-  <insert id="insertPhoto" parameterType="map">
-    insert into pms_member_project(member_no,project_no)
-    values(#{memberNo}, #{projectNo})
-  </insert>
+<!--  &lt;!&ndash;사진추가&ndash;&gt;-->
+<!--  <insert id="insertPhoto" parameterType="map">-->
+<!--    insert into c_photo(c_pno, cno)-->
+<!--    values (#{photoNo}, #{clubNo})-->
+<!--  </insert>-->
 
-  <insert id="insertPhotos" parameterType="map">
-    insert into pms_member_project(member_no,project_no)
-    values
-    <foreach collection="members" item="m" separator=",">
-      (#{m.no}, #{projectNo})
-    </foreach>
-  </insert>
+<!--  <insert id="insertPhotos" parameterType="map">-->
+<!--    insert into c_photo(c_pno,cno)-->
+<!--    values-->
+<!--    <foreach collection="photos" item="p" separator=",">-->
+<!--      (#{p.c_pno}, #{clubNo})-->
+<!--    </foreach>-->
+<!--  </insert>-->
 
-  <!--사진삭제-->
-  <delete id="deletePhoto" parameterType="int">
-    delete from pms_member_project
-    where project_no=#{value}
-  </delete>
+<!--  &lt;!&ndash;사진삭제&ndash;&gt;-->
+<!--  <delete id="deletePhoto" parameterType="int">-->
+<!--    delete from c_photo-->
+<!--    where clubNo=#{value}-->
+<!--  </delete>-->
 
-  <!--사진불러오기-->
-  <select id="findAllPhotos" resultType="String" parameterType="int">
-    select
-      m.no,
-      m.name
-    from pms_member_project mp
-           inner join pms_member m on mp.member_no=m.no
-    where
-      mp.project_no=#{value}
-  </select>
-
+<!--  &lt;!&ndash;사진불러오기&ndash;&gt;-->
+<!--  <select id="findAllPhotos" resultType="String" parameterType="int">-->
+<!--    select-->
+<!--      m.no,-->
+<!--      m.name-->
+<!--    from c_photo cp-->
+<!--           inner join club c on cp.c_pno=c.cno-->
+<!--    where-->
+<!--      mp.cno=#{value}-->
+<!--  </select>-->
 
 
 
   <update id="update" parameterType="club">
     update club
-    set ctitle   = #{ctitle},
-        ccontent = #{ccontent}
+    set ctitle   = #{title},
+        ccontent = #{content}
     where cno = #{no}
   </update>
 

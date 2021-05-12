@@ -22,15 +22,21 @@ public class DefaultHotplaceService implements HotplaceService {
 
     //핫플레이스 목록 전체 조회 업무
     @Override
-    public List<Hotplace> listAll() throws Exception {
-        return hotplaceDao.findAll();
+    public List<Hotplace> list() throws Exception {
+        return hotplaceDao.findByKeyword(null);
     }
 
-    //핫플레이스 상세 조회 업무
+//    //핫플레이스 상세 조회 업무
+//    @Override
+//    public Hotplace get(int no) throws Exception {
+//        Hotplace hotplace = hotplaceDao.findByNo(no);
+//        return hotplace;
+//    }
+
+
     @Override
     public Hotplace get(int no) throws Exception {
-        Hotplace hotplace = hotplaceDao.findByNo(no);
-        return hotplace;
+        return null;
     }
 
     //핫플레이스 수정 업무

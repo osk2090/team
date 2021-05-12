@@ -24,7 +24,7 @@ public class Club {
     private Date startDate;//가는날
     private Date endDate;//오는날
     private int total;//인원수
-    private List<String> photos;//사진
+    private String photo;//사진
 
     @Override
     public String toString() {
@@ -40,7 +40,7 @@ public class Club {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", total=" + total +
-                ", photos=" + photos +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 
@@ -60,12 +60,12 @@ public class Club {
         this.members = members;
     }
 
-    public List<String> getPhotos() {
-        return photos;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setPhotos(List<String> photos) {
-        this.photos = photos;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public int getNo() {

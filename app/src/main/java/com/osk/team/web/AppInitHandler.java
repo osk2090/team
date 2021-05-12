@@ -50,7 +50,7 @@ public class AppInitHandler implements Servlet {
 
             servletContext.setAttribute("boardService", boardService);
             servletContext.setAttribute("clubService", clubService);
-            servletContext.setAttribute("HotplaceService", hotplaceService);
+            servletContext.setAttribute("hotplaceService", hotplaceService);
             servletContext.setAttribute("memberService", memberService);
             servletContext.setAttribute("qnaService", qnaService);
 

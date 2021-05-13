@@ -36,7 +36,7 @@ public class BoardListHandler extends HttpServlet {
     out.println("<body>");
     out.println("<h1>게시글 목록</h1>");
 
-    out.println("<p><a href='form.html'>새 글</a></p>");
+    out.println("<p><a href='add'>새 글</a></p>");
 
     try {
       List<Board> boards = boardService.list();
@@ -44,7 +44,7 @@ public class BoardListHandler extends HttpServlet {
       out.println("<table border='1'>");
       out.println("<thead>");
       out.println("<tr>");
-      out.println("<th>번호</th> <th>제목</th> <th>내용</th> <th>작성자</th> <th>등록일</th> <th>조회수</th>");
+      out.println("<th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>조회수</th>");
       out.println("</tr>");
       out.println("</thead>");
       out.println("<tbody>");
@@ -53,15 +53,15 @@ public class BoardListHandler extends HttpServlet {
         out.printf("<tr>"
             + " <td><a href='detail?no=%1$d'>%s</a></td>"
             + " <td>%s</td>"
-            + " <td>%s</td>"
+
             + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%d</td> </tr>\n",
 
             b.getNo(),
             b.getTitle(),
-            b.getContent(),
-            b.getMemberNo().getName(),
+
+            b.getWriter().getName(),
             b.getRegisteredDate(),
             b.getViewCount()
             );

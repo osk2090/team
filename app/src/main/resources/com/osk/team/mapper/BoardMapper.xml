@@ -13,29 +13,32 @@
     <result column="bcount" property="viewCount"/>
     <result column="bdate" property="registeredDate"/>
 
-    <association property="memberNo" javaType="member">
-	    <id column="mno" property="no"/>
-	    <result column="mname" property="name"/>
+    <association property="writer" javaType="member">
+	    <id column="writer_no" property="no"/>
+	    <result column="writer_name" property="name"/>
     </association>
     
+    
   </resultMap>
-  
-  <insert id="insert" parameterType="board">
-    insert into board(b_tno, btitle, bcontent)
-    values (#{b_tno}, #{btitle}, #{bcontent})
-  </insert>
+
+   <insert id="insert" parameterType="board">
+    insert into board(btitle, bcontent, bcount, bdate ,mno, b_tno )
+    values (#{title}, #{content}, #{viewCount}, #{registeredDate} ,#{writer.no}, #{boardTypeNo})
+  </insert> 
 
   <select id="findByKeyword" resultMap="boardMap" parameterType="string">
     select
     b.bno,
     b.btitle,
-    b.bcontent,
+ 
     b.bdate,
     b.bcount,
-    m.mno as mno,
-    m.mname as mname
+    m.mno as writer_no,
+    m.mname as writer_name,
+    t.b_tno
     from board b
     inner join member m on m.mno=b.mno
+    inner join b_type t on t.b_tno=b.b_tno
 
     <if test="value != null">
       where
@@ -49,18 +52,25 @@
   
   <select id="findByNo" resultMap="boardMap" parameterType="int">
     select
-      b.no,
-      b.title,
-      b.content,
-      b.date,
-      b.count,
-      b.t_bno,
-      m.mno as writer_no,
-      m.mname as writer_name
+    b.bno,
+    b.btitle,
+    b.bcontent,
+    b.bdate,
+    b.bcount,
+    m.mno as mno,
+    m.mname as mname,
+    t.b_tno
     from board b
-      inner join member m on m.mno=b.writer
+    inner join member m on m.mno=b.mno
+    inner join b_type t on t.b_tno=b.b_tno
     where b.bno = #{value}
   </select>
+  
+    <update id="updateViewCount" parameterType="int">
+    update board set 
+      bcount = bcount  + 1 
+    where bno = #{value}
+  </update>
 
   <update id="update" parameterType="board">
     update board

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.osk.team.dao.BoardDao">
-   
+
   <resultMap id="boardMap" type="board">
     <id column="bno" property="no"/>
-   <!--   <result column="b_tno" property="tno"/>   게시판 종류번호(다른테이블) 보류   -->
+    <!--   <result column="b_tno" property="tno"/>   게시판 종류번호(다른테이블) 보류   -->
     <result column="btitle" property="title"/>
     <result column="bcontent" property="content"/>
     <result column="bcount" property="viewCount"/>
@@ -16,9 +16,12 @@
     <association property="writer" javaType="member">
 	    <id column="writer_no" property="no"/>
 	    <result column="writer_name" property="name"/>
+
     </association>
     
     
+
+
   </resultMap>
 
    <insert id="insert" parameterType="board">
@@ -31,6 +34,7 @@
     b.bno,
     b.btitle,
  
+
     b.bdate,
     b.bcount,
     m.mno as writer_no,
@@ -49,7 +53,7 @@
 
     order by b.bno desc
   </select>
-  
+
   <select id="findByNo" resultMap="boardMap" parameterType="int">
     select
     b.bno,
@@ -63,12 +67,20 @@
     from board b
     inner join member m on m.mno=b.mno
     inner join b_type t on t.b_tno=b.b_tno
+           inner join member m on m.mno=b.mno
+           inner join b_type t on t.b_tno=b.b_tno
     where b.bno = #{value}
   </select>
   
     <update id="updateViewCount" parameterType="int">
     update board set 
       bcount = bcount  + 1 
+    where bno = #{value}
+  </update>
+
+  <update id="updateViewCount" parameterType="int">
+    update board set
+      bcount = bcount  + 1
     where bno = #{value}
   </update>
 

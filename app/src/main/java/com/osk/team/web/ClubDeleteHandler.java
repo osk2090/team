@@ -20,48 +20,43 @@ public class ClubDeleteHandler extends HttpServlet {
 
         ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>클럽 삭제</title>");
-
         try {
-            int no = Integer.parseInt(request.getParameter("cno"));
+            int no = Integer.parseInt(request.getParameter("no"));
 
             Club oldClub = clubService.get(no);
             if (oldClub == null) {
                 throw new Exception("해당 번호의 클럽이 없습니다.");
             }
 
-            int loginUser = (int) request.getSession().getAttribute("loginUser");//회원번호로 받기
-            if (oldClub.getNo() != loginUser) {
+            Club loginUser = (Club) request.getSession().getAttribute("loginUser");//회원번호로 받기
+            if (oldClub.getWriter().getNo() != loginUser.getNo()) {
                 throw new Exception("삭제 권한이 없습니다!");
             }
 
             clubService.delete(no);
 
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>클럽 삭제</h1>");
-            out.println("<p>클럽 삭제하였습니다.</p>");
+            response.sendRedirect("list");
+
         } catch (Exception e) {
             StringWriter strWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(strWriter);
             e.printStackTrace(printWriter);
 
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>클럽 삭제</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>클럽 삭제 오류</h1>");
             out.printf("<p>%s</p>\n", e.getMessage());
             out.printf("<pre>%s</pre>\n", strWriter.toString());
             out.println("<p><a href='list'>목록</a></p>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-        out.println("</body>");
-        out.println("</html>");
     }
 }

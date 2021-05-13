@@ -1,29 +1,28 @@
 package com.osk.team.domain;
 
 import java.sql.Date;
-import java.util.List;
 
 public class Hotplace {
 
-    private int no;//게시판 번호
-    private String title;//게시판 제목
-    private String content;//게시판 내용
-    private Date date;//등록 날짜
-    private int count;//조회수
-    private String address;//주소
-    private String photo;//사진
+    private int no;
+    private String title;
+    private String content;
+    private Date date;
+    private int count;
+    private String address;
+    private String photo;
+
+
 
     @Override
     public String toString() {
-        return "Hotplace{" +
-                "no=" + no +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+        return "Hotplace [no=" + no +
+                ", title=" + title +
+                ", content=" + content +
                 ", date=" + date +
                 ", count=" + count +
-                ", address='" + address + '\'' +
-                ", photo='" + photo + '\'' +
-                '}';
+                ", address=" + address +
+                ", photo=" + photo + "]";
     }
 
     public int getNo() {

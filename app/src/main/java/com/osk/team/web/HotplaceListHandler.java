@@ -3,6 +3,7 @@ package com.osk.team.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +19,8 @@ public class HotplaceListHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    HotplaceService hotplaceService =
-        (HotplaceService) request.getServletContext().getAttribute("hotplaceService");
+          throws ServletException, IOException {
+    HotplaceService hotplaceService = (HotplaceService) request.getServletContext().getAttribute("hotplaceService");
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -33,31 +33,38 @@ public class HotplaceListHandler extends HttpServlet {
     out.println("<body>");
     out.println("<h1>핫플레이스 목록</h1>");
 
-    out.println("<p><a href='form.html'>새 글</a></p>");
+    out.println("<p><a href='add'>새 글</a></p>");
 
     try {
-      List<Hotplace> hotplaces = hotplaceService.listAll();
+
+      List<Hotplace> hotplaces = hotplaceService.list();
 
       out.println("<table border='1'>");
       out.println("<thead>");
       out.println("<tr>");
-      out.println("<th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>조회수</th>");
+      out.println("<th>번호</th> <th>제목</th> <th>내용</th> <th>조회수</th> <th>등록일</th> <th>주소</th> <th>사진</th> ");
       out.println("</tr>");
       out.println("</thead>");
       out.println("<tbody>");
 
       for (Hotplace h : hotplaces) {
-        out.printf(
-            "<tr>" + " <td>%d</td>" + " <td><a href='detail?no=%1$d'>%s</a></td>" + " <td>%s</td>"
-                + " <td>%s</td>" + " <td>%d</td> </tr>\n",
-
-            h.getNo()
-        // b.getBtitle(),
-        // b.getWriter().getMname(),
-        // b.getBdate(),
-        // b.getBcount()
-        );
+        out.printf("<tr>"
+                        + " <td>%d</td>"
+                        + " <td><a href='hotplace.html'>%s</a></td>"
+                        + " <td>%s</td>"
+                        + " <td>%s</td>"
+                        + " <td>%d</td>"
+                        + " <td>%s</td>"
+                        + " <td>%s</td> </tr>\n",
+                h.getNo(),
+                h.getTitle(),
+                h.getContent(),
+                h.getDate(),
+                h.getCount(),
+                h.getAddress(),
+                h.getPhoto());
       }
+
       out.println("</tbody>");
       out.println("</table>");
 

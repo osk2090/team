@@ -29,10 +29,10 @@ public class UserInfoHandler extends HttpServlet {
 
         out.printf("이름: %s\n", member.getName());
         out.printf("이메일: %s\n", member.getEmail());
-        out.printf("암호: %s\n", member.getPassword());
+        out.printf("암호: %d\n", member.getPassword());
         out.printf("사진: %s\n", member.getPhoto());
-        out.printf("성별: %d\n", member.getGender());//번호에 따라 성별이 글씨로 나오게 출력
-        out.printf("생년월일: %s\n", member.getBirth());
+        out.printf("성별: %d\n", member.getGender());
+        out.printf("생년월일: %d\n", member.getBirth());
         out.printf("전화번호: %d\n", member.getTel());
         out.printf("제제횟수: %d\n", member.getCount());
     }

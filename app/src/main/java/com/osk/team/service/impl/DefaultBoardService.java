@@ -50,3 +50,4 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findByKeyword(keyword);
   }
 }
+

@@ -20,6 +20,21 @@
       <result column="writer_name" property="name"/>
     </association>
 
+
+<!--    <association property="photo1" javaType="string">-->
+<!--    <id column="photo1_no" property="no1"/>-->
+<!--    </association>-->
+
+
+<!--    <association property="photo2" javaType="string">-->
+<!--    <id column="photo2_no" property="no2"/>-->
+<!--    </association>-->
+
+
+<!--    <association property="photo3" javaType="string">-->
+<!--    <id column="photo3_no" property="no3"/>-->
+<!--    </association>-->
+
     <association property="members" javaType="member">
       <id column="member_no" property="no"/>
       <result column="member_name" property="name"/>
@@ -32,6 +47,12 @@
     insert into club(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
     values (#{no}, #{writer.no}, #{arrive}, #{theme}, #{title}, #{content}, #{startDate}, #{endDate}, #{total})
   </insert>
+
+<!--  <insert id="insert" parameterType="project"-->
+<!--          useGeneratedKeys="true" keyColumn="no" keyProperty="no">-->
+<!--    insert into pms_project(title,content,sdt,edt,owner)-->
+<!--    values(#{title}, #{content}, #{startDate}, #{endDate}, #{owner.no})-->
+<!--  </insert>-->
 
   <select id="findByKeyword" resultMap="clubMap" parameterType="string">
     select

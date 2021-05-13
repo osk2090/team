@@ -36,7 +36,7 @@ public class BoardListHandler extends HttpServlet {
         out.println("<body>");
         out.println("<h1>게시글 목록</h1>");
 
-        out.println("<p><a href='form.html'>새 글</a></p>");
+        out.println("<p><a href='add'>새 글</a></p>");
 
         try {
             List<Board> boards = boardService.list();
@@ -51,17 +51,19 @@ public class BoardListHandler extends HttpServlet {
 
             for (Board b : boards) {
                 out.printf("<tr>"
-                                + " <td>%d</td>"
                                 + " <td><a href='detail?no=%1$d'>%s</a></td>"
+                                + " <td>%s</td>"
+
                                 + " <td>%s</td>"
                                 + " <td>%s</td>"
                                 + " <td>%d</td> </tr>\n",
 
-                        b.getNo()
-//                        b.getBtitle(),
-//                        b.getWriter().getMname(),
-//                        b.getBdate(),
-//                        b.getBcount()
+                        b.getNo(),
+                        b.getTitle(),
+
+                        b.getWriter().getName(),
+                        b.getRegisteredDate(),
+                        b.getViewCount()
                 );
             }
             out.println("</tbody>");
@@ -86,7 +88,6 @@ public class BoardListHandler extends HttpServlet {
         out.println("</html>");
     }
 }
-
 
 
 

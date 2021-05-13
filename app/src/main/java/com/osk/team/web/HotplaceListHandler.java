@@ -50,7 +50,7 @@ public class HotplaceListHandler extends HttpServlet {
       for (Hotplace h : hotplaces) {
         out.printf("<tr>"
                         + " <td>%d</td>"
-                        + " <td><a href='detail?title=%1$d'>%s</a></td>"
+                        + " <td><a href='hotplace.html'>%s</a></td>"
                         + " <td>%s</td>"
                         + " <td>%s</td>"
                         + " <td>%d</td>"

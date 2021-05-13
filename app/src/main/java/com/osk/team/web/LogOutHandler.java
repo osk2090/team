@@ -30,5 +30,7 @@ public class LogOutHandler extends HttpServlet {
         request.getSession().invalidate();
 
         out.printf("%s 님 안녕히 가세요!\n", member.getName());
+
+        response.sendRedirect("login");    // 다시 로그인 화면으로 가기
     }
 }

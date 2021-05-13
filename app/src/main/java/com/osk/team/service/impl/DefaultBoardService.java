@@ -2,11 +2,11 @@ package com.osk.team.service.impl;
 
 
 
+import java.util.List;
+
 import com.osk.team.dao.BoardDao;
 import com.osk.team.domain.Board;
 import com.osk.team.service.BoardService;
-
-import java.util.List;
 
 public class DefaultBoardService implements BoardService {
 

@@ -22,7 +22,7 @@ public class BoardAddHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
 
 
     response.setContentType("text/html;charset=UTF-8");
@@ -48,15 +48,17 @@ public class BoardAddHandler extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
 
     BoardService boardService = (BoardService) request.getServletContext().getAttribute("boardService");
 
     Board b = new Board();
 
-    Date d = new Date(); 
+    Date d = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss"); // 날짜 포멧 형식 지정 및 생성
-    //    System.out.println(sdf.format(d)); // 위에서 지정한 포멧 형식으로  날짜 출력
+    //    System.out.println(sdf.format(d)); // 위에서 지정한 포멧 형식으로 날짜 출력
+
+
 
     request.setCharacterEncoding("UTF-8");
 

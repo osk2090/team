@@ -1,4 +1,4 @@
-package com.eomcs.pms.web;
+package com.osk.team.web;
 // 회원가입
 
 import java.io.IOException;

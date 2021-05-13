@@ -19,28 +19,33 @@ import com.osk.team.service.BoardService;
 @WebServlet("/board/list")
 public class BoardListHandler extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    BoardService boardService = (BoardService) request.getServletContext().getAttribute("boardService");
+        BoardService boardService = (BoardService) request.getServletContext().getAttribute("boardService");
 
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
 
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<title>게시글 목록</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>게시글 목록</h1>");
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>게시글 목록</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>게시글 목록</h1>");
 
+<<<<<<< HEAD
     out.println("<p><a href='add'>새 글</a></p>");
+=======
+        out.println("<p><a href='add'>새 글</a></p>");
+>>>>>>> branch 'main' of https://github.com/osk2090/team.git
 
-    try {
-      List<Board> boards = boardService.list();
+        try {
+            List<Board> boards = boardService.list();
 
+<<<<<<< HEAD
       out.println("<table border='1'>");
       out.println("<thead>");
       out.println("<tr>");
@@ -48,7 +53,17 @@ public class BoardListHandler extends HttpServlet {
       out.println("</tr>");
       out.println("</thead>");
       out.println("<tbody>");
+=======
+            out.println("<table border='1'>");
+            out.println("<thead>");
+            out.println("<tr>");
+            out.println("<th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>조회수</th>");
+            out.println("</tr>");
+            out.println("</thead>");
+            out.println("<tbody>");
+>>>>>>> branch 'main' of https://github.com/osk2090/team.git
 
+<<<<<<< HEAD
       for (Board b : boards) {
         out.printf("<tr>"
             + " <td><a href='detail?no=%1$d'>%s</a></td>"
@@ -57,7 +72,14 @@ public class BoardListHandler extends HttpServlet {
             + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%d</td> </tr>\n",
+=======
+            for (Board b : boards) {
+                out.printf("<tr>"
+                                + " <td><a href='detail?no=%1$d'>%s</a></td>"
+                                + " <td>%s</td>"
+>>>>>>> branch 'main' of https://github.com/osk2090/team.git
 
+<<<<<<< HEAD
             b.getNo(),
             b.getTitle(),
 
@@ -68,27 +90,42 @@ public class BoardListHandler extends HttpServlet {
       }
       out.println("</tbody>");
       out.println("</table>");
+=======
+                                + " <td>%s</td>"
+                                + " <td>%s</td>"
+                                + " <td>%d</td> </tr>\n",
+>>>>>>> branch 'main' of https://github.com/osk2090/team.git
 
-      out.println("<form action='search' method='get'>");
-      out.println("<input type='text' name='keyword'>");
-      out.println("<button>검색</button>");
-      out.println("</form>");
+                        b.getNo(),
+                        b.getTitle(),
 
-    } catch (Exception e) {
-      // 상세 오류 내용을 StringWriter로 출력한다.
-      StringWriter strWriter = new StringWriter();
-      PrintWriter printWriter = new PrintWriter(strWriter);
-      e.printStackTrace(printWriter);
+                        b.getWriter().getName(),
+                        b.getRegisteredDate(),
+                        b.getViewCount()
+                );
+            }
+            out.println("</tbody>");
+            out.println("</table>");
 
-      // StringWriter 에 들어 있는 출력 내용을 꺼내 클라이언트로 보낸다.
-      out.printf("<pre>%s</pre>\n", strWriter.toString());
+            out.println("<form action='search' method='get'>");
+            out.println("<input type='text' name='keyword'>");
+            out.println("<button>검색</button>");
+            out.println("</form>");
+
+        } catch (Exception e) {
+            // 상세 오류 내용을 StringWriter로 출력한다.
+            StringWriter strWriter = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(strWriter);
+            e.printStackTrace(printWriter);
+
+            // StringWriter 에 들어 있는 출력 내용을 꺼내 클라이언트로 보낸다.
+            out.printf("<pre>%s</pre>\n", strWriter.toString());
+        }
+
+        out.println("</body>");
+        out.println("</html>");
     }
-
-    out.println("</body>");
-    out.println("</html>");
-  }
 }
-
 
 
 

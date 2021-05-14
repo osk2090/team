@@ -69,10 +69,41 @@ values ('4', '4', '대전', '저녁', '치맥', '바다에서 먹읍시다', '20
 insert into club(cno, mno, carrive, ctheme, ctitle, ccontent, csdt, cedt, ctotal)
 values ('5', '5', '경주', '점심', '치맥', '바다에서 먹읍시다', '2020-1-1', '2020-1-2', 5);
 
+-- 핫플레이스 테이블 예제 데이터 삽입
+insert into hotplace(hno, htitle, hcontent, hdate, hcount, haddr, hphoto)
+values ('1', '경복궁', '야간개장', '2020-1-1', '1', '서울특별시 세종로', '경복궁.jpg');
+insert into hotplace(hno, htitle, hcontent, hdate, hcount, haddr, hphoto)
+values ('2', '광안리', '수변공원', '2020-1-1', '1', '부산광역시 수영구', '광안리.jpg');
+insert into hotplace(hno, htitle, hcontent, hdate, hcount, haddr, hphoto)
+values ('3', '팔공산', '산악회', '2020-1-1', '1', '대구광역시 동구', '팔공산.jpg');
+insert into hotplace(hno, htitle, hcontent, hdate, hcount, haddr, hphoto)
+values ('4', '대청댐', 'damn', '2020-1-1', '1', '대전광역시 대덕구', '대청댐.jpg');
+insert into hotplace(hno, htitle, hcontent, hdate, hcount, haddr, hphoto)
+values ('5', '경주월드', '테마파크', '2020-1-1', '1', '경상북도 경주시', '경주월드.jpg');
 
+-- FAQ 테이블 예제 데이터 삽입
+insert into faq(fno, ftitle, fcontent, fdate)
+values ('1', '조인조이 사용법', '조인하세요!', '2020-1-1');
+insert into faq(fno, ftitle, fcontent, fdate)
+values ('2', '조인조이 회원가입', '가입하세요!', '2020-1-1');
+insert into faq(fno, ftitle, fcontent, fdate)
+values ('3', '조인조이 로그인', '로그인하세요!', '2020-1-1');
+insert into faq(fno, ftitle, fcontent, fdate)
+values ('4', '조인조이 글쓰기', '글쓰세요!', '2020-1-1');
+insert into faq(fno, ftitle, fcontent, fdate)
+values ('5', '조인조이 탈퇴', '탈퇴는 하지마세요!', '2020-1-1');
 
-
-
+-- 할인정보 테이블 예제 데이터 삽입
+insert into discount(dno, dtitle, dcontent, ddate, dcount, dphoto)
+values ('1', '에버랜드', '50% 할인!', '2020-1-1', '1', '에버랜드.jpg');
+insert into discount(dno, dtitle, dcontent, ddate, dcount, dphoto)
+values ('2', '롯데월드', '50% 할인!', '2020-1-1', '1', '롯데월드.jpg');
+insert into discount(dno, dtitle, dcontent, ddate, dcount, dphoto)
+values ('3', '경주랜드', '50% 할인!', '2020-1-1', '1', '경주랜드.jpg');
+insert into discount(dno, dtitle, dcontent, ddate, dcount, dphoto)
+values ('4', '디즈니월드', '50% 할인!', '2020-1-1', '1', '디즈니랜드.jpg');
+insert into discount(dno, dtitle, dcontent, ddate, dcount, dphoto)
+values ('5', '버거킹', '50% 할인!', '2020-1-1', '1', '버거킹.jpg');
 
 
 

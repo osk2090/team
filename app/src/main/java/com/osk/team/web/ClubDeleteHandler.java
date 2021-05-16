@@ -21,7 +21,7 @@ public class ClubDeleteHandler extends HttpServlet {
         ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
 
         try {
-            int no = Integer.parseInt(request.getParameter("no"));
+            int no = Integer.parseInt(request.getParameter("no").trim());
 
             Club oldClub = clubService.get(no);
             if (oldClub == null) {
@@ -38,25 +38,9 @@ public class ClubDeleteHandler extends HttpServlet {
             response.sendRedirect("list");
 
         } catch (Exception e) {
-            StringWriter strWriter = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(strWriter);
-            e.printStackTrace(printWriter);
-
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>클럽 삭제</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>클럽 삭제 오류</h1>");
-            out.printf("<p>%s</p>\n", e.getMessage());
-            out.printf("<pre>%s</pre>\n", strWriter.toString());
-            out.println("<p><a href='list'>목록</a></p>");
-            out.println("</body>");
-            out.println("</html>");
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/error").forward(request, response);
+            return;
         }
     }
 }

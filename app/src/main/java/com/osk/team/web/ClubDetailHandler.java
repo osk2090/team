@@ -2,6 +2,7 @@ package com.osk.team.web;
 
 import com.osk.team.domain.Club;
 import com.osk.team.domain.Member;
+import com.osk.team.domain.Photo;
 import com.osk.team.service.ClubService;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @SuppressWarnings("serial")
 @WebServlet("/club/detail")
@@ -37,9 +41,11 @@ public class ClubDetailHandler extends HttpServlet {
         out.println("<body>");
         out.println("<h1>클럽 정보</h1>");
 
+        out.print("<p><a href='detailSearch'>참여</a></p>");
+        out.print("<p><a href='club.html'>생성</a></p>");
 
         try {
-            int no = Integer.parseInt(request.getParameter("no"));
+            int no = Integer.parseInt(request.getParameter("no").trim());
 
             Club c = clubService.get(no);
             if (c == null) {
@@ -62,11 +68,17 @@ public class ClubDetailHandler extends HttpServlet {
             out.printf("<tr><th>내용</th> <td>%s</td></tr>\n", c.getContent());
             out.printf("<tr><th>인원수</th> <td>%s</td></tr>\n", c.getTotal());
 
+//            List<Photo> p = new ArrayList<>();
+//            p.add(new Photo());
+//            c.setPhotos(Collections.singletonList(p));
+//
+//            System.out.println(c.getPhotos());
+
             out.printf("<tr><th>사진</th> <td>"
                             + "<a href='%s'><img src='%s'></a><br>"
                             + "<input name='photo' type='file'></td></tr>\n",
-                    c.getPhoto1() != null ? "../upload/" + c.getPhoto1() : "",
-                    c.getPhoto1() != null ? "../upload/" + c.getPhoto1() + "_254*178.jpg" : "../images/person_80x80.jpg");
+                    c.getPhotos() != null ? "../upload/" + c.getPhotos() : "",
+                    c.getPhotos() != null ? "../upload/" + c.getPhotos() + "_254*178.jpg" : "../images/person_80x80.jpg");
 
             out.println("</tbody>");
 
@@ -85,10 +97,7 @@ public class ClubDetailHandler extends HttpServlet {
 
 
         } catch (Exception e) {
-            StringWriter strWriter = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(strWriter);
-            e.printStackTrace(printWriter);
-            out.printf("<pre>%s</pre>\n", strWriter.toString());
+            throw new ServletException(e);
         }
         out.println("<p><a href='list'>목록</a></p>");
 

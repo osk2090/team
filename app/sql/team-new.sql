@@ -508,4 +508,6 @@ ALTER TABLE c_photo
             )
             REFERENCES club ( -- 여행클럽
                              cno -- 클럽게시판번호
-                );
+                )
+            on delete cascade
+            on update cascade;

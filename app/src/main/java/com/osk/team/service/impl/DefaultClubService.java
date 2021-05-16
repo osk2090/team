@@ -130,7 +130,7 @@ public class DefaultClubService implements ClubService {
     //현재 인원 관리파트
     @Override
     public int deleteMember(int clubNo) throws Exception {
-        return clubDao.deleteMember(clubNo);
+        return clubDao.deleteMembers(clubNo);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class DefaultClubService implements ClubService {
         return (int) transactionTemplate.execute(new TransactionCallback() {
             @Override
             public Object doInTransaction() throws Exception {
-                clubDao.deleteMember(clubNo);
+                clubDao.deleteMembers(clubNo);
 
                 HashMap<String,Object> params = new HashMap<>();
                 params.put("clubNo", clubNo);

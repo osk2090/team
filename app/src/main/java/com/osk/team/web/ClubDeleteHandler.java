@@ -24,10 +24,6 @@ public class ClubDeleteHandler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>클럽 삭제</title>");
         try {
             int no = Integer.parseInt(request.getParameter("no"));
 
@@ -44,16 +40,10 @@ public class ClubDeleteHandler extends HttpServlet {
 
             clubService.delete(no);
 
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>클럽 삭제</h1>");
-            out.println("<p>클럽을 삭제하였습니다.</p>");
+            response.sendRedirect("list");
 
         } catch (Exception e) {
             throw new ServletException(e);
         }
-        out.println("</body>");
-        out.println("</html>");
     }
 }

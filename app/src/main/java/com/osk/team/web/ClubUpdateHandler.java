@@ -36,8 +36,6 @@ public class ClubUpdateHandler extends HttpServlet {
 //        partList = new ArrayList<Part>();
 //        photos = new ArrayList<Photo>();
 
-        request.setCharacterEncoding("UTF-8");
-
         try {
             int no = Integer.parseInt(request.getParameter("no"));
 
@@ -56,7 +54,6 @@ public class ClubUpdateHandler extends HttpServlet {
             Club c = new Club();
             c.setTitle(request.getParameter("title"));
             c.setContent(request.getParameter("content"));
-//            c.setWriter(loginUser);
 
             // ...&member=1&member=18&member=23
 //            String[] values = request.getParameterValues("member");
@@ -70,22 +67,13 @@ public class ClubUpdateHandler extends HttpServlet {
 //            }
 //            c.setMembers(memberList);
 
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>클럽 수정</title>");
-
-            // DBMS에게 프로젝트 변경을 요청한다.
-            clubService.update(c);
-
             int p_cno = clubService.getClubCno().getNo();//같은 p_cno 번호 셋팅
             for (int i = 0; i < photos.size(); i++) {//반복문을 돌려서 갯수만큼 db에 저장
                 photos.get(i).setNo(p_cno);//등록된 게시글의 cno값을 출력해서 넣어줌 사짐cno값 넣어줌
                 clubService.addWithPhoto(photos.get(i));//클럽 사진 등록 /사진 cno값과 이름값 함께 insert 해준다
             }
+
+            clubService.update(c);
 
             response.sendRedirect("list");
 

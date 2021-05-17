@@ -43,6 +43,12 @@ public class ClubAddHandler extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("/jsp/club/form.jsp").include(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
@@ -50,7 +56,7 @@ public class ClubAddHandler extends HttpServlet {
         photos = new ArrayList<Photo>();
         Club c = new Club();
 
-        request.setCharacterEncoding("UTF-8");
+//        request.setCharacterEncoding("UTF-8");
 
         c.setArrive(request.getParameter("arrive"));
         c.setStartDate(Date.valueOf(request.getParameter("startDate")));
@@ -121,22 +127,9 @@ public class ClubAddHandler extends HttpServlet {
                 photos.get(i).setNo(p_cno);//등록된 게시글의 cno값을 출력해서 넣어줌 사짐cno값 넣어줌
                 clubService.addWithPhoto(photos.get(i));//클럽 사진 등록 /사진 cno값과 이름값 함께 insert 해준다
             }
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>게시글 등록</h1>");
-            out.println("<p>게시글을 등록했습니다.</p>");
-
+            response.sendRedirect("list");
         } catch (Exception e) {
-            StringWriter strWriter = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(strWriter);
-            e.printStackTrace(printWriter);
-
-            out.printf("<pre>%s</pre>\n", strWriter.toString());
-            out.println("<p><a href='list'>클럽 목록</a></p>");
+            throw new ServletException(e);
         }
-
-        out.println("</body>");
-        out.println("</html>");
     }
 }

@@ -1,0 +1,304 @@
+[33mcommit e4dbbbc6c06c1b8f0c8eebc35341103c0e060160[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 18 03:23:38 2021 +0900
+
+    team-new.sql 수정
+
+[33mcommit bb819231cec32d2319fc9a3b3dd2032311b6fda5[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Mon May 17 21:10:08 2021 +0900
+
+    21.05.17-1
+
+[33mcommit 3b9adda8116e0edf535b1ee17cfae0ad0370a857[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Mon May 17 03:43:11 2021 +0900
+
+    .
+
+[33mcommit 7621ed8868418b8c772c17f7f7fb78207a972dc4[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Mon May 17 03:39:48 2021 +0900
+
+    21.05.17
+
+[33mcommit 394a6d7f1be8ed449d92a7ee063f798bd464601e[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Fri May 14 18:07:28 2021 +0900
+
+    fix
+
+[33mcommit 04a76ba60442572d2887cc05b66aca386ab7c088[m
+Merge: 882c516 8131797
+Author: osk2090 <osk2090@naver.com>
+Date:   Fri May 14 10:25:32 2021 +0900
+
+    push
+
+[33mcommit 882c51634676bb436814e11c6ca17c6b38f2a354[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Fri May 14 10:18:41 2021 +0900
+
+    sample.sql 수정
+
+[33mcommit 2aaa300ca77ab0d653f81455ddeb0d6a23c2c4c6[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Fri May 14 03:46:46 2021 +0900
+
+    mini-pms-31-c 기준:
+    CharacterEncodingFilter(생성) / LoginCheckFilter(로그인 안해도 search가능) / ContextLoaderListener(생성) / web.xml(생성)
+
+[33mcommit 81317976f23d37ef0357f66ea95b1426572809cc[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Fri May 14 03:46:46 2021 +0900
+
+    .
+
+[33mcommit ad504b2ab72a0fff815fc64ef4deadf397410e1a[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Thu May 13 20:55:28 2021 +0900
+
+    last
+
+[33mcommit 2cbbc071ddc6df49331b09d2e3dc04c006718ce9[m
+Author: JongwonAhn <azsx1001202@naver.com>
+Date:   Thu May 13 20:24:50 2021 +0900
+
+    .
+
+[33mcommit 6bbe94444881b9b10330921c4661d36b92174b69[m
+Merge: 92d49a7 785b866
+Author: JongwonAhn <azsx1001202@naver.com>
+Date:   Thu May 13 20:02:35 2021 +0900
+
+    Merge branch 'main' of https://github.com/osk2090/team.git into main
+    
+    Conflicts:
+            app/src/main/java/com/osk/team/domain/Board.java
+            app/src/main/java/com/osk/team/service/impl/DefaultBoardService.java
+            app/src/main/java/com/osk/team/web/BoardAddHandler.java
+            app/src/main/java/com/osk/team/web/BoardDetailHandler.java
+            app/src/main/java/com/osk/team/web/BoardListHandler.java
+            app/src/main/resources/com/osk/team/mapper/BoardMapper.xml
+
+[33mcommit 92d49a7c601482b8e0aad904b45dfa6bc1ea0e2e[m
+Author: JongwonAhn <azsx1001202@naver.com>
+Date:   Thu May 13 19:47:24 2021 +0900
+
+    board
+
+[33mcommit 785b866d389a29d558c97880e2fb97ea0a5e2d91[m
+Merge: 165d23d 4eb1a71
+Author: osk2090 <osk2090@naver.com>
+Date:   Thu May 13 19:45:14 2021 +0900
+
+    .
+
+[33mcommit 165d23d4790f9dcf68c48bef63f53af3dfb05e78[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Thu May 13 19:40:19 2021 +0900
+
+    21.05.13-1
+
+[33mcommit 4eb1a71a25c8e02331dc0ac18230ea4c5e6f125d[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Thu May 13 11:28:58 2021 +0900
+
+    패키지 수정
+
+[33mcommit 710088b49dae650df44a01134af0e3755bad038c[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Thu May 13 10:37:22 2021 +0900
+
+    로그인,로그아웃,회원가입
+
+[33mcommit 4239cd19b565aec6bf5eea5e1bae5754bd0f157e[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Thu May 13 02:23:13 2021 +0900
+
+    21.05.13
+
+[33mcommit 64d75366f43b38ab5e9a578bb15ea5eba95ed4b7[m[33m ([m[1;31morigin/도현[m[33m)[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Wed May 12 17:53:25 2021 +0900
+
+    21.05.12
+
+[33mcommit b122b54d926cc40333ce6aa3c243474bea72d8b7[m
+Merge: 6ef8b0b e952baa
+Author: osk2090 <osk2090@naver.com>
+Date:   Wed May 12 02:55:40 2021 +0900
+
+    Merge branch 'main' of https://github.com/osk2090/team
+
+[33mcommit 6ef8b0bdae938b0defd85cb33ffcfa05777e2bb4[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Wed May 12 02:51:17 2021 +0900
+
+    update
+
+[33mcommit e952baabf8e5d57b2c0b33eea69dc306ccfaa694[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Wed May 12 00:48:47 2021 +0900
+
+    .
+
+[33mcommit f8ba79fb32cf68c22dfd8813d4e478bf9a60eea9[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Wed May 12 00:44:26 2021 +0900
+
+    fix
+
+[33mcommit 7e7270519df2dc263a353b72395685341139a908[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 23:51:31 2021 +0900
+
+    .
+
+[33mcommit 8cc7790486170c99f423bd0f9e89a29dc53732e1[m
+Merge: 458286d 400b53d
+Author: jinseon0328 <wishofsun@daum.net>
+Date:   Tue May 11 21:02:41 2021 +0900
+
+    "qna list"
+
+[33mcommit 458286d837a336b56febfdfa51ffcc0d64551e34[m
+Author: jinseon0328 <wishofsun@daum.net>
+Date:   Tue May 11 20:51:48 2021 +0900
+
+    "qna list"
+
+[33mcommit 400b53dd138f2de35d79ea3abd096d475338076a[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 20:23:38 2021 +0900
+
+    도현
+
+[33mcommit 73cbdd542835fd86c237f53d5e5fd9cbab662da4[m
+Merge: 653ce7c 1038779
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 18:08:18 2021 +0900
+
+    .
+
+[33mcommit 653ce7c98fb5b4b76e3da9b1ff3cc8e195bf6d00[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 18:07:44 2021 +0900
+
+    fix bugs(club)
+
+[33mcommit 103877913f863f8234c1c63585d698bf086d1215[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 16:47:02 2021 +0900
+
+    도현
+
+[33mcommit a4e56ecbc5ff42b0f9a58ad5341b115e1d8d2e1e[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 16:40:59 2021 +0900
+
+    경도
+
+[33mcommit d448bdf8f89f720ebf3dfafbaf025d893b38a930[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 16:32:26 2021 +0900
+
+    도현
+
+[33mcommit 4e540ae7c84ee7578cc6812b4017ceaccde6ed7f[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 16:30:45 2021 +0900
+
+    도
+
+[33mcommit c8da6fd062d30faa319495c91efacd16b91a3301[m
+Merge: aaa3330 bc6c1af
+Author: JongwonAhn <azsx1001202@naver.com>
+Date:   Tue May 11 15:52:10 2021 +0900
+
+    Merge branch 'main' of https://github.com/osk2090/team.git into main
+    
+    Conflicts:
+            app/src/main/resources/com/osk/team/mapper/BoardMapper.xml
+
+[33mcommit aaa3330c34427b00b504a22a2d3d5d8088d6a795[m
+Author: JongwonAhn <azsx1001202@naver.com>
+Date:   Tue May 11 15:44:17 2021 +0900
+
+    boardlist
+
+[33mcommit bc6c1af77a020fc61dd72803ab7e55f837dffe05[m
+Merge: 40aea8d 71e6d3f
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 15:40:32 2021 +0900
+
+    .
+
+[33mcommit 40aea8d46ace2abf703afd3b69af9b754794b064[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 15:36:18 2021 +0900
+
+    .
+
+[33mcommit 71e6d3f3f406e949f2bd3892b20fb675862ee4d4[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 15:17:39 2021 +0900
+
+    경도
+
+[33mcommit 34ac848291b3b0ee0a982aed24a47041daa5d53f[m
+Author: zeroback70 <zeroback70@naver.com>
+Date:   Tue May 11 15:10:33 2021 +0900
+
+    do
+
+[33mcommit 5d231f9d4d151997de62858c525b2343cb3b6f1f[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 15:01:09 2021 +0900
+
+    .
+
+[33mcommit 1ff6e1bc36a8b347bf86b052be7948734b6d97fe[m
+Merge: f446ac7 b1ab357
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 13:48:45 2021 +0900
+
+    fix club
+
+[33mcommit f446ac724f90e13c7085d6f32f892ac386114c92[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 13:46:07 2021 +0900
+
+    fix clubhandler
+
+[33mcommit b1ab357859715b732cdb5eb517498212319a335d[m
+Author: philiplee25 <yplunap25@gmail.com>
+Date:   Tue May 11 11:46:46 2021 +0900
+
+    핫플레이스
+
+[33mcommit af230d7a762cbb2ac6687a48cdcc5ab694e638ce[m
+Author: philiplee25 <yplunap25@gmail.com>
+Date:   Tue May 11 09:16:00 2021 +0900
+
+    핫플레이스 추가
+
+[33mcommit 0e25dc71f02b4db23a60607efcb41fce6043facf[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Tue May 11 02:20:23 2021 +0900
+
+    fix bugs(clublist/detail&login/logout)
+
+[33mcommit f2f1f0fcf4d3414d62396d7173a0a43c93cbf254[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Mon May 10 20:47:27 2021 +0900
+
+    .
+
+[33mcommit 415df735c056a9c5f4e0033e3cebaa0f43df938d[m
+Author: osk2090 <osk2090@naver.com>
+Date:   Mon May 10 18:00:46 2021 +0900
+
+    .
+
+[33mcommit 323f31c8e94e91474

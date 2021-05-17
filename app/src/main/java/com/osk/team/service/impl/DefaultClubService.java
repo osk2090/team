@@ -73,20 +73,7 @@ public class DefaultClubService implements ClubService {
 
     @Override
     public int delete(int no) throws Exception {
-        return (int) transactionTemplate.execute(new TransactionCallback() {
-            @Override
-            public Object doInTransaction() throws Exception {
-                // 트랜잭션으로 묶어서 실행할 작업을 기술한다.
-                // 1) 프로젝트의 모든 작업 삭제
-                clubDao.deletePhotos(no);
-
-                // 2) 프로젝트 멤버 삭제
-//                projectDao.deleteMembers(no);
-
-                // 3) 프로젝트 삭제
-                return  clubDao.delete(no);
-            }
-        });
+        return clubDao.delete(no);
     }
 
     @Override

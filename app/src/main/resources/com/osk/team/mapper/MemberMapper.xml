@@ -48,7 +48,7 @@
     order by mname asc
   </select>
 
-  <!--<select id="findByMember" resultMap="memberMap" parameterType="int">
+  <select id="findByMember" resultMap="memberMap" parameterType="int">
     select
       mno,
       mname,
@@ -59,11 +59,11 @@
       mtel,
       mgender,
       mstatus,
-      mpow
+      mpow,
       mcnt
     from member
     where mno = #{value}
-  </select>-->
+  </select>
 
   <!--<update id="update" parameterType="member">
     update member

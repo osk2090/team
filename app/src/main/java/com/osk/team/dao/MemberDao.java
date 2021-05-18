@@ -12,8 +12,7 @@ public interface MemberDao {
 
   List<Member> findByKeyword(String keyword) throws Exception;
 
-  Member findByNo(int no) throws Exception;
-
+  Member findByMember(int no) throws Exception;
 
   Member findByEmailPassword(Map<String,Object> params) throws Exception;
 

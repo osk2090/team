@@ -56,8 +56,6 @@ public class ClubAddHandler extends HttpServlet {
         photos = new ArrayList<Photo>();
         Club c = new Club();
 
-//        request.setCharacterEncoding("UTF-8");
-
         c.setArrive(request.getParameter("arrive"));
         c.setStartDate(Date.valueOf(request.getParameter("startDate")));
         c.setEndDate(Date.valueOf(request.getParameter("endDate")));

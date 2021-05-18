@@ -37,6 +37,7 @@ war {
 }
 
 dependencies {
+    implementation 'javax.servlet:jstl:1.2'
 
     implementation 'net.coobird:thumbnailator:0.4.13'
 

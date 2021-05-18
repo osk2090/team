@@ -30,7 +30,7 @@ public class DefaultMemberService implements MemberService {
     // 상세 조회 업무
     @Override
     public Member get(int no) throws Exception {
-        return memberDao.findByNo(no);
+        return memberDao.findByMember(no);
     }
 
     // 사용자 조회 업무

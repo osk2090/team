@@ -52,13 +52,19 @@
   </insert>
 
   <select id="findPhotos" resultType="photo" parameterType="int">
-    select
-      p.c_pho,
-      p.cno
-    from c_photo p
-           inner join club c on p.cno=c.cno
-    where
-      c.cno=#{value}
+    select p.c_pho,
+           p.cno
+    from club c
+           left join c_photo cp on c.cno = cp.cno
+    where c.cno = #{value}
+
+#     select
+#       p.c_pho,
+#       p.cno
+#     from c_photo p
+#            inner join club c on p.cno=c.cno
+#     where
+#       c.cno=#{value}
   </select>
 
 

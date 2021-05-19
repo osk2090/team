@@ -4,6 +4,10 @@ import com.osk.team.domain.Club;
 import com.osk.team.domain.Member;
 import com.osk.team.domain.Photo;
 import com.osk.team.service.ClubService;
+import net.coobird.thumbnailator.ThumbnailParameter;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+import net.coobird.thumbnailator.name.Rename;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @SuppressWarnings("serial")
 @WebServlet("/club/update")
@@ -29,15 +35,24 @@ public class ClubUpdateHandler extends HttpServlet {
         this.uploadDir = this.getServletContext().getRealPath("/upload");
     }
 
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        response.setContentType("text/html;charset=UTF-8");
+//        request.getRequestDispatcher("/jsp/club/form.jsp").include(request, response);
+//    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
-//        partList = new ArrayList<Part>();
-//        photos = new ArrayList<Photo>();
+        partList = new ArrayList<Part>();
+        photos = new ArrayList<Photo>();
+
 
         try {
             int no = Integer.parseInt(request.getParameter("no"));
+
+            System.out.println(no);
 
             Club oldClub = clubService.get(no);
 
@@ -66,6 +81,37 @@ public class ClubUpdateHandler extends HttpServlet {
 //                }
 //            }
 //            c.setMembers(memberList);
+
+            if (request.getPart("photo1").getSize() > 0) {
+                partList.add(request.getPart("photo1"));
+            }
+            if (request.getPart("photo2").getSize() > 0) {
+                partList.add(request.getPart("photo2"));
+            }
+            if (request.getPart("photo3").getSize() > 0) {
+                partList.add(request.getPart("photo3"));
+            }
+
+            for (int i = 0; i < partList.size(); i++) {
+                if (partList.get(i).getSize() > 0) {
+                    photos.add(new Photo());
+
+                    String filename = UUID.randomUUID().toString();
+                    partList.get(i).write(this.uploadDir + "/" + filename);
+                    photos.get(i).setName(filename);
+
+                    Thumbnails.of(this.uploadDir + "/" + filename)
+                            .size(254, 178)
+                            .outputFormat("jpg")
+                            .crop(Positions.CENTER)
+                            .toFiles(new Rename() {
+                                @Override
+                                public String apply(String name, ThumbnailParameter param) {
+                                    return name + "_254x178";
+                                }
+                            });
+                }
+            }
 
             int p_cno = clubService.getClubCno().getNo();//같은 p_cno 번호 셋팅
             for (int i = 0; i < photos.size(); i++) {//반복문을 돌려서 갯수만큼 db에 저장

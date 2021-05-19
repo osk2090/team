@@ -7,6 +7,7 @@
           <element id="module-output" name="team.app.main" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: net.coobird:thumbnailator:0.4.13" />
           <element id="library" level="project" name="Gradle: org.mariadb.jdbc:mariadb-java-client:2.7.2" />
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.5.6" />

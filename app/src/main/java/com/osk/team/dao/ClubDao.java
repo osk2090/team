@@ -24,7 +24,6 @@ public interface ClubDao {
 
     List<Club> findByKeywords(Map<String, Object> params) throws Exception;
 
-
     //사진 관련
     List<Photo> findPhotos(int clubNo) throws Exception;
 

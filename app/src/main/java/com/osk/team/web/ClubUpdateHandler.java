@@ -34,11 +34,11 @@ public class ClubUpdateHandler extends HttpServlet {
         this.uploadDir = this.getServletContext().getRealPath("/upload");
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        request.getRequestDispatcher("/jsp/club/form.jsp").include(request, response);
-//    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("/jsp/club/form.jsp").include(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,9 +47,8 @@ public class ClubUpdateHandler extends HttpServlet {
         partList = new ArrayList<Part>();
         photos = new ArrayList<Photo>();
 
-
         try {
-            int no = Integer.parseInt(request.getParameter("no").trim());
+            int no = Integer.parseInt(request.getParameter("no"));
 
             System.out.println(no);
 
@@ -69,20 +68,31 @@ public class ClubUpdateHandler extends HttpServlet {
             c.setTitle(request.getParameter("title"));
             c.setContent(request.getParameter("content"));
 
-            // ...&member=1&member=18&member=23
-            //클럽원 추가
-            if (c.getWriter().getNo() != loginUser.getNo()) {
-                String[] values = request.getParameterValues("members");
-                ArrayList<Member> memberList = new ArrayList<>();
-                if (values != null) {
-                    for (String value : values) {
-                        Member member = new Member();
-                        member.setNo(Integer.parseInt(value));
-                        memberList.add(member);
-                    }
+//            // ...&member=1&member=18&member=23
+//            //클럽원 추가
+//            if (c.getWriter().getNo() != loginUser.getNo()) {
+//                String[] values = request.getParameterValues("members");
+//                ArrayList<Member> memberList = new ArrayList<>();
+//                if (values != null) {
+//                    for (String value : values) {
+//                        Member member = new Member();
+//                        member.setNo(Integer.parseInt(value));
+//                        memberList.add(member);
+//                    }
+//                }
+//                c.setMembers(memberList);
+//            }
+            //클럽 참여 기능
+            ArrayList<Member> joinMember = new ArrayList<>();
+            for (int i = 0; i < c.getTotal(); i++) {
+                //방장입장 불가 / 이미 참여한 멤버 입장 불가 / 로그인 안한 멤버 입장 불가
+                if (c.getWriter().getNo() != loginUser.getNo() || c.getMembers().get(i).getNo() != loginUser.getNo() || loginUser == null) {
+                    joinMember.add(loginUser);
                 }
-                c.setMembers(memberList);
             }
+
+            c.setMembers(joinMember);//멤버 참여
+
 
             if (request.getPart("photo1").getSize() > 0) {
                 partList.add(request.getPart("photo1"));

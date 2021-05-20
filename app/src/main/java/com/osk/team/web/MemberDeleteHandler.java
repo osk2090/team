@@ -1,64 +1,63 @@
 package com.osk.team.web;
 
+import com.osk.team.domain.Member;
+import com.osk.team.service.MemberService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.osk.team.service.MemberService;
 
 @SuppressWarnings("serial")
 @WebServlet("/member/delete")
 public class MemberDeleteHandler extends HttpServlet {
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-        MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
+    MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
 
-        response.setContentType("text/plain;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>회원 탈퇴</title>");
+    out.println("<!DOCTYPE html>");
+    out.println("<html>");
+    out.println("<head>");
+    out.println("<title>회원 삭제</title>");
+    out.println("</head>");
+    out.println("<body>");
+    out.println("<h1>회원 삭제</h1>");
 
-        try {
-            int Mno = Integer.parseInt(request.getParameter("mno"));
+    try {
+      int no = Integer.parseInt(request.getParameter("no"));
 
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>회원 탈퇴</h1>");
+      Member member = memberService.get(no);
+      if (member == null) {
+        throw new Exception("해당 번호의 회원이 없습니다.");
+      }
 
-            if (memberService.delete(Mno) == 0) {
-                out.println("<p>이미 탈퇴한 회원입니다</p>");
-            } else {
-                out.println("<p>회원탈퇴를 완료했습니다.</p>");
-            }
-        } catch (Exception e) {
-            StringWriter strWriter = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(strWriter);
-            e.printStackTrace(printWriter);
-            out.println(strWriter.toString());
+      // 회원 관리를 관리자가 할 경우 모든 회원의 정보 변경 가능
+      //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      //      if (oldBoard.getWriter().getNo() != loginUser.getNo()) {
+      //        throw new Exception("삭제 권한이 없습니다!");
+      //      }
 
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>회원탈퇴 오류!</h1>");
-            out.printf("<pre>%s</pre>\n", strWriter.toString());
-            out.println("<p><a href='list'>회원 목록</a></p>");
-        }
+      memberService.delete(no);
+      out.println("<p>회원을 삭제하였습니다.</p>");
 
-        out.println("</body>");
-        out.println("</html>");
+      response.setHeader("Refresh", "1;url=list");
+
+    } catch (Exception e) {
+      throw new ServletException(e);
     }
+
+    out.println("</body>");
+    out.println("</html>");
+  }
 }
-
-
 
 

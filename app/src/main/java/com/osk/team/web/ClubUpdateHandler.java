@@ -50,7 +50,7 @@ public class ClubUpdateHandler extends HttpServlet {
 
 
         try {
-            int no = Integer.parseInt(request.getParameter("no"));
+            int no = Integer.parseInt(request.getParameter("no").trim());
 
             System.out.println(no);
 
@@ -71,16 +71,19 @@ public class ClubUpdateHandler extends HttpServlet {
             c.setContent(request.getParameter("content"));
 
             // ...&member=1&member=18&member=23
-//            String[] values = request.getParameterValues("member");
-//            ArrayList<Member> memberList = new ArrayList<>();
-//            if (values != null) {
-//                for (String value : values) {
-//                    Member member = new Member();
-//                    member.setNo(Integer.parseInt(value));
-//                    memberList.add(member);
-//                }
-//            }
-//            c.setMembers(memberList);
+            //클럽원 추가
+            if (c.getWriter().getNo() != loginUser.getNo()) {
+                String[] values = request.getParameterValues("members");
+                ArrayList<Member> memberList = new ArrayList<>();
+                if (values != null) {
+                    for (String value : values) {
+                        Member member = new Member();
+                        member.setNo(Integer.parseInt(value));
+                        memberList.add(member);
+                    }
+                }
+                c.setMembers(memberList);
+            }
 
             if (request.getPart("photo1").getSize() > 0) {
                 partList.add(request.getPart("photo1"));

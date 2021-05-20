@@ -1,3 +1,5 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -18,16 +20,19 @@
         방장: <input type='text' name='writer' value='${club.writer.name}' readonly><br>
         팀원: <br>
         <jsp:include page="/jsp/member/member_list.jsp"/>
-            <c:choose>
-                <c:when test="${club.writer.no eq login.no}">
-                    <%System.out.println("방장은 참여 불가능");%>
-                </c:when>
-            </c:choose>
-            <tr>
-                <td colspan='2'>
-                    <input type='submit' value='클럽참여'>
-                </td>
-            </tr>
+<%--            <c:choose>--%>
+<%--                <c:when test="${club.writer.no eq login.no}">--%>
+<%--                    <%System.out.println("방장은 참여 불가능");%>--%>
+<%--                </c:when>--%>
+<%--            </c:choose>--%>
+<%--            <c:if test="${not empty club.members}">--%>
+<%--                <%System.out.println("현재 가입한 멤버는 없습니다.");%>--%>
+<%--            </c:if>--%>
+            <input type="button" id="clubjoin" value="클럽 참여"/>
+
+<script>
+
+</script>
 
         <br>
         도착지: <input type='text' name='arrive' value='${club.arrive}' readonly><br>
@@ -52,7 +57,7 @@
                 <%System.out.println("11");%>
                 <c:forEach items="${club.photos}" var="p" >
                     <%System.out.println("22");%>
-                    <c:set var="photo254x178Url">../upload/${c.name}_254x178.jpg</c:set>
+                    <c:set var="photo254x178Url">../upload/${p.name}_254x178.jpg</c:set>
                     <%System.out.println("33");%>
                     <td><img src='${photo254x178Url}'><br>
                         <%System.out.println("44");%>

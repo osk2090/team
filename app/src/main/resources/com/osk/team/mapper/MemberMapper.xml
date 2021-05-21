@@ -92,7 +92,7 @@
 
 
   <delete id="delete" parameterType="int">
-    delete mno
+    delete
     from member
     where mno = #{value}
   </delete>

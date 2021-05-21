@@ -16,14 +16,14 @@ public class LoginHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     request.getRequestDispatcher("/jsp/login_form.jsp").include(request, response);
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
 
@@ -33,11 +33,11 @@ public class LoginHandler extends HttpServlet {
 
     if (request.getParameter("saveEmail") != null) {
       Cookie cookie = new Cookie("email", email);
-      cookie.setMaxAge(60 * 60 * 24 * 5); 
+      cookie.setMaxAge(60 * 60 * 24 * 5);
       response.addCookie(cookie);
     } else {
       Cookie cookie = new Cookie("email", "");
-      cookie.setMaxAge(0);  
+      cookie.setMaxAge(0);
       response.addCookie(cookie);
     }
 
@@ -47,17 +47,23 @@ public class LoginHandler extends HttpServlet {
       response.setContentType("text/html;charset=UTF-8");
 
       if (member == null) {
-        request.getSession().invalidate(); 
+        request.getSession().invalidate();
         response.setContentType("text/html;charset=UTF-8");
         request.getRequestDispatcher("/jsp/login_fail.jsp").include(request, response);
         response.setHeader("Refresh", "1;url=login");
 
       } else {
+
         request.getSession().setAttribute("loginUser", member);
 
         response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("/jsp/login_success.jsp").include(request, response);
+        if (member.getPower() == 0) {
+          request.getRequestDispatcher("/jsp/login_success.jsp").include(request, response);
+        } else if (member.getPower() == 1) {
+          request.getRequestDispatcher("/jsp/login_admin_success.jsp").include(request, response);
+        }
         response.setHeader("Refresh", "1;url=userInfo");
+
       }
     } catch (Exception e) {
       throw new ServletException(e);

@@ -1,6 +1,9 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.osk.team.domain.Qna" %>
+<%@ page import="com.osk.team.service.ClubService" %>
+<%@ page import="com.osk.team.domain.Club" %>
+<%@ page import="com.osk.team.domain.Member" %>
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -20,19 +23,8 @@
         <table border='1'>
             번호: <input type='text' name='no' value='${club.no}' readonly><br>
             방장: <input type='text' name='writer' value='${club.writer.name}' readonly><br>
-            팀원: <br>
-            <th>팀원</th>
+            팀원:<br>
             <jsp:include page="/jsp/club/member_list.jsp"/>
-            <c:forEach items="${member}" var="m">
-                <c:forEach items="${clubMembers}" var="clubMember">
-                    <c:if test="${m.no == clubMember.no}">
-                        <c:set var="checked" value="checked"/>
-                    </c:if>
-                </c:forEach>
-            </c:forEach>
-            <button type="button" class="btn btn-primary" id="clubjoin">클럽 참여</button>
-
-            <br>
             도착지: <input type='text' name='arrive' value='${club.arrive}' readonly><br>
             가는날: <input type='date' name='startDate' value='${club.startDate}' readonly><br>
             오는날: <input type='date' name='endDate' value='${club.endDate}' readonly><br>
@@ -54,18 +46,20 @@
                     </c:if>
             </tr>
             </tbody>
+
+            <c:if test="${not empty loginUser and loginUser.no == club.writer.no or loginUser.power == 1 }">
+
             <tfoot>
             <tr>
                 <td colspan='2'>
-                    <input type='submit' value='변경'>
-                    <a href='delete?no=${club.no}'>삭제</a>
+                    <input type='submit' value='변경'><a href='delete?no=${club.no}'>삭제</a>
                 </td>
             </tr>
             </tfoot>
+            </c:if>
         </table>
     </form>
 </c:if>
 <p><a href='list'>목록</a></p>
-</form>
 </body>
 </html>

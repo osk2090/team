@@ -9,28 +9,23 @@
 </head>
 <body>
 <h1>클럽 상세보기</h1>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 
 <c:if test="${not empty club}">
-    <form action="join" method="post">
-클럽 번호: <input type="text" name="no" value="${club.no}" readonly>
-회원 번호: <input type="text" name="loginUser" value="${loginUser.no}" readonly>
-        <input type="submit" value="클럽 참여">
-    </form>
+    <c:if test="${not empty loginUser and loginUser.no != club.writer.no}">
+        <form action="join" method="post">
+            <input type="text" name="no" value="${club.no}" hidden>
+            <input type="text" name="loginUser" value="${loginUser.no}" hidden>
+            <input type="submit" value="클럽 참여">
+        </form>
+    </c:if>
 
-<%--    팀원:<jsp:include page="/jsp/club/member_list.jsp"/>--%>
-<form name="member" method="get">
-    팀원:
-    <c:forEach items="${clubMembers}" var="cm">
-    <c:forEach items="${member}" var="m">
-        <c:if test="${cm.no == m.no}">
-            <td>${m.name}</td>
-        </c:if>
-    </c:forEach>
-</c:forEach>
-</form>
-
+    팀원:<br>
+    <jsp:include page="/jsp/club/member_list.jsp"/>
     <form action='update' method='post'>
         <table border='1'>
             번호: <input type='text' name='no' value='${club.no}' readonly><br>
@@ -59,13 +54,13 @@
 
             <c:if test="${not empty loginUser and loginUser.no == club.writer.no or loginUser.power == 1 }">
 
-            <tfoot>
-            <tr>
-                <td colspan='2'>
-                    <input type='submit' value='변경'><a href='delete?no=${club.no}'>삭제</a>
-                </td>
-            </tr>
-            </tfoot>
+                <tfoot>
+                <tr>
+                    <td colspan='2'>
+                        <input type='submit' value='변경'><a href='delete?no=${club.no}'>삭제</a>
+                    </td>
+                </tr>
+                </tfoot>
             </c:if>
         </table>
     </form>

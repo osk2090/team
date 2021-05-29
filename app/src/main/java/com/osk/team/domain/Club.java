@@ -21,7 +21,14 @@ public class Club {
     private Date startDate;//가는날
     private Date endDate;//오는날
     private int total;//인원수
+    private int nowTotal;//현재참여 인원수
     private List<Object> photos;//사진
+
+    //신고관련
+    private String rtitle;//신고제목
+    private String reason;//신고사유
+    private int result;//신고처리 여부
+    private Date date;//신고일자
 
     @Override
     public String toString() {
@@ -36,8 +43,53 @@ public class Club {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", total=" + total +
+                ", nowTotal=" + nowTotal +
                 ", photos=" + photos +
+                ", rtitle='" + rtitle + '\'' +
+                ", reason='" + reason + '\'' +
+                ", result=" + result +
+                ", date=" + date +
                 '}';
+    }
+
+    public String getRtitle() {
+        return rtitle;
+    }
+
+    public void setRtitle(String rtitle) {
+        this.rtitle = rtitle;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getNowTotal() {
+        return nowTotal;
+    }
+
+    public void setNowTotal(int nowTotal) {
+        this.nowTotal = nowTotal;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 
     public Member getWriter() {

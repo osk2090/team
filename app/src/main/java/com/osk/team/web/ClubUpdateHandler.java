@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 @WebServlet("/club/update")
@@ -49,18 +48,6 @@ public class ClubUpdateHandler extends HttpServlet {
             c.setNo(oldClub.getNo());
             c.setTitle(request.getParameter("title"));
             c.setContent(request.getParameter("content"));
-
-            // ...&member=1&member=18&member=23
-            String[] values = request.getParameterValues("member");
-            ArrayList<Member> memberList = new ArrayList<>();
-            if (values != null) {
-                for (String value : values) {
-                    Member member = new Member();
-                    member.setNo(Integer.parseInt(value));
-                    memberList.add(member);
-                }
-            }
-            c.setMembers(memberList);
 
             //클럽 참여 기능
 //            ArrayList<Member> joinMember = new ArrayList<>();

@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -36,10 +34,7 @@ public class ClubDetailHandler extends HttpServlet {
 
             Club c = clubService.get(no);
             List<Member> clubM = clubService.getMembers(no);
-            int size = clubM.size();
-
-            System.out.println(clubM);
-            System.out.println(clubM.size());
+            c.setNowTotal(clubM.size() + 1);//현재 참여 인원 저장
 
             if (c == null) {
                 throw new Exception("해당 번호의 클럽이 없습니다.");
@@ -52,7 +47,7 @@ public class ClubDetailHandler extends HttpServlet {
             request.setAttribute("club", c);
             request.setAttribute("members", memberService.list(null));
             request.setAttribute("clubMembers", clubM);
-            request.setAttribute("size", size);
+            request.setAttribute("size", c.getNowTotal());
 
             response.setContentType("text/html;charset=UTF-8");
             request.getRequestDispatcher("/jsp/club/detail.jsp").include(request, response);

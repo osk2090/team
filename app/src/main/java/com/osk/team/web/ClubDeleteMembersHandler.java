@@ -9,30 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 
 @SuppressWarnings("serial")
-@WebServlet("/club/join")
-public class ClubJoinHandler extends HttpServlet {
-
+@WebServlet("/club/deleteMembers")
+public class ClubDeleteMembersHandler extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
 
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+
         try {
             int no = Integer.parseInt(request.getParameter("no"));
+            List<Member> clubM = clubService.getMembers(no);
 
-            Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-
-            System.out.println(no);
-            System.out.println(loginUser.getNo());
-
-            HashMap<String, Object> params = new HashMap<>();
-            params.put("memberNo", loginUser.getNo());
-            params.put("clubNo", no);
-
-            clubService.addWithMember(params);
+            clubService.deleteMember(no);
+            request.setAttribute("clubMembers", clubM);
             response.sendRedirect("list");
         } catch (Exception e) {
             throw new ServletException(e);

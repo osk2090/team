@@ -1,6 +1,6 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Member;
+import com.osk.team.domain.Club;
 import com.osk.team.service.ClubService;
 
 import javax.servlet.ServletException;
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 @SuppressWarnings("serial")
-@WebServlet("/club/join")
-public class ClubJoinHandler extends HttpServlet {
+@WebServlet("/club/report")
+public class ClubReportHandler extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,17 +22,24 @@ public class ClubJoinHandler extends HttpServlet {
 
         try {
             int no = Integer.parseInt(request.getParameter("no"));
+            int clubWriterNo = Integer.parseInt(request.getParameter("clubWriterNo"));
+            String reason = request.getParameter("reason");//신고 사유
+            int result = Integer.parseInt(request.getParameter("result"));
 
-            Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+            Club club = new Club();
 
             System.out.println(no);
-            System.out.println(loginUser.getNo());
+            System.out.println(clubWriterNo);
 
             HashMap<String, Object> params = new HashMap<>();
-            params.put("memberNo", loginUser.getNo());
+            params.put("memberNo", clubWriterNo);//클럽글 작성자 번호
             params.put("clubNo", no);
+            params.put("reason", reason);
+            params.put("result", result);
+            //신고처리는 디폴트 맴퍼에서 0처리
 
-            clubService.addWithMember(params);
+            clubService.addWithReport(params);//신고하는 글과 작성자 번호 보내기
+
             response.sendRedirect("list");
         } catch (Exception e) {
             throw new ServletException(e);

@@ -31,17 +31,19 @@ public interface ClubService {
 
     List<Member> getMembers(int clubNo) throws Exception;//클럽 맴버 가져오기
 
+    int addWithReport(Map<String, Object> params) throws Exception;//신고기능
+
+    List<Club> getReports() throws Exception;
+
+    int deleteMember(int memberNo) throws Exception;
 
 
 
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////////
 
 
     List<Photo> getPhotos(int clubNo) throws Exception;//사진 가져옴
-
-    int deleteMembers(int clubNo) throws Exception;
 
     int updateMembers(int projectNo, List<Member> members) throws Exception;
 

@@ -62,7 +62,7 @@ public class ClubAddHandler extends HttpServlet {
         c.setContent(request.getParameter("content"));
         c.setTotal(Integer.parseInt(request.getParameter("count")));
 
-            //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
+        //방장이니까 한명이 클럽생성하면 자동 증가코드 추가하기
 
 //            String[] members = request.getParameterValues("members");//클럽 생성자가 들어간다
 //            ArrayList<Member> memberList = new ArrayList<>();
@@ -116,7 +116,6 @@ public class ClubAddHandler extends HttpServlet {
         out.println("<title>클럽 등록</title>");
 
         try {
-
             clubService.add(c);
             int p_cno = clubService.getClubCno().getNo();//같은 p_cno 번호 셋팅
             for (int i = 0; i < photos.size(); i++) {//반복문을 돌려서 갯수만큼 db에 저장

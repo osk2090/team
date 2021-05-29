@@ -8,7 +8,9 @@ import java.util.Map;
 import com.osk.team.dao.MemberDao;
 import com.osk.team.domain.Member;
 import com.osk.team.service.MemberService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DefaultMemberService implements MemberService {
 
   MemberDao memberDao;

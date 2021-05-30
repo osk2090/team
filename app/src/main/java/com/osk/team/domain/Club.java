@@ -4,11 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 public class Club {
-    /*
-    2.현재인원도 출력되게!(방장은 이미들어왔으니 현재인원에 1 포함하고 다른 사람이 클럽참여하면 +1되게!)
-    3.멤버 저장/불러오기 구현하기
-     */
-
     private int no;//클럽번호
 
     private Member writer;//작성자

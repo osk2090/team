@@ -1,29 +1,28 @@
 package com.osk.team.web;
 
 import com.osk.team.service.ClubService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-@SuppressWarnings("serial")
-@WebServlet("/club/deleteMember")
-public class ClubDeleteMemberHandler extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Controller
+public class ClubDeleteMemberHandler {
 
-        ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
+    ClubService clubService;
 
-        try {
-            int no = Integer.parseInt(request.getParameter("no"));
+    public ClubDeleteMemberHandler(ClubService clubService) {
+        this.clubService = clubService;
+    }
 
-            clubService.deleteMember(no);
-            response.sendRedirect("list");
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
+    @RequestMapping("/club/deleteMember")
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+
+        int no = Integer.parseInt(request.getParameter("no"));
+
+        clubService.deleteMember(no);
+        return "redirect:list";
     }
 }

@@ -37,11 +37,7 @@ public interface ClubService {
 
     int deleteMember(int memberNo) throws Exception;
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////
-
 
     List<Photo> getPhotos(int clubNo) throws Exception;//사진 가져옴
 
@@ -51,5 +47,4 @@ public interface ClubService {
 
     int updatePhotos(int projectNo, List<Photo> photos) throws Exception;
 
-    // 로그인 된 유저가 클럽 참여 -> 멤버 추가
 }

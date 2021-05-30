@@ -568,3 +568,5 @@ alter table c_report add constraint FK_member_TO_c_report
     foreign key (mno) references member (mno)
         on delete cascade
         on update cascade;
+
+select * from information_schema.table_constraints;

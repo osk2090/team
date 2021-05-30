@@ -1,13 +1,12 @@
 package com.osk.team.web;
 
-import com.osk.team.domain.Member;
-import com.osk.team.service.MemberService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.osk.team.domain.Member;
+import com.osk.team.service.MemberService;
 
 @Controller
 public class LoginHandler {
@@ -18,7 +17,7 @@ public class LoginHandler {
     this.memberService = memberService;
   }
 
-  @RequestMapping("/login")
+  @RequestMapping("/member/login")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     if (request.getMethod().equals("GET")) {

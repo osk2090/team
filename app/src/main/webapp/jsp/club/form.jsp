@@ -48,7 +48,7 @@
 </select><br>
     제목: <input type="text" name="title"><br>
     내용: <textarea name="content" rows="10" cols="60"></textarea><br>
-    인원수(최대 10명): <input type="number" name="count"><br>
+    인원수(최대 10명): <input type="number" name="count" min="2" max="10"><br>
     사진1: <input type="file" name="photo1"><br>
     사진2: <input type="file" name="photo2"><br>
     사진3: <input type="file" name="photo3"><br>

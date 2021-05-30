@@ -4,35 +4,32 @@ package com.osk.team.web;
 import com.osk.team.domain.Club;
 import com.osk.team.service.ClubService;
 import com.osk.team.service.MemberService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
-@SuppressWarnings("serial")
-@WebServlet("/club/reportList")
-public class ClubReportListHandler extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Controller
+public class ClubReportListHandler {
 
-        ClubService clubService = (ClubService) request.getServletContext().getAttribute("clubService");
-        MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
+    ClubService clubService;
+    MemberService memberService;
 
-        try {
-            List<Club> clubs = null;
-            clubs = clubService.getReports();
+    public ClubReportListHandler(ClubService clubService, MemberService memberService) {
+        this.clubService = clubService;
+        this.memberService = memberService;
+    }
 
-            request.setAttribute("clubs", clubs);
-            request.setAttribute("members", memberService.list(null));
-            response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("/jsp/club/reportList.jsp").include(request, response);
+    @RequestMapping("/club/reportList")
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<Club> clubs = null;
+        clubs = clubService.getReports();
 
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
+        request.setAttribute("clubs", clubs);
+        request.setAttribute("members", memberService.list(null));
+
+        return "/jsp/club/reportList.jsp";
     }
 }

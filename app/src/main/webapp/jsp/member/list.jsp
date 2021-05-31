@@ -38,7 +38,13 @@
       <td>${m.email}</td>
       <td>${m.birth}</td>
       <td>${m.tel}</td>
-      <td>${m.gender}</td>
+      <td><c:set var="gender" value="0" />
+      <c:if test="${m.gender eq '0'}">
+      <a>남자</a>
+      </c:if>
+      <c:if test="${m.gender eq '1'}">
+      <a>여자</a> 
+      </c:if></td>
       <td><img src='${photoUrl}'></td>
     </tr>
   </c:forEach>

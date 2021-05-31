@@ -78,7 +78,7 @@
       <tr>
         <td id="title">전화번호</td>
         <td>
-          <input type="tel" name="tel" maxlength="11"><br>
+          <input type="tel" name="tel" minlength="11" maxlength="11"><br>
         </td>
       </tr>
 

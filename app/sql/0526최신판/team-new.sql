@@ -569,4 +569,13 @@ alter table c_report add constraint FK_member_TO_c_report
         on delete cascade
         on update cascade;
 
-select * from information_schema.table_constraints;
+# select * from information_schema.table_constraints;
+
+insert into b_type(b_tno, b_ttitle)
+values ('1', '꿀팁게시판');
+
+insert into b_type(b_tno, b_ttitle)
+values ('2', '자유게시판');
+
+insert into b_type(b_tno, b_ttitle)
+values ('3', '세컨핸즈샵');

@@ -10,15 +10,12 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,25 +27,31 @@ public class ClubController {
 
     ClubService clubService;
     MemberService memberService;
-    ServletContext sc;
 
-    public ClubController(ClubService clubService, MemberService memberService, ServletContext sc) {
+    public ClubController(ClubService clubService, MemberService memberService) {
         this.clubService = clubService;
         this.memberService = memberService;
-        this.sc = sc;
     }
 
-    @GetMapping("form")
-    public void form() throws Exception {
-    }
+    @RequestMapping("add")
+    public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String uploadDir = request.getServletContext().getRealPath("/upload");
 
-
-    @PostMapping("add")
-    public String add(HttpServletRequest request, Club c, HttpSession session) throws Exception {
-        String uploadDir = sc.getRealPath("/upload");
+        if (request.getMethod().equals("GET")) {
+            return "/jsp/club/form.jsp";
+        }
 
         List<Part> partList = new ArrayList<Part>();
         List<Photo> photos = new ArrayList<Photo>();
+
+        Club c = new Club();
+        c.setArrive(request.getParameter("arrive"));
+        c.setStartDate(Date.valueOf(request.getParameter("startDate")));
+        c.setEndDate(Date.valueOf(request.getParameter("endDate")));
+        c.setTheme(request.getParameter("theme"));
+        c.setTitle(request.getParameter("title"));
+        c.setContent(request.getParameter("content"));
+        c.setTotal(Integer.parseInt(request.getParameter("count")));
 
         if (request.getPart("photo1").getSize() > 0) {
             partList.add(request.getPart("photo1"));
@@ -80,8 +83,8 @@ public class ClubController {
                         });
             }
         }
-
-        Member loginUser = (Member) session.getAttribute("loginUser");//회원번호로 받기
+        HttpServletRequest httpRequest = request;
+        Member loginUser = (Member) httpRequest.getSession().getAttribute("loginUser");//회원번호로 받기
         c.setWriter(loginUser);
 
         clubService.add(c);
@@ -94,71 +97,69 @@ public class ClubController {
         return "redirect:list";
     }
 
-    @GetMapping("delete")
-    public String delete(int no, HttpSession session) throws Exception {
+    @RequestMapping("delete")
+    public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int no = Integer.parseInt(request.getParameter("no"));
 
         Club oldClub = clubService.get(no);
         if (oldClub == null) {
             throw new Exception("해당 번호의 클럽이 없습니다.");
         }
 
-        Member loginUser = (Member) session.getAttribute("loginUser");
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
         if (oldClub.getWriter().getNo() != loginUser.getNo() && loginUser.getPower() == 0) {
             throw new Exception("삭제 권한이 없습니다.");
         }
-
-//            운영자가 삭제를 하면 제제횟수+1 과 해당 글을 신고 처리 완료로 한다
-//            if (loginUser.getPower() == 1) {
-//
-//                Club club = clubService.get(no);
-//                int count = club.getWriter().getCount() + 1;
-//
-//                Member member = club.getWriter();
-//                member.setCount(count);
-//
-//                memberService.update(member);
-//            }
 
         clubService.delete(no);
         return "redirect:list";
     }
 
     @RequestMapping("deleteMember")
-    public String deleteMember(int no) throws Exception {
+    public String deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        int no = Integer.parseInt(request.getParameter("no"));
+
         clubService.deleteMember(no);
         return "redirect:list";
     }
 
     @RequestMapping("deleteMembers")
-    public String deleteMembers(int no, Model model) throws Exception {
+    public String deleteMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        int no = Integer.parseInt(request.getParameter("no"));
         List<Member> clubM = clubService.getMembers(no);
 
         clubService.deleteMember(no);
-        model.addAttribute("clubMembers", clubM);
+        request.setAttribute("clubMembers", clubM);
         return "redirect:list";
+
     }
 
-    @GetMapping("detail")
-    public void detail(int no, HttpSession session, Model model) throws Exception {
+    @RequestMapping("detail")
+    public String detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        Member loginUser = (Member) session.getAttribute("loginUser");
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+
+        int no = Integer.parseInt(request.getParameter("no"));
 
         Club c = clubService.get(no);
         List<Member> clubM = clubService.getMembers(no);
         c.setNowTotal(clubM.size() + 1);//현재 참여 인원 저장
 
-        model.addAttribute("club", c);
-        model.addAttribute("members", memberService.list(null));
-        model.addAttribute("clubMembers", clubM);
-        model.addAttribute("size", c.getNowTotal());
+        request.setAttribute("club", c);
+        request.setAttribute("members", memberService.list(null));
+        request.setAttribute("clubMembers", clubM);
+        request.setAttribute("size", c.getNowTotal());
 
+        return "/jsp/club/detail.jsp";
     }
 
     @RequestMapping("join")
-    public String join(int no, HttpSession session) throws Exception {
+    public String join(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int no = Integer.parseInt(request.getParameter("no"));
 
-        Member loginUser = (Member) session.getAttribute("loginUser");
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("memberNo", loginUser.getNo());
@@ -168,9 +169,14 @@ public class ClubController {
         return "redirect:list";
     }
 
-    @GetMapping("list")
-    public void list(String arrive, String startDate, String endDate, String theme, Model model) throws Exception {
+    @RequestMapping("list")
+    public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Club> clubs = null;
+
+        String arrive = request.getParameter("arrive");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        String theme = request.getParameter("theme");
 
         if ((arrive != null && arrive.length() > 0) ||
                 (startDate != null && startDate.length() > 0) ||
@@ -181,50 +187,71 @@ public class ClubController {
             clubs = clubService.list();
         }
 
-        model.addAttribute("clubs", clubs);
+        request.setAttribute("clubs", clubs);
+        return "/jsp/club/list.jsp";
     }
 
     @RequestMapping("report1")
-    public void report1(int no, Model model) throws Exception {
+    public String report1(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        int no = Integer.parseInt(request.getParameter("no"));
         Club c = clubService.get(no);
-        model.addAttribute("club", c);
+        request.setAttribute("club", c);
+
+        return "/jsp/club/report1.jsp";
     }
 
     @RequestMapping("report")
-    public String report(int no, int clubWriterNo, String reason, int result) throws Exception {
+    public String report(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        int no = Integer.parseInt(request.getParameter("no"));
+        int clubWriterNo = Integer.parseInt(request.getParameter("clubWriterNo"));
+        String reason = request.getParameter("reason");//신고 사유
+        int result = Integer.parseInt(request.getParameter("result"));
+
         HashMap<String, Object> params = new HashMap<>();
         params.put("memberNo", clubWriterNo);//클럽글 작성자 번호
         params.put("clubNo", no);
         params.put("reason", reason);
         params.put("result", result);
 
+
         clubService.addWithReport(params);//신고하는 글과 작성자 번호 보내기
         return "redirect:list";
     }
 
-    @GetMapping("reportList")
-    public void reportList(Model model) throws Exception {
+    @RequestMapping("reportList")
+    public String reportList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Club> clubs = null;
         clubs = clubService.getReports();
 
-        model.addAttribute("clubs", clubs);
-        model.addAttribute("members", memberService.list(null));
+        request.setAttribute("clubs", clubs);
+        request.setAttribute("members", memberService.list(null));
+
+        return "/jsp/club/reportList.jsp";
     }
 
     @RequestMapping("update")
-    public String update(Club c, HttpSession session) throws Exception {
+    public String update(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        Club oldClub = clubService.get(c.getNo());
+        int no = Integer.parseInt(request.getParameter("no"));
+
+        Club oldClub = clubService.get(no);
 
         if (oldClub == null) {
             throw new Exception("해당 번호의 클럽이 없습니다.");
         }
 
-        Member loginUser = (Member) session.getAttribute("loginUser");
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
         if (oldClub.getWriter().getNo() != loginUser.getNo()) {
             throw new Exception("변경 권한이 없습니다!");
         }
+
+        // 사용자에게서 변경할 데이터를 입력 받는다.
+        Club c = new Club();
+        c.setNo(oldClub.getNo());
+        c.setTitle(request.getParameter("title"));
+        c.setContent(request.getParameter("content"));
 
         clubService.update(c);
 

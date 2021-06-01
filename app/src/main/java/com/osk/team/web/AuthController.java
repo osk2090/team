@@ -3,12 +3,11 @@ package com.osk.team.web;
 import com.osk.team.domain.Member;
 import com.osk.team.service.MemberService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class AuthController {
@@ -19,15 +18,17 @@ public class AuthController {
     this.memberService = memberService;
   }
 
-  @GetMapping("/login_form")
-  public void form() throws Exception {
-  }
+  @RequestMapping("/login")
+  public String login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-  @PostMapping("/login")
-  public String login(
-          String email, String password, String saveEmail,
-          HttpSession session, HttpServletResponse response) throws Exception {
-    if (saveEmail != null) {
+    if (request.getMethod().equals("GET")) {
+      return "/jsp/login_form.jsp";
+    }
+
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+
+    if (request.getParameter("saveEmail") != null) {
       Cookie cookie = new Cookie("email", email);
       cookie.setMaxAge(60 * 60 * 24 * 5);
       response.addCookie(cookie);
@@ -40,27 +41,29 @@ public class AuthController {
     Member member = memberService.get(email, password);
 
     if (member == null) {
-      session.invalidate();
-      return "login_fail";
+      request.getSession().invalidate();
+      return "/jsp/login_fail.jsp";
     } else {
-      session.setAttribute("loginUser", member);
+      request.getSession().setAttribute("loginUser", member);
 
       if (member.getPower() == 0) {
-        return "login_success";
+        return "/jsp/login_success.jsp";
       } else if (member.getPower() == 1) {
-        return "login_admin_success";
+        return "/jsp/login_admin_success.jsp";
       }
-      return "login_success";
+      return "/jsp/login_success.jsp";
     }
   }
 
-  @GetMapping("/logout")
-  public String logout(HttpSession session) throws Exception {
-    session.invalidate();
-    return "redirect:login_form";
+  @RequestMapping("/logout")
+  public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    request.getSession().invalidate();
+    return "redirect:login";
   }
 
-  @GetMapping("/user_Info")
-  public void userInfo() throws Exception {
+  @RequestMapping("/userInfo")
+  public String userInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    return "/jsp/user_info.jsp";
+
   }
 }

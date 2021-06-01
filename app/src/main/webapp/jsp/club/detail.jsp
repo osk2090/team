@@ -4,47 +4,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<style>
+    <jsp:include page="/jsp/club/css/blackheader.jsp"/>
+    <jsp:include page="/jsp/club/css/dropbox.jsp"/>
+</style>
 <head>
     <title>클럽 상세</title>
 </head>
-<body>
-<h1>클럽 상세보기</h1>
+<body style="text-align: center;">
+<h1></h1>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 
+
 <c:if test="${not empty club}">
 
     <!--클럽참여 관련-->
-    <c:if test="${club.total != club.nowTotal}">
-        <c:forEach items="${clubMembers}" var="cm">
-            <c:if test="${loginUser.no == cm.no}">
-                <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여중</button>
-            </c:if>
+        <c:if test="${club.total != club.nowTotal}">
+            <c:forEach items="${clubMembers}" var="cm">
+                <c:if test="${loginUser.no == cm.no}">
+                    <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여중</button>
+                </c:if>
+            </c:forEach>
+        </c:if>
 
-<%--            <c:if test="${loginUser.no != cm.no and loginUser.no != club.writer.no}">--%>
-<%--                <form action="join" method="post">--%>
-<%--                    <input type="text" name="no" value="${club.no}" hidden>--%>
-<%--                    <input type="text" name="loginUser" value="${loginUser.no}" hidden>--%>
-<%--                    <input class="btn btn-primary" type="submit" value="클럽 참여">--%>
-<%--                </form>--%>
-<%--            </c:if>--%>
-        </c:forEach>
-    </c:if>
+        <c:if test="${club.total == club.nowTotal and loginUser.no == club.writer.no}">
+            <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여불가</button>
+        </c:if>
 
-    <c:if test="${club.total == club.nowTotal and loginUser.no == club.writer.no}">
-        <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여불가</button>
-    </c:if>
-
-    <c:if test="${not empty loginUser and loginUser.no != club.writer.no and club.total > club.nowTotal}">
-        <form action="join" method="post">
-            <input type="text" name="no" value="${club.no}" hidden>
-            <input type="text" name="loginUser" value="${loginUser.no}" hidden>
-                <input class="btn btn-primary" type="submit" value="클럽 참여">
-        </form>
-    </c:if>
+        <c:if test="${not empty loginUser and loginUser.no != club.writer.no and club.total > club.nowTotal}">
+            <form action="join" method="post">
+                <input type="text" name="no" value="${club.no}" hidden>
+                <input type="text" name="loginUser" value="${loginUser.no}" hidden>
+                    <input class="btn btn-primary" type="submit" value="클럽 참여">
+            </form>
+        </c:if>
 
     <!--클럽신고 관련-->
     <c:forEach items="${clubMembers}" var="cm">
@@ -58,7 +55,7 @@
     </c:forEach>
 
     팀원:<br>
-    <jsp:include page="/WEB-INF/jsp/club/member_list.jsp"/>
+    <jsp:include page="/jsp/club/member_list.jsp"/>
     <form action='update' method='post'>
         <table border='1'>
             번호: <input type='text' name='no' value='${club.no}' readonly><br>
@@ -70,21 +67,19 @@
             제목: <input type='text' name='title' value='${club.title}'><br>
             내용: <textarea name='content' rows='10' cols='60'>${club.content}</textarea><br>
             인원수 / 현재인원수: ${club.total} / ${club.nowTotal} <br>
-            <tr>
-                <th>사진</th>
-                <c:if test="${not empty club.photos}">
-                <%System.out.println("11");%>
-                <c:forEach items="${club.photos}" var="p">
-                <%System.out.println("22");%>
-                <c:set var="photo254x178Url">../../upload/${p.name}_254x178.jpg</c:set>
-                <%System.out.println("33");%>
-                <td><img src='${photo254x178Url}'><br>
-                            <%System.out.println("44");%>
-                    </c:forEach>
-                    </c:if>
-            </tr>
+            <th>사진</th>
+            <c:if test="${not empty club.photos}">
+            <%System.out.println("11");%>
+            <c:forEach items="${club.photos}" var="p">
+            <%System.out.println("22");%>
+            <c:set var="photo254x178Url">../../upload/${p.name}_254x178.jpg</c:set>
+            <%System.out.println("33");%>
+            <td><img src='${photo254x178Url}'><br>
+                        <%System.out.println("44");%>
+                </c:forEach>
+                </c:if>
 
-            <c:if test="${not empty loginUser and loginUser.no == club.writer.no or loginUser.power == 1 }">
+                <c:if test="${not empty loginUser and loginUser.no == club.writer.no or loginUser.power == 1 }">
 
                 <tfoot>
                 <tr>
@@ -94,7 +89,7 @@
                     </td>
                 </tr>
                 </tfoot>
-            </c:if>
+                </c:if>
         </table>
     </form>
 </c:if>

@@ -18,7 +18,7 @@ public class LoginCheckFilter implements Filter {
 
         if (servletPath.endsWith("add") ||
                 servletPath.endsWith("update") ||
-                servletPath.endsWith("/detail") ||
+                servletPath.endsWith("detail") ||
                 servletPath.endsWith("delete")) {
 
             if (httpRequest.getSession().getAttribute("loginUser") == null) {

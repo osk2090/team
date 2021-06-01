@@ -33,7 +33,7 @@
                         <c:if test="${not empty loginUser and loginUser.no == club.writer.no}">
                             <form action="deleteMembers" method="get">
                                 <c:if test="${cm.no == m.no}">
-                                    <input type="text" name="no" value="${cm.no}">
+                                    <input type="text" name="no" value="${cm.no}" hidden>
                                     <input type="submit" value="클럽 강퇴">
                                 </c:if>
                             </form>

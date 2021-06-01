@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <style>
-    <jsp:include page="/jsp/club/css/blackheader.jsp"/>
-    <jsp:include page="/jsp/club/css/dropbox.jsp"/>
+<%--    <jsp:include page="/jsp/club/css/blackheader.jsp"/>--%>
+<%--    <jsp:include page="/jsp/club/css/dropbox.jsp"/>--%>
+    <jsp:include page="/jsp/club/css/detailbox.css"/>
 </style>
 <head>
     <title>클럽 상세</title>

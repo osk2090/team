@@ -59,6 +59,7 @@
             });
         });
     </script>
+
     오는날: <input id="end" name="endDate" style="color: white">
     <script>
         $(function () {

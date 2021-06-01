@@ -12,8 +12,8 @@
 <body>
 <h1>클럽 생성</h1>
 <form action="add" method="post" enctype="multipart/form-data">
-    도착지: <input type="text" name="arrive"><br>
-    가는날: <input id="start" name="startDate"><br>
+    도착지:<input class="form-control" type="text" placeholder="도착지 입력" aria-label="default input example" name="arrive"><br>
+    가는날:<input class="form-control" id="start" placeholder="가는날 입력" aria-label="default input example" name="startDate">
     <script>
         $(function () {
             $("#start").datepicker({
@@ -25,7 +25,7 @@
         });
     </script>
 
-    오는날: <input id="end" name="endDate"><br>
+    오는날:<input class="form-control" id="end" placeholder="오는날 입력" aria-label="default input example" name="endDate"><br>
     <script>
         $(function () {
             $("#end").datepicker({

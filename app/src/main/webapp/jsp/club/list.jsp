@@ -33,7 +33,7 @@
     </label>
 </div>
 <div class="form-check">
-    <input class="form-check-input" type="radio" name="select" id="selectadd" OnClick="window.location.href='form';">
+    <input class="form-check-input" type="radio" name="select" id="selectadd" OnClick="window.location.href='add';">
     <label class="form-check-label" for="selectadd">
         생성
     </label>

@@ -15,23 +15,79 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>이제 조인하세요</h1>
+<h1 class="join">이제 조인하세요</h1>
 <style>
 
-    div.box1 {
+    .join {
+        width: 316px;
+        height: 60px;
+        margin: 158px 1413px 40px 191px;
+        font-size: 50px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        /*color: #ffffff;*/
+    }
+
+    .box1 {
         width: 1283px;
         height: 240px;
-        margin: 40px 318px 16px 319px;
+        margin: 40px 319px 10px 198px;
         padding: 34px 40px 40px;
         border-radius: 20px;
         background-color: #20273b;
+        color: #ffffff;
+
+    }
+
+    .box2 {
+        width: 1283px;
+        height: 499px;
+        margin: 10px 319px 0 318px;
+        padding: 40px 0 16px 40px;
+        border-radius: 20px;
+        background-color: #f8f8f8;
+    }
+
+    .radio1 {
+        color: #ffffff;
+    }
+
+    .title {
+        width: 155px;
+        height: 29px;
+        margin: 0 369px 4px 0;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+        width: 28px;
+        height: 19px;
+        margin: 4px 496px 36px 0;
+        /*font-size: 16px;*/
+        /*font-weight: 500;*/
+        /*font-stretch: normal;*/
+        /*font-style: normal;*/
+        /*line-height: 1.5;*/
+        /*letter-spacing: normal;*/
+        /*color: rgba(0, 0, 0, 0.3);*/
     }
 
 </style>
 <form action="add" method="post" enctype="multipart/form-data">
 
     <div class="box1">
-    <tr>
+    <tr class="radio1">
         <td class="form-check">
             <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='list';" >
             <label class="form-check-label" for="selectjoin">
@@ -86,9 +142,9 @@
     </div>
     </div>
 
-    <div style="text-align: center;">
-    제목: <input type="text" name="title"><br>
-    내용: <textarea name="content" rows="10" cols="60"></textarea><br>
+    <div style="text-align: center;" class="box2">
+    제목: <input type="text" name="title" class="title"><br>
+    내용: <textarea name="content" rows="10" cols="60" class="content"></textarea><br>
 
     사진1: <input type="file" name="photo1"><br>
     사진2: <input type="file" name="photo2"><br>

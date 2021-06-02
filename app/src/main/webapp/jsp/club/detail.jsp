@@ -24,10 +24,12 @@
 <c:if test="${not empty club}">
 
     <!--클럽참여 관련-->
+        <c:set var="exist" value="${false}"/>
         <c:if test="${club.total != club.nowTotal}">
             <c:forEach items="${clubMembers}" var="cm">
                 <c:if test="${loginUser.no == cm.no}">
                     <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여중</button>
+                    <c:set var="exist" value="${true}"/>
                 </c:if>
             </c:forEach>
         </c:if>
@@ -36,7 +38,7 @@
             <button type="button" class="btn btn-secondary btn-lg" disabled>클럽 참여불가</button>
         </c:if>
 
-        <c:if test="${not empty loginUser and loginUser.no != club.writer.no and club.total > club.nowTotal}">
+        <c:if test="${!exist and not empty loginUser and loginUser.no != club.writer.no and club.total > club.nowTotal}">
             <form action="join" method="post">
                 <input type="text" name="no" value="${club.no}" hidden>
                 <input type="text" name="loginUser" value="${loginUser.no}" hidden>
@@ -45,15 +47,23 @@
         </c:if>
 
     <!--클럽신고 관련-->
+    <c:set var="existreports" value="${false}"/>
+    <c:forEach items="${reports}" var="rs">
     <c:forEach items="${clubMembers}" var="cm">
-        <c:if test="${not empty loginUser and loginUser.no != club.writer.no and loginUser.no == cm.no}">
+        <c:if test="${not empty loginUser and loginUser.no != club.writer.no and loginUser.no == cm.no and rs.no != club.no}">
             <form action="report1" method="post">
                 <input type="text" name="no" value="${club.no}" hidden>
                 <input type="text" name="clubWriterNo" value="${club.writer.no}" hidden>
-                <input class="btn btn-primary" type="submit" value="클럽 신고">
+<%--                <input class="btn btn-primary" type="submit" value="클럽 신고">--%>
+                <button type="submit" class="btn btn-danger">클럽 신고</button>
             </form>
+            <c:set var="existreports" value="${true}"/>
         </c:if>
     </c:forEach>
+    </c:forEach>
+    <c:if test="${!existreports}">
+        <span class="badge bg-danger">신고된 글</span>
+    </c:if>
 
     팀원:<br>
     <jsp:include page="/jsp/club/member_list.jsp"/>
@@ -65,8 +75,18 @@
             가는날: <input type='date' name='startDate' value='${club.startDate}' readonly><br>
             오는날: <input type='date' name='endDate' value='${club.endDate}' readonly><br>
             테마: <input name='theme' id="themeid" value='${club.theme}' readonly><br>
+
+            <!--로그인된 사람만 수정할수 있고 아닌사람은 readonly되게-->
+            <c:if test="${loginUser.no == club.writer.no}">
             제목: <input type='text' name='title' value='${club.title}'><br>
             내용: <textarea name='content' rows='10' cols='60'>${club.content}</textarea><br>
+            </c:if>
+
+            <c:if test="${loginUser.no != club.writer.no}">
+            제목: <input type='text' name='title' value='${club.title}' readonly><br>
+            내용: <textarea name='content' rows='10' cols='60' readonly>${club.content}</textarea><br>
+            </c:if>
+
             인원수 / 현재인원수: ${club.total} / ${club.nowTotal} <br>
             <th>사진</th>
             <c:if test="${not empty club.photos}">
@@ -94,6 +114,6 @@
         </table>
     </form>
 </c:if>
-<p><a href='list'>목록</a></p>
+<button type="button" class="btn btn-outline-danger" OnClick="window.location.href='list';">목록</button>
 </body>
 </html>

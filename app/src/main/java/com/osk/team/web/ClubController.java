@@ -146,11 +146,13 @@ public class ClubController {
         Club c = clubService.get(no);
         List<Member> clubM = clubService.getMembers(no);
         c.setNowTotal(clubM.size() + 1);//현재 참여 인원 저장
+        List<Club> cc = clubService.getReports();
 
         request.setAttribute("club", c);
         request.setAttribute("members", memberService.list(null));
         request.setAttribute("clubMembers", clubM);
         request.setAttribute("size", c.getNowTotal());
+        request.setAttribute("reports", cc);//신고게시판에 있는 글들 불러오기
 
         return "/jsp/club/detail.jsp";
     }
@@ -167,6 +169,27 @@ public class ClubController {
 
         clubService.addWithMember(params);
         return "redirect:list";
+    }
+
+    @RequestMapping("main")
+    public String main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<Club> clubs = null;
+
+        String arrive = request.getParameter("arrive");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        String theme = request.getParameter("theme");
+
+        if ((arrive != null && arrive.length() > 0) ||
+                (startDate != null && startDate.length() > 0) ||
+                (endDate != null && endDate.length() > 0) ||
+                (theme != null && theme.length() > 0)) {
+            clubs = clubService.search(arrive, startDate, endDate, theme);
+        } else {
+            clubs = clubService.list();
+        }
+        request.setAttribute("clubs", clubs);
+        return "/jsp/club/main.jsp";
     }
 
     @RequestMapping("list")

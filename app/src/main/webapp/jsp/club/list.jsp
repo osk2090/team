@@ -104,10 +104,5 @@
     </c:forEach>
     </tbody>
 </table>
-<%--<form action='search' method='get'>--%>
-<%--    <input type='text' name='keyword'>--%>
-<%--    <button>검색</button>--%>
-<%--</form>--%>
-
 </body>
 </html>

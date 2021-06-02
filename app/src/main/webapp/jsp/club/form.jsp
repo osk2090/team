@@ -44,9 +44,9 @@
     }
 
     .box2 {
-        width: 1283px;
+        width: 1000px;
         height: 499px;
-        margin: 10px 319px 0 318px;
+        margin: auto;
         padding: 40px 0 16px 40px;
         border-radius: 20px;
         background-color: #f8f8f8;
@@ -74,13 +74,14 @@
         width: 28px;
         height: 19px;
         margin: 4px 496px 36px 0;
-        /*font-size: 16px;*/
-        /*font-weight: 500;*/
-        /*font-stretch: normal;*/
-        /*font-style: normal;*/
-        /*line-height: 1.5;*/
-        /*letter-spacing: normal;*/
-        /*color: rgba(0, 0, 0, 0.3);*/
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.3);
     }
 
 </style>
@@ -101,7 +102,7 @@
             </label>
         </td>
     </tr>
-    <div  style="text-align: center;">
+    <div style="text-align: center;">
     도착지: <input type="text" name="arrive" style="color: white">
 
     가는날: <input id="start" name="startDate" style="color: white">
@@ -142,14 +143,19 @@
     </div>
     </div>
 
-    <div style="text-align: center;" class="box2">
-    제목: <input type="text" name="title" class="title"><br>
-    내용: <textarea name="content" rows="10" cols="60" class="content"></textarea><br>
+        <div class="box2">
+            <div class=" col-lg-11" style="text-align: center;">
+                <input name="title" class="form-control input-lg" type="text" placeholder="제목">
+            </div>
+
+            <div class=" col-lg-11" style="text-align: center;">
+                <input name="content" class="form-control input-sm" type="text" placeholder="내용">
+            </div>
+        </div>
 
     사진1: <input type="file" name="photo1"><br>
     사진2: <input type="file" name="photo2"><br>
     사진3: <input type="file" name="photo3"><br>
-    </div>
 
 </form>
 </body>

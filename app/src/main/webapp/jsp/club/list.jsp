@@ -13,7 +13,7 @@
     <title>Club List</title>
     <style>
         #background {
-            background-image: url("airplane-2619434.jpg");
+            background-image: url("../../images/airplane-2619434.jpg");
         }
     </style>
 </head>
@@ -41,7 +41,7 @@
 
 <p><a href='reportList'>클럽 신고게시판</a></p>
 
-<form method='get'>
+<form action="list" method="get">
     <fieldset>
         <legend>클럽 상세 검색</legend>
         <table border='1'>

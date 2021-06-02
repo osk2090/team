@@ -49,21 +49,23 @@
     <!--클럽신고 관련-->
     <c:set var="existreports" value="${false}"/>
     <c:forEach items="${reports}" var="rs">
+        <c:forEach items="${clubMembers}" var="cm">
+            <c:if test="${rs.no == club.no}">
+                <span class="badge bg-danger">신고된 글</span>
+                <c:set var="existreports" value="${true}"/>
+            </c:if>
+        </c:forEach>
+    </c:forEach>
+
     <c:forEach items="${clubMembers}" var="cm">
-        <c:if test="${not empty loginUser and loginUser.no != club.writer.no and loginUser.no == cm.no and rs.no != club.no}">
+        <c:if test="${not empty loginUser and !existreports and loginUser.no != club.writer.no and loginUser.no == cm.no}">
             <form action="report1" method="post">
                 <input type="text" name="no" value="${club.no}" hidden>
                 <input type="text" name="clubWriterNo" value="${club.writer.no}" hidden>
-<%--                <input class="btn btn-primary" type="submit" value="클럽 신고">--%>
                 <button type="submit" class="btn btn-danger">클럽 신고</button>
             </form>
-            <c:set var="existreports" value="${true}"/>
         </c:if>
     </c:forEach>
-    </c:forEach>
-    <c:if test="${!existreports}">
-        <span class="badge bg-danger">신고된 글</span>
-    </c:if>
 
     팀원:<br>
     <jsp:include page="/jsp/club/member_list.jsp"/>
@@ -114,6 +116,6 @@
         </table>
     </form>
 </c:if>
-<button type="button" class="btn btn-outline-danger" OnClick="window.location.href='list';">목록</button>
+<button type="button" class="btn btn-outline-danger" OnClick="window.location.href='main';">메인</button>
 </body>
 </html>

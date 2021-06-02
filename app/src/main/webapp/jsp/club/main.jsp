@@ -13,7 +13,7 @@
     <title>Club List</title>
     <style>
         #background {
-            background-image: url("airplane-2619434.jpg");
+            background-image: url("../../images/airplane-2619434.jpg");
         }
     </style>
 </head>
@@ -27,7 +27,7 @@
         crossorigin="anonymous"></script>
 
 <div class="form-check">
-    <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='list';" checked>
+    <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='main';" checked>
     <label class="form-check-label" for="selectjoin">
         참여
     </label>
@@ -41,7 +41,7 @@
 
 <p><a href='reportList'>클럽 신고게시판</a></p>
 
-<form method='get'>
+<form action="list" method="get">
     <fieldset>
         <legend>클럽 상세 검색</legend>
         <table border='1'>

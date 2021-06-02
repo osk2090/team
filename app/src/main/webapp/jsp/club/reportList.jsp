@@ -44,6 +44,6 @@
     </c:forEach>
     </tbody>
 </table>
-<p><a href='add'>목록</a></p>
+<p><a href='main'>목록</a></p>
 </body>
 </html>

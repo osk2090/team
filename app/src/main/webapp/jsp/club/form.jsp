@@ -14,46 +14,54 @@
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="body">
 <h1 class="join">이제 조인하세요</h1>
 <style>
+
+    .body{
+        background-image: url("../../images/airplane-2619434.jpg");
+        background-size: 100%;
+        background-position: 50% 30%;
+        background-repeat: no-repeat;
+    }
 
     .join {
         width: 316px;
         height: 60px;
-        margin: 158px 1413px 40px 191px;
-        font-size: 50px;
+        margin: 158px 1413px 40px 637px;
+        font-size: 42px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
         letter-spacing: normal;
         text-align: left;
-        /*color: #ffffff;*/
+        color: #ffffff;
     }
 
     .box1 {
         width: 1283px;
         height: 240px;
-        margin: 40px 319px 10px 198px;
+        /*margin: 40px 319px 10px 198px;*/
+        margin: auto;
         padding: 34px 40px 40px;
         border-radius: 20px;
         background-color: #20273b;
         color: #ffffff;
-
     }
 
     .box2 {
         width: 1000px;
         height: 499px;
         margin: auto;
-        padding: 40px 0 16px 40px;
+        padding: 50px 0 16px 75px;
         border-radius: 20px;
         background-color: #f8f8f8;
     }
 
     .radio1 {
         color: #ffffff;
+        margin: 100px;
     }
 
     .title {
@@ -90,7 +98,7 @@
     <div class="box1">
     <tr class="radio1">
         <td class="form-check">
-            <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='list';" >
+            <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='main';" >
             <label class="form-check-label" for="selectjoin">
                 참여
             </label>
@@ -102,10 +110,14 @@
             </label>
         </td>
     </tr>
+        <br>
+        <br>
+        <br>
     <div style="text-align: center;">
-    도착지: <input type="text" name="arrive" style="color: white">
 
-    가는날: <input id="start" name="startDate" style="color: white">
+    도착지: <input type="text" name="arrive">
+
+    가는날: <input id="start" name="startDate">
     <script>
         $(function () {
             $("#start").datepicker({
@@ -116,7 +128,7 @@
             });
         });
     </script>
-    오는날: <input id="end" name="endDate" style="color: white">
+    오는날: <input id="end" name="endDate">
     <script>
         $(function () {
             $("#end").datepicker({
@@ -128,7 +140,7 @@
         });
     </script>
 
-    테마: <select name="theme" id="theme" style="color: white">
+    테마: <select name="theme" id="theme">
     <option value="불멍때리기">불멍때리기</option>
     <option value="고기파티">고기파티</option>
     <option value="낚시">낚시</option>
@@ -137,25 +149,31 @@
     <option value="캠핑">캠핑</option>
     <option value="별보기">별보기</option>
 </select>
-    인원수(2~10명): <input type="number" name="count" min="2" max="10" style="color: white">
+    인원수(2~10명): <input type="number" name="count" min="2" max="10">
         <button type="submit" class="btn btn-outline-primary">등록</button>
-        <button type="button" class="btn btn-outline-danger" OnClick="window.location.href='list';">취소</button>
+        <button type="button" class="btn btn-outline-danger" OnClick="window.location.href='main';">취소</button>
     </div>
     </div>
-
+<br>
         <div class="box2">
             <div class=" col-lg-11" style="text-align: center;">
                 <input name="title" class="form-control input-lg" type="text" placeholder="제목">
             </div>
-
+<br>
             <div class=" col-lg-11" style="text-align: center;">
                 <input name="content" class="form-control input-sm" type="text" placeholder="내용">
             </div>
+<br>
+<br>
+<br>
+<br>
+            사진1: <input type="file" name="photo1"><br>
+            사진2: <input type="file" name="photo2"><br>
+            사진3: <input type="file" name="photo3"><br>
+
         </div>
 
-    사진1: <input type="file" name="photo1"><br>
-    사진2: <input type="file" name="photo2"><br>
-    사진3: <input type="file" name="photo3"><br>
+
 
 </form>
 </body>

@@ -15,5 +15,8 @@
     <h1>로그인 결과(Bootstrap)</h1>
     <p>${loginUser.name} 님 환영합니다.</p>
 </div>
+<%
+response.sendRedirect("userInfo");
+%>
 </body>
 </html>

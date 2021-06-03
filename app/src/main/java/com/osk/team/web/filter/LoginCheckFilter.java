@@ -1,5 +1,8 @@
 package com.osk.team.web.filter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +10,7 @@ import java.io.IOException;
 
 @WebFilter("/*")
 public class LoginCheckFilter implements Filter {
+    static Logger logger = LogManager.getLogger();
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain nextChain)
@@ -14,17 +18,23 @@ public class LoginCheckFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        String servletPath = httpRequest.getServletPath().toLowerCase();
+        logger.debug("{}{}", httpRequest.getServletPath(), httpRequest.getPathInfo());
 
-        if (servletPath.endsWith("add") ||
-                servletPath.endsWith("update") ||
-                servletPath.endsWith("detail") ||
-                servletPath.endsWith("delete")) {
+        if (httpRequest.getServletPath().startsWith("/app")) {
+            String pathInfo = httpRequest.getPathInfo();
+            if (pathInfo.endsWith("add") ||
+                    pathInfo.endsWith("update") ||
+                    pathInfo.endsWith("/club/detail") ||
+                    pathInfo.endsWith("delete")) {
 
-            if (httpRequest.getSession().getAttribute("loginUser") == null) {
-                response.setContentType("text/plain;charset=UTF-8");
-                response.getWriter().println("로그인 해야 합니다!");
-                return;
+                logger.debug("로그인 검사!");
+
+                if (httpRequest.getSession().getAttribute("loginUser") == null) {
+                    logger.debug("로그인을 하지 않았음!");
+                    response.setContentType("text/plain;charset=UTF-8");
+                    response.getWriter().println("로그인 해야 합니다!");
+                    return;
+                }
             }
         }
         nextChain.doFilter(request, response);

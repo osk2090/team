@@ -106,22 +106,22 @@
 <header>
     <div class="black">
         <div class="logo-box">
-            <img src="../../../images/joinjoylogo-bl.png" alt="logo" class="logo">
+            <img src="../images/joinjoylogo-bl.png" alt="logo" class="logo">
         </div>
         <div class="hotplace-box">
-            <img src="../../../images/hotplace-bl.png" alt="hotplace" class="hotplace">
+            <img src="../images/hotplace-bl.png" alt="hotplace" class="hotplace">
         </div>
         <div class="community-box">
-            <img src="../../../images/community-bl.png" alt="community" class="community">
+            <img src="../images/community-bl.png" alt="community" class="community">
         </div>
         <div class="discount-box">
-            <img src="../../../images/discount-bl.png" alt="discount" class="discount">
+            <img src="../images/discount-bl.png" alt="discount" class="discount">
         </div>
         <div class="qna-box">
-            <img src="../../../images/qna-bl.png" alt="qna" class="qna">
+            <img src="../images/qna-bl.png" alt="qna" class="qna">
         </div>
         <div class="faq-box">
-            <img src="../../../images/faq-bl.png" alt="faq" class="faq">
+            <img src="../images/faq-bl.png" alt="faq" class="faq">
         </div>
 
         <button type="button" class="btn btn-primary btn-sm">logout</button>

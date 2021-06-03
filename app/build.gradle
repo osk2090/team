@@ -38,7 +38,7 @@ war {
 
 dependencies {
 
-    // 메일 발송 API
+    // 메일 발송 API/**/
     implementation 'com.sun.mail:javax.mail:1.6.2'
 
     implementation 'javax.servlet:jstl:1.2'

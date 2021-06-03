@@ -20,6 +20,42 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 
+<style>
+
+    .searchBox {
+        width: 1283px;
+        height: 240px;
+        padding: 34px 40px 40px;
+        border-radius: 20px;
+        background-color: #20273b;
+    }
+
+    .bttmBox {
+        width: 1283px;
+        height: 685px;
+        padding: 25px 20px 15px 40px;
+        border-radius: 20px;
+        background-color: #f8f8f8;
+    }
+
+
+</style>
+<div class="searchBox">
+<tr class="radio1">
+    <td class="form-check">
+        <input class="form-check-input" type="radio" name="select" id="selectjoin" OnClick="window.location.href='main';" >
+        <label class="form-check-label" for="selectjoin">
+            참여
+        </label>
+    </td>
+    <td class="form-check">
+        <input class="form-check-input" type="radio" name="select" id="selectadd" OnClick="window.location.href='add';" checked>
+        <label class="form-check-label" for="selectadd">
+            생성
+        </label>
+    </td>
+</tr>
+</div>
 
 <c:if test="${not empty club}">
 
@@ -49,12 +85,10 @@
     <!--클럽신고 관련-->
     <c:set var="existreports" value="${false}"/>
     <c:forEach items="${reports}" var="rs">
-        <c:forEach items="${clubMembers}" var="cm">
             <c:if test="${rs.no == club.no}">
                 <span class="badge bg-danger">신고된 글</span>
                 <c:set var="existreports" value="${true}"/>
             </c:if>
-        </c:forEach>
     </c:forEach>
 
     <c:forEach items="${clubMembers}" var="cm">
@@ -67,12 +101,25 @@
         </c:if>
     </c:forEach>
 
+            <table border='1'>
+    번호: <input type='text' name='no' value='${club.no}' readonly><br>
+    방장:
+<%--    <div>--%>
+<%--        <c:if test="${not empty club.writer.photo}">--%>
+<%--            <c:set var="photoUrl">../../upload/${cm.photo}_30x30.jpg</c:set>--%>
+<%--        </c:if>--%>
+<%--        <c:if test="${empty club.writer.photo}">--%>
+<%--            <c:set var="photoUrl">../../images/person_30x30.jpg</c:set>--%>
+<%--        </c:if>--%>
+<%--            ${club.writer.name}--%>
+<%--            ${club.writer.tel}--%>
+
+<%--        <img src='${photoUrl}' class="circle">--%>
+<%--    </div>--%>
+
     팀원:<br>
     <jsp:include page="/jsp/club/member_list.jsp"/>
     <form action='update' method='post'>
-        <table border='1'>
-            번호: <input type='text' name='no' value='${club.no}' readonly><br>
-            방장: <input type='text' name='writer' value='${club.writer.name}' readonly><br>
             도착지: <input type='text' name='arrive' value='${club.arrive}' readonly><br>
             가는날: <input type='date' name='startDate' value='${club.startDate}' readonly><br>
             오는날: <input type='date' name='endDate' value='${club.endDate}' readonly><br>

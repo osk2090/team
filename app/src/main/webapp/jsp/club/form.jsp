@@ -28,7 +28,7 @@
     .join {
         width: 316px;
         height: 60px;
-        margin: 158px 1413px 40px 637px;
+        margin: 158px 1413px 40px 190px;
         font-size: 42px;
         font-weight: bold;
         font-stretch: normal;
@@ -39,10 +39,48 @@
         color: #ffffff;
     }
 
+    #photo1 {
+        width: 10%;
+        height: 50px;
+        margin: 20px 0 30px 380px;
+        padding: 11px 979px 16px 19px;
+        border-radius: 10px;
+        border: solid 1px #d3d3d3;
+        background-color: #f4f4f4;
+        position: absolute;
+        left: 28px;
+        top: 680px;
+    }
+
+    #photo2 {
+        width: 1226px;
+        height: 50px;
+        margin: 20px 0 30px;
+        padding: 11px 979px 16px 19px;
+        border-radius: 10px;
+        border: solid 1px #d3d3d3;
+        background-color: #f4f4f4;
+        position: absolute;
+        left: 28px;
+        top: 740px;
+    }
+
+    #photo3 {
+        width: 1226px;
+        height: 50px;
+        margin: 20px 0 30px;
+        padding: 11px 979px 16px 19px;
+        border-radius: 10px;
+        border: solid 1px #d3d3d3;
+        background-color: #f4f4f4;
+        position: absolute;
+        left: 28px;
+        top: 800px;
+    }
+
     .box1 {
         width: 1283px;
         height: 240px;
-        /*margin: 40px 319px 10px 198px;*/
         margin: auto;
         padding: 34px 40px 40px;
         border-radius: 20px;
@@ -163,18 +201,17 @@
             <div class=" col-lg-11" style="text-align: center;">
                 <input name="content" class="form-control input-sm" type="text" placeholder="내용">
             </div>
-<br>
-<br>
-<br>
-<br>
-            사진1: <input type="file" name="photo1"><br>
-            사진2: <input type="file" name="photo2"><br>
-            사진3: <input type="file" name="photo3"><br>
 
+            <div class="mb-11">
+                <input class="form-control form-control-sm" id="photo1" type="file" name="photo1" multiple>
+            </div>
+            <div class="mb-11">
+                <input class="form-control form-control-sm" id="photo2" type="file" name="photo2" multiple>
+            </div>
+            <div class="mb-3">
+                <input class="form-control form-control-sm" id="photo3" type="file" name="photo3" multiple>
+            </div>
         </div>
-
-
-
 </form>
 </body>
 </html>

@@ -63,7 +63,7 @@ public class AuthController {
 
   @RequestMapping("/userInfo")
   public String userInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    return "/jsp/user_info.jsp";
+    return "/jsp/member/userinfo2.jsp";
 
   }
 }

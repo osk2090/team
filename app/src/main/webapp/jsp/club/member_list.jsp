@@ -3,6 +3,22 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    .circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .circle img {
+        height: auto;
+        width: 200px;
+    }
+
+</style>
+
 <c:forEach items="${members}" var="m">
     <c:forEach items="${clubMembers}" var="cm">
         <c:if test="${m.no == cm.no}">
@@ -12,16 +28,18 @@
                 <tr style="width: 10%;">
                     <td style="width: 33%;">
 
+                        <div>
                         <c:if test="${not empty cm.photo}">
-                            <c:set var="photoUrl">../upload/${cm.photo}_30x30.jpg</c:set>
+                            <c:set var="photoUrl">../../upload/${cm.photo}_30x30.jpg</c:set>
                         </c:if>
                         <c:if test="${empty cm.photo}">
-                            <c:set var="photoUrl">../images/person_30x30.jpg</c:set>
+                            <c:set var="photoUrl">../../images/person_30x30.jpg</c:set>
                         </c:if>
                             ${cm.name}
                             ${cm.tel}
 
-                        <img src='${photoUrl}'>
+                        <img src='${photoUrl}' class="circle">
+                        </div>
 
                         <c:if test="${not empty loginUser and loginUser.no == cm.no}">
                             <form action="deleteMember" method="get">

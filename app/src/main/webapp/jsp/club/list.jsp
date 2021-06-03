@@ -4,15 +4,20 @@
 <html>
 <head>
     <title>검색 결과</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/header_bl2.css" type="text/css">
 </head>
 
 <header>
-    <button type="button" class="logo-box" onclick="location.href='../club/main'"><img  src="../../images/joinjoylogo-wh.png"></button>
-    <button type="button" class="hotplace-box" onclick="location.href='../hotplace/list'"><img  src="../../images/hotplace-wh.png"></button>
+    <button type="button" class="logo-box" onclick="location.href='../club/main'"><img  src="../../images/joinjoylogo-bl.png"></button>
+    <button type="button" class="hotplace-box" onclick="location.href='../hotplace/list'"><img  src="../../images/hotplace-bl.png"></button>
     <div class="dropdown">
-        <button class="dropbtn"><img  src="../../images/community-wh.png"></button>
+        <button class="dropbtn"><img  src="../../images/community-bl.png"></button>
         <div class="dropdown-content">
             <a href="../board/list?boardtype=1">꿀팁게시판</a>
             <a href="../board/list?boardtype=2">자유게시판</a>
@@ -20,9 +25,9 @@
             <a href="../club/reportList">신고게시판</a>
         </div>
     </div>
-    <button type="button" class="discount-box" onclick="location.href='../discount/list'"><img  src="../../images/discount-wh.png"></button>
-    <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../../images/qna-wh.png"></button>
-    <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../../images/faq-wh.png"></button>
+    <button type="button" class="discount-box" onclick="location.href='../discount/list'"><img  src="../../images/discount-bl.png"></button>
+    <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../../images/qna-bl.png"></button>
+    <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../../images/faq-bl.png"></button>
 
     <c:choose>
         <c:when test="${empty loginUser}">
@@ -70,8 +75,28 @@
                 <tbody>
                 <tr>
                     <td><input type='search' name='arrive' value='${param.arrive}' style="border: none; width: 254px; height: 54px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-color: #fff;"></td>
-                    <td><input type='date' name='startDate' value='${param.startDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
-                    <td><input type='date' name='endDate' value='${param.endDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <td><input id="start" name='startDate' value='${param.startDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <script>
+                        $(function () {
+                             $("#start").datepicker({
+                                 currentText: '오늘 날짜',
+                                 showAnim: "slide",
+                                 dateFormat: "yy-mm-dd",
+                                 minDate: 0
+                             });
+                        });
+                    </script>
+                    <td><input id="end" name='endDate' value='${param.endDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <script>
+                        $(function () {
+                             $("#end").datepicker({
+                                 currentText: '오늘 날짜',
+                                 showAnim: "slide",
+                                 dateFormat: "yy-mm-dd",
+                                 minDate: 0
+                             });
+                        });
+                    </script>
                     <td><select name="theme" id="theme" style="border: none; width: 254px; height: 54px; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-color: #fff;">
                         <option value=''></option>
                         <option value='불멍때리기'>불멍때리기</option>

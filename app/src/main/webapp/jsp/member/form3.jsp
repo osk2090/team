@@ -67,7 +67,7 @@ button.btn.btn-primary.btn-sm {
     right: 5.2%;
 }
 .btn-primary {
-    width: 80px;
+    width: 90px;
     height: 40px;
     padding: 8px 15px 11px;
     border-radius: 10px;
@@ -112,7 +112,7 @@ button.btn.btn-primary.btn-sm {
 </style>
 </head>
 <header>
-        <button type="button" class="logo-box" onclick="location.href='../club/list'"><img  src="../../images/joinjoylogo-bl.png"></button>
+        <button type="button" class="logo-box" onclick="location.href='../club/main'"><img  src="../../images/joinjoylogo-bl.png"></button>
         <button type="button" class="hotplace-box" onclick="location.href='../hotplace/list'"><img  src="../../images/hotplace-bl.png"></button>
         <div class="dropdown">
             <button class="dropbtn"><img  src="../../images/community-bl.png"></button>
@@ -127,7 +127,7 @@ button.btn.btn-primary.btn-sm {
          <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../../images/qna-bl.png"></button>
         <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../../images/faq-bl.png"></button>
          
-      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../app/login'">logIn</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../login'">logIn</button>
 </header>
 
 <body>
@@ -198,7 +198,7 @@ button.btn.btn-primary.btn-sm {
     <small class="text-muted">개인정보 유출시 형사적 책임을 질 수 있습니다.</small>                                          
 </form>
 </article> <!-- card-body end .// -->
-<div class="border-top card-body text-center">이미 가입을 하셨나요? <a href="http://localhost:8080/team/app/login">로그인</a></div>
+<div class="border-top card-body text-center">이미 가입을 하셨나요? <a href="/team/app/login">로그인</a></div>
 </div> <!-- card.// -->
 </div> <!-- col.//-->
 

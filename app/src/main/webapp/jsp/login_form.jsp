@@ -119,7 +119,7 @@ button.btn.btn-primary.btn-sm {
 </style>
 </head>
 <header>
-        <button type="button" class="logo-box" onclick="location.href='../app/club/list'"><img  src="../images/joinjoylogo-bl.png"></button>
+        <button type="button" class="logo-box" onclick="location.href='../app/club/main'"><img  src="../images/joinjoylogo-bl.png"></button>
         <button type="button" class="hotplace-box" onclick="location.href='../app/hotplace/list'"><img  src="../images/hotplace-bl.png"></button>
         <div class="dropdown">
             <button class="dropbtn"><img  src="../images/community-bl.png"></button>
@@ -133,14 +133,14 @@ button.btn.btn-primary.btn-sm {
          <button type="button" class="discount-box" onclick="location.href='../discount/list'"><img  src="../images/discount-bl.png"></button>
          <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../images/qna-bl.png"></button>
         <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../images/faq-bl.png"></button>
-         
-      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../app/login'">logIn</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../app/member/addd'">Sign up</button>
+      <%--<button type="button" class="btn btn-primary btn-sm" onclick="location.href='../app/login'">logIn</button>--%>
 </header>
 <body>
 <div id="wrap">
     <div id="login">
-    <br><br><br>
-        <h1 class="text-center text-white pt-5" onclick="location.href='club/list'">JoinJoy</h1>
+    <br><br><br><br><br>
+<%--        <h1 class="text-center text-white pt-5" onclick="location.href='club/list'">JoinJoy</h1>--%>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">

@@ -3,8 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Club List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>JoinJoy</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/header_bl.css" type="text/css">
     <style>
         body{
@@ -81,8 +86,29 @@
                 <tbody>
                 <tr>
                     <td><input type='search' name='arrive' value='${param.arrive}' style="border: none; width: 254px; height: 54px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-color: #fff;"></td>
-                    <td><input type='date' name='startDate' value='${param.startDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
-                    <td><input type='date' name='endDate' value='${param.endDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <td><input id="start" name='startDate' value='${param.startDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <script>
+                        $(function () {
+                             $("#start").datepicker({
+                                 currentText: '오늘 날짜',
+                                 showAnim: "slide",
+                                 dateFormat: "yy-mm-dd",
+                                 minDate: 0
+                             });
+                        });
+                    </script>
+                    <td><input id="end" name='endDate' value='${param.endDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <script>
+                        $(function () {
+                             $("#end").datepicker({
+                                 currentText: '오늘 날짜',
+                                 showAnim: "slide",
+                                 dateFormat: "yy-mm-dd",
+                                 minDate: 0
+                             });
+                        });
+                    </script>
+
                     <td><select name="theme" id="theme" style="border: none; width: 254px; height: 54px; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-color: #fff;">
                         <option value=''></option>
                         <option value='불멍때리기'>불멍때리기</option>

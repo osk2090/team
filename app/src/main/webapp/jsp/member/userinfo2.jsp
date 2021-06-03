@@ -136,8 +136,7 @@ button.btn.btn-primary.btn-sm {
          <button type="button" class="discount-box" onclick="location.href='../discount/list'"><img  src="../images/discount-bl.png"></button>
          <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../images/qna-bl.png"></button>
         <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../images/faq-bl.png"></button>
-         
-      <button type="button" class="btn btn-primary btn-sm">logout</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../logout'">logout</button>
 </header>
 <body>
 

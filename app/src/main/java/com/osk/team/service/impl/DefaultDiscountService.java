@@ -1,11 +1,11 @@
 package com.osk.team.service.impl;
 
-import java.util.List;
 import com.osk.team.dao.DiscountDao;
 import com.osk.team.domain.Discount;
 import com.osk.team.service.DiscountService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.support.TransactionTemplate;
+
+import java.util.List;
 
 @Service
 public class DefaultDiscountService implements DiscountService {

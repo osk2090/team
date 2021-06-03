@@ -1,42 +1,75 @@
-<%@ page 
-    language="java" 
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
+<%@ page
+        language="java"
+        contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"
+        trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>핫플레이스 목록</title>
-  <style>
-    .wrap {position: absolute;left: 75px;bottom: 40px;top: -95px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>핫플레이스 목록</title>
+    <link rel="stylesheet" href="../../css/header_wh.css" type="text/css">
+    <style>
+        .wrap {position: absolute;left: 75px;bottom: 40px;top: -95px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+        .wrap * {padding: 0;margin: 0;}
+        .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+        .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+        .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+        .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+        .info .close:hover {cursor: pointer;}
+        .info .body {position: relative;overflow: hidden;}
+        .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+        .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+        .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+        .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+        .info .link {color: #5085BB;}
+    </style>
 </head>
-<body>
-<h1>핫플레이스</h1>
 
-<div id="map" style="width:700px;height:700px;"></div>
+<header>
+    <button type="button" class="logo-box" onclick="location.href='../club/main'"><img  src="../../images/joinjoylogo-bl.png"></button>
+    <button type="button" class="hotplace-box" onclick="location.href='../hotplace/list'"><img  src="../../images/hotplace-bl.png"></button>
+    <div class="dropdown">
+        <button class="dropbtn"><img  src="../../images/community-bl.png"></button>
+        <div class="dropdown-content">
+            <a href="../board/list?boardtype=1">꿀팁게시판</a>
+            <a href="../board/list?boardtype=2">자유게시판</a>
+            <a href="../board/list?boardtype=3">세컨핸즈샵</a>
+            <a href="#">신고게시판</a>
+        </div>
+    </div>
+    <button type="button" class="discount-box" onclick="location.href='../discount/list'"><img  src="../../images/discount-bl.png"></button>
+    <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../../images/qna-bl.png"></button>
+    <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../../images/faq-bl.png"></button>
+
+    <c:choose>
+        <c:when test="${empty loginUser}">
+            <button type="button" class="btn-outline-primary" onclick="location.href='../member/addd'">Sign up</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../login'">Login</button>
+        </c:when>
+        <c:otherwise>
+            <button type="button" class="btn-outline-primary" onclick="location.href='../member/detail'">My page</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../logout'">Logout</button>
+        </c:otherwise>
+    </c:choose>
+</header>
+
+<body>
+
+<div class="hotplace-background">
+    <div style="position:absolute; left:2%; top:2.74%; font-size:2em">핫플레이스</div>
+    <div id="map"></div>
+</div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=321d4ad60c277c79886760c525a516fe"></script>
 <script>
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(36.516515, 128.269960), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(36.538725, 128.518271), // 지도의 중심좌표
         level: 13 // 지도의 확대 레벨
     };
 

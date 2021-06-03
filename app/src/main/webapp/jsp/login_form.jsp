@@ -134,7 +134,7 @@ button.btn.btn-primary.btn-sm {
          <button type="button" class="qna-box" onclick="location.href='../qna/list'"><img  src="../images/qna-bl.png"></button>
         <button type="button" class="faq-box" onclick="location.href='../faq/list'"><img  src="../images/faq-bl.png"></button>
          
-      <button type="button" class="btn btn-primary btn-sm">logout</button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='../app/login'">logIn</button>
 </header>
 <body>
 <div id="wrap">

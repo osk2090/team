@@ -237,7 +237,8 @@ button.btn.btn-primary.btn-sm {
                   <tfoot>
       <tr><td colspan='2'>
           <input type='submit' class="btn btn-primary" value='수정'> 
-          <input type="button" value="탈퇴" class="btn btn-primary" onclick="location.href='delete?no=${member.no}'"/>
+          <input type="button" value="탈퇴" class="btn btn-primary" onclick="location.href='delete?no=${member.no}'">
+<%--          <input type="button" value=">--%>
           </tfoot>
     </table>
   </form>

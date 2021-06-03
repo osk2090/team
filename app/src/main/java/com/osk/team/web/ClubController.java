@@ -209,7 +209,6 @@ public class ClubController {
         } else {
             clubs = clubService.list();
         }
-
         request.setAttribute("clubs", clubs);
         return "/jsp/club/list.jsp";
     }

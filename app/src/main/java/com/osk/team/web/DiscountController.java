@@ -1,7 +1,8 @@
 package com.osk.team.web;
 
+import com.osk.team.domain.Discount;
 import com.osk.team.domain.Member;
-import com.osk.team.service.MemberService;
+import com.osk.team.service.DiscountService;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -12,110 +13,97 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/member/")
-public class MemberController {
+@RequestMapping("/discount/")
+public class DiscountController {
 
-  MemberService memberService;
+  DiscountService discountService;
 
-  public MemberController(MemberService memberService) {
-    this.memberService = memberService;
+  public DiscountController(DiscountService discountService) {
+    this.discountService = discountService;
   }
 
-  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+  @RequestMapping("add")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-  @RequestMapping("addd")
-  public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String uploadDir = request.getServletContext().getRealPath("/upload");
 
     if (request.getMethod().equals("GET")) {
-      return "/jsp/member/form3.jsp";
+      return "/jsp/discount/form.jsp";
     }
-    Member m = new Member();
-    //m.setNo(Integer.parseInt(request.getParameter("no")));
-    m.setName(request.getParameter("name"));
-    m.setPassword(request.getParameter("password"));
-    m.setEmail(request.getParameter("email"));
-    m.setTel(Integer.parseInt(request.getParameter("tel")));
-    m.setGender(Integer.parseInt(request.getParameter("gender")));
-    m.setBirth(Date.valueOf(request.getParameter("birth")));
-    m.setStatus(0);
-    m.setPower(0);
-    m.setStatus(0);
 
-    Part photoFile = request.getPart("photo");
-    if (photoFile.getSize() > 0) {
+    Discount d = new Discount();
+    d.setTitle(request.getParameter("title"));
+    d.setContent(request.getParameter("content"));
+    Part photoPart = request.getPart("photo");
+    if (photoPart.getSize() > 0) {
+      // 파일을 선택해서 업로드 했다면,
       String filename = UUID.randomUUID().toString();
-      photoFile.write(uploadDir + "/" + filename);
-      m.setPhoto(filename);
+      photoPart.write(uploadDir + "/" + filename);
+      d.setPhoto(filename);
 
       // 썸네일 이미지 생성
-      Thumbnails.of(uploadDir + "/" + filename)
-      .size(30, 30)
-      .outputFormat("jpg")
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_30x30";
-        }
-      });
-
-      Thumbnails.of(uploadDir + "/" + filename)
-      .size(80, 80)
-      .outputFormat("jpg")
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
+      Thumbnails.of(uploadDir + "/" + filename).size(80, 80).outputFormat("jpg")
+      .crop(Positions.CENTER).toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
           return name + "_80x80";
         }
       });
-    }
 
-    memberService.add(m);
-    return "/jsp/club/main.jsp";
+      // 썸네일 이미지 생성
+      Thumbnails.of(uploadDir + "/" + filename).size(200, 200).outputFormat("jpg")
+      .crop(Positions.CENTER).toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_200x200";
+        }
+      });
+    }
+    discountService.add(d);
+    return "redirect:list";
   }
 
   @RequestMapping("delete")
   public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
     int no = Integer.parseInt(request.getParameter("no"));
 
-    Member member = memberService.get(no);
-    if (member == null) {
-      throw new Exception("해당 번호의 회원이 없습니다.");
+    Discount oldDiscount = discountService.get(no);
+    if (oldDiscount== null) {
+      throw new Exception("해당 번호의 할인정보가 없습니다.");
     }
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if (member.getNo() != loginUser.getNo()) {
+    if (1 != loginUser.getPower()) {
       throw new Exception("삭제 권한이 없습니다!");
     }
-
-    memberService.delete(no);
+    discountService.delete(no);
     return "redirect:list";
   }
 
   @RequestMapping("detail")
   public String detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     int no = Integer.parseInt(request.getParameter("no"));
-
-    Member m = memberService.get(no);
-    request.setAttribute("member", m);
-
-    return "/jsp/member/detail.jsp";
+    Discount d = discountService.get(no);
+    request.setAttribute("discount", d);
+    return "/jsp/discount/detail.jsp";
   }
 
   @RequestMapping("list")
   public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    List<Member> list = memberService.list(request.getParameter("keyword"));
-    request.setAttribute("list", list);
-    return "/jsp/member/list.jsp";
-
+    String keyword = request.getParameter("keyword");
+    List<Discount> discounts = null;
+    if (keyword != null && keyword.length() > 0) {
+      discounts = discountService.search(keyword);
+    } else {
+      discounts = discountService.list();
+    }
+    request.setAttribute("list", discounts);
+    return "/jsp/discount/list.jsp";
   }
 
   @RequestMapping("update")
@@ -124,37 +112,26 @@ public class MemberController {
     String uploadDir = request.getServletContext().getRealPath("/upload");
     int no = Integer.parseInt(request.getParameter("no"));
 
-    Member oldMember = memberService.get(no);
-    if (oldMember == null) {
-      throw new Exception("해당 번호의 회원이 없습니다.");
+    Discount oldDiscount = discountService.get(no);
+    if (oldDiscount== null) {
+      throw new Exception("해당 번호의 할인정보가 없습니다.");
     }
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if (oldMember.getNo() != loginUser.getNo() && loginUser.getPower() == 0) {
+    if (1 != loginUser.getPower()) {
       throw new Exception("변경 권한이 없습니다!");
     }
 
-    Member member = new Member();
-    member.setNo(oldMember.getNo());
-    member.setPassword(request.getParameter("password"));
-    member.setTel(Integer.parseInt(request.getParameter("tel")));
+    Discount d = new Discount();
+    d.setNo(oldDiscount.getNo());
+    d.setTitle(request.getParameter("title"));
+    d.setContent(request.getParameter("content"));
 
     Part photoPart = request.getPart("photo");
     if (photoPart.getSize() > 0) {
       String filename = UUID.randomUUID().toString();
       photoPart.write(uploadDir + "/" + filename);
-      member.setPhoto(filename);
-
-      Thumbnails.of(uploadDir + "/" + filename)
-      .size(30, 30)
-      .outputFormat("jpg")
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_30x30";
-        }
-      });
+      d.setPhoto(filename);
 
       Thumbnails.of(uploadDir + "/" + filename)
       .size(80, 80)
@@ -166,9 +143,19 @@ public class MemberController {
           return name + "_80x80";
         }
       });
-    }
-    memberService.update(member);
 
+      Thumbnails.of(uploadDir + "/" + filename)
+      .size(200, 200)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_200x200";
+        }
+      });
+    }
+    discountService.update(d);
     return "redirect:list";
   }
 }

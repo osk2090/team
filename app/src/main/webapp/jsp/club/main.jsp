@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: osk2090
-  Date: 2021/05/17
-  Time: 11:17 오전
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -52,6 +45,7 @@
     </c:choose>
 </header>
 
+
 <body>
 <div style="position: absolute; left:16.6%; top:22.56%; font-size:50px; color: #fff; font-weight: bold;">이제 조인하세요</div>
 
@@ -76,7 +70,7 @@
     </div>
 
     <form action='list' method='get'>
-        <fieldset style= "position: absolute; width: 30%; top: 40%; left: 3.35%; color:#fff;">
+        <fieldset style= "position: absolute; width: 90%; top: 40%; left: 3.35%; color:#fff;">
             <table>
                 <thead style="font-size: 0.75em;">
                 <tr>
@@ -86,10 +80,10 @@
 
                 <tbody>
                 <tr>
-                    <td><input type='search' name='arrive' value='${param.arrive}' style="border: none; width: 100%; height: 54px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-color: #fff;"></td>
-                    <td><input type='date' name='startDate' value='${param.startDate}' style="border: none; width: 100%; height: 54px; border-color: #fff;"></td>
-                    <td><input type='date' name='endDate' value='${param.endDate}' style="border: none; width: 100%; height: 54px; border-color: #fff;"></td>
-                    <td><select name="theme" id="theme" style="border: none; width: 100%; height: 54px; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-color: #fff;">
+                    <td><input type='search' name='arrive' value='${param.arrive}' style="border: none; width: 254px; height: 54px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-color: #fff;"></td>
+                    <td><input type='date' name='startDate' value='${param.startDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <td><input type='date' name='endDate' value='${param.endDate}' style="border: none; width: 254px; height: 54px; border-color: #fff;"></td>
+                    <td><select name="theme" id="theme" style="border: none; width: 254px; height: 54px; border-bottom-right-radius: 10px; border-top-right-radius: 10px; border-color: #fff;">
                         <option value=''></option>
                         <option value='불멍때리기'>불멍때리기</option>
                         <option value='고기파티'>고기파티</option>

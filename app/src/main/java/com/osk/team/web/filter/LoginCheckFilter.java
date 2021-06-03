@@ -22,9 +22,11 @@ public class LoginCheckFilter implements Filter {
 
         if (httpRequest.getServletPath().startsWith("/app")) {
             String pathInfo = httpRequest.getPathInfo();
-            if (pathInfo.endsWith("add") ||
+            if (pathInfo.endsWith("/member/add")) {
+                System.out.println("회원가입 경로");
+            } else if (pathInfo.endsWith("add") ||
                     pathInfo.endsWith("update") ||
-                    pathInfo.endsWith("/club/detail") ||
+                    pathInfo.endsWith("detail") ||
                     pathInfo.endsWith("delete")) {
 
                 logger.debug("로그인 검사!");
